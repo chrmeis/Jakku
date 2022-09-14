@@ -7,6 +7,8 @@
     android:visibility="visible"
     tools:context=".SettingsActivity">
 
+    //this is a button, to use it activate in main activity and make visible again
+
     <TextView
         android:id="@+id/tv_Settings"
         android:layout_width="wrap_content"
@@ -15,12 +17,11 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.047" />
 
-    //this is a button, to use it activate in main activity and make visible again
     <Button
         android:id="@+id/b_backFromSettings"
         android:layout_width="wrap_content"
@@ -36,14 +37,15 @@
 
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/sw_sports"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Switch"
+        android:text="Sports settings"
         app:layout_constraintBottom_toTopOf="@+id/b_backFromSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.205" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
