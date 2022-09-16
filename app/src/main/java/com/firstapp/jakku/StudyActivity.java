@@ -3,29 +3,18 @@ package com.firstapp.jakku;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-
-    TextView info;
-    Button settings;
+public class StudyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        info=(TextView) findViewById(R.id.tv_info);
-        settings=(Button) findViewById(R.id.b_settings);
-
+        setContentView(R.layout.activity_study);
     }
 
     @Override
@@ -42,19 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if(id == R.id.trainingspref){
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(StudyActivity.this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
 
         if(id == R.id.studypref){
-            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
             startActivity(intent);
             return true;
         }
 
         if(id == R.id.home){
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            Intent intent = new Intent(StudyActivity.this, MainActivity.class);
             startActivity(intent);
             return true;
         }
@@ -63,4 +52,3 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
