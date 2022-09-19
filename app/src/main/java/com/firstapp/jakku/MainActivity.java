@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        info=(TextView) findViewById(R.id.tv_info);
+        info=(TextView) findViewById(R.id.textView2);
         settings=(Button) findViewById(R.id.b_settings);
 
     }
