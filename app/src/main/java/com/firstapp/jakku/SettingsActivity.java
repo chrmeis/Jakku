@@ -122,20 +122,22 @@ public class SettingsActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if(id == R.id.trainingspref){
-            Intent intent = new Intent (SettingsActivity.this, SettingsActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent (SettingsActivity.this, SettingsActivity.class);
+//            startActivity(intent);
             return true;
         }
 
         if(id == R.id.studypref){
             Intent intent = new Intent(SettingsActivity.this, StudyActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if(id == R.id.home){
             Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 

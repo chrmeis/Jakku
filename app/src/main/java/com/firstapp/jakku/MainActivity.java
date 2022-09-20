@@ -16,7 +16,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     TextView info;
-    Button settings;
+//    Button settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         info=(TextView) findViewById(R.id.textView2);
-        settings=(Button) findViewById(R.id.b_settings);
+//        settings=(Button) findViewById(R.id.b_settings);
 
     }
 
@@ -44,18 +44,20 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.trainingspref){
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if(id == R.id.studypref){
             Intent intent = new Intent(MainActivity.this, StudyActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if(id == R.id.home){
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            startActivity(intent);
+ //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+ //           startActivity(intent);
             return true;
         }
 

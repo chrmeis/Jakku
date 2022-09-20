@@ -33,18 +33,20 @@ public class StudyActivity extends AppCompatActivity {
         if(id == R.id.trainingspref){
             Intent intent = new Intent(StudyActivity.this, SettingsActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if(id == R.id.studypref){
-            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
+//            startActivity(intent);
             return true;
         }
 
         if(id == R.id.home){
             Intent intent = new Intent(StudyActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
