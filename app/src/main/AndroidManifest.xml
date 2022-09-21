@@ -18,6 +18,11 @@
             android:name=".AlarmReceiver"></receiver>
 
         <activity
+            android:name=".NotificationWorkout"
+            android:exported="false"
+            />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 
@@ -27,6 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
     </application>
 
 </manifest>

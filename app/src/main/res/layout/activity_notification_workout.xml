@@ -5,28 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".NotificationWorkout">
 
-
-    <TextView
-        android:id="@+id/testText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textAlignment="center"
-        android:text="Hello world"
-        android:textSize="46dp" />
-
-    <Button
-        android:id="@+id/notifStarter"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginHorizontal="26dp"
-        android:text="Start Notification" />
-
-
-    <!-- Moved to activity_notification_workout for test
     <TextView
         android:id="@+id/selectedTime"
         android:layout_width="match_parent"
@@ -63,6 +43,6 @@
         android:text="Cancel alarm"
         tools:layout_editor_absoluteX="157dp"
         tools:layout_editor_absoluteY="313dp" />
--->
+
 
 </LinearLayout>
