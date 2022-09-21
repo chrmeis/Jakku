@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,29 +15,46 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
-    Button back;
-    Switch cardiosettings;
-    Switch strengthsettings;
-    SeekBar c_frequency;
-    SeekBar c_duration;
-    SeekBar s_frequency;
-    SeekBar s_duration;
-    TextView c_freqQ;
-    TextView c_durQ;
-    TextView c_freq_ans;
-    TextView c_dur_ans;
-    TextView s_freqQ;
-    TextView s_durQ;
-    TextView s_freq_ans;
-    TextView s_dur_ans;
+    private Button back;
+    private Switch cardiosettings;
+    private Switch strengthsettings;
+    private SeekBar c_frequency;
+    private SeekBar c_duration;
+    private SeekBar s_frequency;
+    private SeekBar s_duration;
+    private TextView c_freqQ;
+    private TextView c_durQ;
+    private TextView c_freq_ans;
+    private TextView c_dur_ans;
+    private TextView s_freqQ;
+    private TextView s_durQ;
+    private TextView s_freq_ans;
+    private TextView s_dur_ans;
+
+    private Button saveButtonTrain;
+
+    public static final String SHARED_TPREFS = "sharedPref";
+    private static final String  C_FREQ = "c-freq";
+    private static final String C_DUR = "c-dur";
+    private static final String S_FREQ = "s_freq";
+    private static final String S_DUR = "s-dur";
+    private static final String C_SWITCH = "c-switch";
+    private static final String S_SWITCH = "s-switch";
+
+    private int cFreq;
+    private int cDur;
+    private int sFreq;
+    private int sDur;
+    private boolean cSwitch;
+    private boolean sSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
 
         cardiosettings = findViewById(R.id.s_Cardio);
         c_frequency = findViewById(R.id.sb_cfreq);
@@ -53,10 +71,11 @@ public class SettingsActivity extends AppCompatActivity {
         s_freq_ans = findViewById(R.id.tv_sfreq_ans);
         s_dur_ans = findViewById(R.id.tv_sdur_ans);
 
+        saveButtonTrain = (Button) findViewById(R.id.b_save_training);
+
         cardiosettings.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-
                 if (!isChecked) {
                     // The toggle is disabled
                     System.out.println("Cardio toggle disabled");
@@ -78,7 +97,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         strengthsettings = findViewById(R.id.s_Strength);
         strengthsettings.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -106,6 +124,17 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+     saveButtonTrain.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             savePrefTrain();
+         }
+     });
+
+
+        loadPrefTrain();
+        updateTrainViews();
     }
 
     @Override
@@ -140,8 +169,42 @@ public class SettingsActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public void savePrefTrain(){
+        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt(C_FREQ, c_frequency.getProgress());
+        editor.putInt(C_DUR, c_duration.getProgress());
+        editor.putInt(S_FREQ, s_frequency.getProgress());
+        editor.putInt(S_DUR, s_duration.getProgress());
+        editor.putBoolean(C_SWITCH, cardiosettings.isChecked());
+        editor.putBoolean(S_SWITCH, strengthsettings.isChecked());
+
+        editor.apply();
+
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadPrefTrain() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        cFreq = sharedPreferences.getInt(C_FREQ, 1);
+        cDur = sharedPreferences.getInt(C_DUR, 1);
+        sFreq = sharedPreferences.getInt(S_FREQ, 1);
+        sDur = sharedPreferences.getInt(S_DUR, 1);
+        cSwitch = sharedPreferences.getBoolean(C_SWITCH, false);
+        sSwitch = sharedPreferences.getBoolean(S_SWITCH, false);
+    }
+
+    public void updateTrainViews(){
+        c_frequency.setProgress(cFreq);
+        c_duration.setProgress(cDur);
+        s_frequency.setProgress(sFreq);
+        s_duration.setProgress(sDur);
+        cardiosettings.setChecked(cSwitch);
+        strengthsettings.setChecked(sSwitch);
+
     }
 }
