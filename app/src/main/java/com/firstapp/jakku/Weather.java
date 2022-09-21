@@ -85,7 +85,7 @@ public class Weather {
     }
 
     /**
-     * This returns a JSONArray with only 4 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
+     * This returns a JSONArray with only 5 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
      * @return JSONArray
      */
     public JSONArray requestShortWeather(){
@@ -110,7 +110,7 @@ public class Weather {
     }
 
     /**
-     * This returns a JSONArray with only 4 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
+     * This returns a JSONArray with only 5 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
      * @return JSONArray
      */
     public JSONArray requestShortWeather(String latitude, String longitude){
