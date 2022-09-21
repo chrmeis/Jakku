@@ -69,7 +69,7 @@ public class Weather {
 
         try {
 
-            //Read Json from the API, currently uses Gothenburgs Coordinates
+            //Read Json from the API, currently uses Coordinates of the users choice
             jsonObject = readJsonFromUrl("https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + longitude + "/lat/" + latitude + "/data.json");
             //Add the weather forecast to the array
             jsonArray = (JSONArray) jsonObject.get("timeSeries");
