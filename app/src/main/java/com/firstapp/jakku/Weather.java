@@ -11,8 +11,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Weather {
+    private static JSONArray jsonArray = requestShortWeather();
 
-    private String readStringFromUrl(String url) throws IOException {
+    public JSONArray getJsonArray() {
+        return jsonArray;
+    }
+
+    public Weather(){}
+
+    private static String readStringFromUrl(String url) throws IOException {
 
         InputStream inputStream = new URL(url).openStream();
         try {
@@ -27,12 +34,13 @@ public class Weather {
             inputStream.close();
         }
     }
-    private JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+
+    private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         String text = readStringFromUrl(url);
         return new JSONObject(text);
     }
 
-    public JSONArray requestWeather() {
+    public static JSONArray requestWeather() {
 
         //Smhi returns a JSON
         JSONObject jsonObject;
@@ -59,7 +67,7 @@ public class Weather {
         return jsonArray;
     }
 
-    public JSONArray requestWeather(String latitude, String longitude){
+    public static JSONArray requestWeather(String latitude, String longitude) {
 
         //Smhi returns a JSON
         JSONObject jsonObject;
@@ -86,53 +94,65 @@ public class Weather {
 
     /**
      * This returns a JSONArray with only 5 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
+     *
      * @return JSONArray
      */
-    public JSONArray requestShortWeather(){
+    public static JSONArray requestShortWeather() {
         //JSONObject jsonObject = (JSONObject) jsonArray.get(0);
         //JSONArray jsonArray1 = (JSONArray) jsonObject.get("parameters");
 
         JSONArray jsonArray = requestWeather();
-        int[] intArray = new int[]{17,16,13,12,11,9,8,7,6,5,4,3,2,0}; //These are the parameters we do not care about
-        for (int i = 0; i < jsonArray.length(); i++){
+        int[] intArray = new int[]{17, 16, 13, 12, 11, 9, 8, 7, 6, 5, 4, 3, 2, 0}; //These are the parameters we do not care about
+        for (int i = 0; i < jsonArray.length(); i++) {
             for (int delete : intArray) {
-                try{
+                try {
                     ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).remove(delete);
-                }
-                catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
 
-        return  jsonArray;
+        return jsonArray;
 
     }
 
     /**
      * This returns a JSONArray with only 5 parameters in the following order: Precipitation category, temperature, wind speed, relative humidity and weather symbol.
+     *
      * @return JSONArray
      */
-    public JSONArray requestShortWeather(String latitude, String longitude){
+    public static JSONArray requestShortWeather(String latitude, String longitude) {
         //JSONObject jsonObject = (JSONObject) jsonArray.get(0);
         //JSONArray jsonArray1 = (JSONArray) jsonObject.get("parameters");
 
         JSONArray jsonArray = requestWeather(latitude, longitude);
-        int[] intArray = new int[]{17,16,13,12,11,9,8,7,6,5,4,3,2,0}; //These are the parameters we do not care about
-        for (int i = 0; i < jsonArray.length(); i++){
+        int[] intArray = new int[]{17, 16, 13, 12, 11, 9, 8, 7, 6, 5, 4, 3, 2, 0}; //These are the parameters we do not care about
+        for (int i = 0; i < jsonArray.length(); i++) {
             for (int delete : intArray) {
-                try{
+                try {
                     ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).remove(delete);
-                }
-                catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
         }
 
-        return  jsonArray;
+        return jsonArray;
 
     }
 
+    public static String temperature() {
+        //JSONArray jsonArray = null;
+        String string = "Error getting temperature";
+        try {
+            string = ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters")).get(1)).get("values")).get(0).toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return string;
+    }
 }
