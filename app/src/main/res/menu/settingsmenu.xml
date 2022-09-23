@@ -2,19 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/trainingspref"
+    <item android:id="@+id/sportspref"
     android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Training"
+        android:title="Activity"
         app:showAsAction= "never" />
-
-    <item android:id="@+id/studypref"
-        android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Study"
-        app:showAsAction= "never" />
-
-    <item android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Home"
-        app:showAsAction= "never" />
-
 </menu>
