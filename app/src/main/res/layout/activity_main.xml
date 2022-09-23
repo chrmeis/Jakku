@@ -7,20 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-<<<<<<< HEAD
 
-
-    <!--this is a button, to use it activate in main activity and make visible again-->
-
-    <View
-        android:id="@+id/weatherview"
-        android:layout_width="357dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -66,30 +53,6 @@
 
 
 
-=======
->>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
-    <TextView
-
-        android:id="@+id/textView3"
-        android:layout_width="328dp"
-        android:layout_height="240dp"
-        android:text="Todays todo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherview"
-        app:layout_constraintVertical_bias="0.102" />
-
-    <Button
-        android:id="@+id/cancelAlarmbtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="26dp"
-        android:text="Cancel alarm"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="313dp" />
 
 
 </LinearLayout>

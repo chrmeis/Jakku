@@ -28,18 +28,17 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
 
     TextView info;
 //    Button settings;
-=======
+
     private ActivityMainBinding binding;
     //part of test UI
     private MaterialTimePicker picker;
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
->>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
+
 
     //Button button;
     @Override
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         createNotificationChannel();
 
-<<<<<<< HEAD
+
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
-=======
+
         binding.selectTimeBtn.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -227,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
 
         alarmManager.cancel(pendingIntent);
         Toast.makeText(this, "Reminder Cancelled", Toast.LENGTH_SHORT).show();
->>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
 
     }
 }
