@@ -22,6 +22,14 @@
             android:exported="false"
             />
 
+
+		<activity
+            android:name=".StudyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

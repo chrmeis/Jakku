@@ -28,7 +28,9 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+
+    TextView info;
+//    Button settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +38,48 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.notifStarter.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, NotificationWorkout.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
+        info=(TextView) findViewById(R.id.textView2);
+//        settings=(Button) findViewById(R.id.b_settings);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id= item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if(id == R.id.trainingspref){
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+ //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+ //           startActivity(intent);
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+
     }
 }
 
