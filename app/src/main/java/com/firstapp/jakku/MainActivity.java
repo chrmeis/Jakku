@@ -28,16 +28,30 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
 
     TextView info;
 //    Button settings;
+=======
+    private ActivityMainBinding binding;
+    //part of test UI
+    private MaterialTimePicker picker;
+    private Calendar calendar;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+>>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
 
+    //Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        //button = findViewById(R.id.button);
+        //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot());
+        createNotificationChannel();
 
+<<<<<<< HEAD
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
@@ -79,6 +93,141 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+=======
+        binding.selectTimeBtn.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                showTimePicker();
+
+
+            }
+        });
+
+
+        binding.setAlarmbtn.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                setAlarm();
+
+            }
+        });
+
+        binding.cancelAlarmbtn.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                cancelAlarm();
+
+            }
+        });
+
+        /*
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                notificationSetup();
+            }
+        });*/
+    }
+
+    private void notificationSetup(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer
+            NotificationChannel channel = new NotificationChannel("Test", "Testing", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"Test");
+        Date currentTime = Calendar.getInstance().getTime();
+        builder.setContentTitle("Test_title");
+        builder.setContentText(currentTime.toString());
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+        managerCompat.notify(1,builder.build());
+    }
+
+
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer, so always since we're using Android 9 or greater
+            //Importance high to have notifications show up on locked screen
+            NotificationChannel channel = new NotificationChannel("Notification", "tRAINing notifications", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Channel for tRAINing notification");
+
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+    //part of test UI
+    private void showTimePicker(){
+        picker = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Notification Time")
+                .build();
+
+        picker.show(getSupportFragmentManager(),"Notification");
+
+        picker.addOnPositiveButtonClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                binding.selectedTime.setText(picker.getHour()+" : " + picker.getMinute());
+
+
+                calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());
+                calendar.set(Calendar.MINUTE,picker.getMinute());
+                calendar.set(Calendar.SECOND,0);
+                calendar.set(Calendar.MILLISECOND,0);
+            }
+
+        });
+
+
+    }
+
+    private void setAlarm(){
+
+        alarmManager = (AlarmManager) getSystemService((Context.ALARM_SERVICE));
+        //MUST MATCH INTENT/PENDING INTENT FOR CANCELALARM
+        Intent intent = new Intent(this, AlarmReceiver.class);
+
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        /*
+        if(calendar == null){
+            calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY,11);
+            calendar.set(Calendar.MINUTE,31);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MILLISECOND,0);
+        }
+        */
+
+        //setInexactRepeating sets alarm +- 1 minute, we don't need more precision
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+
+        Toast.makeText(this, "Reminder set Successfully", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void cancelAlarm(){
+        //MUST MATCH INTENT/PENDING INTENT FOR SETALARM
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        if(alarmManager == null){
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        }
+
+        alarmManager.cancel(pendingIntent);
+        Toast.makeText(this, "Reminder Cancelled", Toast.LENGTH_SHORT).show();
+>>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
 
     }
 }
