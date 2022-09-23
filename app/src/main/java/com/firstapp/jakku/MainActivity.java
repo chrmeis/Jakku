@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if(id == R.id.trainingspref){
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
             startActivity(intent);
             finish();
             return true;

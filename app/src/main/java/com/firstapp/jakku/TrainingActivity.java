@@ -17,14 +17,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SettingsActivity extends AppCompatActivity {
+public class TrainingActivity extends AppCompatActivity {
     private Button back;
     private Switch cardiosettings;
     private Switch strengthsettings;
-    private SeekBar c_frequency;
-    private SeekBar c_duration;
-    private SeekBar s_frequency;
-    private SeekBar s_duration;
+    private SeekBar sb_c_frequency;
+    private SeekBar sb_c_duration;
+    private SeekBar sb_s_frequency;
+    private SeekBar sb_s_duration;
     private TextView c_freqQ;
     private TextView c_durQ;
     private TextView c_freq_ans;
@@ -54,18 +54,18 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_training);
 
         cardiosettings = findViewById(R.id.s_Cardio);
-        c_frequency = findViewById(R.id.sb_cfreq);
-        c_duration = findViewById(R.id.sb_cdur);
+        sb_c_frequency = findViewById(R.id.sb_cfreq);
+        sb_c_duration = findViewById(R.id.sb_cdur);
         c_freqQ = findViewById(R.id.tv_cfrequence);
         c_durQ = findViewById(R.id.tv_cduration);
         c_freq_ans = findViewById(R.id.tv_cfreq_ans2);
         c_dur_ans = findViewById(R.id.tv_cdur_ans2);
 
-        s_frequency = findViewById(R.id.sb_sfreq);
-        s_duration = findViewById(R.id.sb_sdur);
+        sb_s_frequency = findViewById(R.id.sb_sfreq);
+        sb_s_duration = findViewById(R.id.sb_sdur);
         s_freqQ = findViewById(R.id.tv_sfrequence);
         s_durQ = findViewById(R.id.tv_sduration);
         s_freq_ans = findViewById(R.id.tv_sfreq_ans);
@@ -79,19 +79,19 @@ public class SettingsActivity extends AppCompatActivity {
                 if (!isChecked) {
                     // The toggle is disabled
                     System.out.println("Cardio toggle disabled");
-                    c_frequency.setVisibility(View.INVISIBLE);
+                    sb_c_frequency.setVisibility(View.INVISIBLE);
                     c_freqQ.setVisibility(View.INVISIBLE);
                     c_freq_ans.setVisibility(View.INVISIBLE);
-                    c_duration.setVisibility(View.INVISIBLE);
+                    sb_c_duration.setVisibility(View.INVISIBLE);
                     c_durQ.setVisibility(View.INVISIBLE);
                     c_dur_ans.setVisibility(View.INVISIBLE);
                 } else {
                     // The toggle is enabled
                     System.out.println("Cardio toggle enabled");
-                    c_frequency.setVisibility(View.VISIBLE);
+                    sb_c_frequency.setVisibility(View.VISIBLE);
                     c_freqQ.setVisibility(View.VISIBLE);
                     c_freq_ans.setVisibility(View.VISIBLE);
-                    c_duration.setVisibility(View.VISIBLE);
+                    sb_c_duration.setVisibility(View.VISIBLE);
                     c_durQ.setVisibility(View.VISIBLE);
                     c_dur_ans.setVisibility(View.VISIBLE);
                 }
@@ -106,32 +106,91 @@ public class SettingsActivity extends AppCompatActivity {
                 if (isChecked) {
                     // The toggle is enabled
                     System.out.println("Strength toggle enabled");
-                    s_frequency.setVisibility(View.VISIBLE);
+                    sb_s_frequency.setVisibility(View.VISIBLE);
                     s_freqQ.setVisibility(View.VISIBLE);
                     s_freq_ans.setVisibility(View.VISIBLE);
-                    s_duration.setVisibility(View.VISIBLE);
+                    sb_s_duration.setVisibility(View.VISIBLE);
                     s_durQ.setVisibility(View.VISIBLE);
                     s_dur_ans.setVisibility(View.VISIBLE);
                 } else {
                     // The toggle is disabled
                     System.out.println("Strength toggle disabled");
-                    s_frequency.setVisibility(View.INVISIBLE);
+                    sb_s_frequency.setVisibility(View.INVISIBLE);
                     s_freqQ.setVisibility(View.INVISIBLE);
                     s_freq_ans.setVisibility(View.INVISIBLE);
-                    s_duration.setVisibility(View.INVISIBLE);
+                    sb_s_duration.setVisibility(View.INVISIBLE);
                     s_durQ.setVisibility(View.INVISIBLE);
                     s_dur_ans.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
-     saveButtonTrain.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
+        saveButtonTrain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
              savePrefTrain();
          }
-     });
+        });
 
+        sb_c_frequency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                String str;
+                str= String.valueOf(progress) + " times";
+                c_freq_ans.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        sb_c_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                String str;
+                str= String.valueOf(progress*15) + " minutes";
+                c_dur_ans.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        sb_s_frequency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                String str;
+                str= String.valueOf(progress) + " times";
+                s_freq_ans.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        sb_s_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                String str;
+                str= String.valueOf(progress*15) + " minutes";
+                s_dur_ans.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         loadPrefTrain();
         updateTrainViews();
@@ -157,14 +216,14 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         if(id == R.id.studypref){
-            Intent intent = new Intent(SettingsActivity.this, StudyActivity.class);
+            Intent intent = new Intent(TrainingActivity.this, StudyActivity.class);
             startActivity(intent);
             finish();
             return true;
         }
 
         if(id == R.id.home){
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+            Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
             return true;
@@ -176,10 +235,10 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences =getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(C_FREQ, c_frequency.getProgress());
-        editor.putInt(C_DUR, c_duration.getProgress());
-        editor.putInt(S_FREQ, s_frequency.getProgress());
-        editor.putInt(S_DUR, s_duration.getProgress());
+        editor.putInt(C_FREQ, sb_c_frequency.getProgress());
+        editor.putInt(C_DUR, sb_c_duration.getProgress());
+        editor.putInt(S_FREQ, sb_s_frequency.getProgress());
+        editor.putInt(S_DUR, sb_s_duration.getProgress());
         editor.putBoolean(C_SWITCH, cardiosettings.isChecked());
         editor.putBoolean(S_SWITCH, strengthsettings.isChecked());
 
@@ -199,10 +258,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void updateTrainViews(){
-        c_frequency.setProgress(cFreq);
-        c_duration.setProgress(cDur);
-        s_frequency.setProgress(sFreq);
-        s_duration.setProgress(sDur);
+        sb_c_frequency.setProgress(cFreq);
+        sb_c_duration.setProgress(cDur);
+        sb_s_frequency.setProgress(sFreq);
+        sb_s_duration.setProgress(sDur);
         cardiosettings.setChecked(cSwitch);
         strengthsettings.setChecked(sSwitch);
 

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StudyActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class StudyActivity extends AppCompatActivity {
 
     private SeekBar sb_total;
     private SeekBar sb_session;
+    private TextView ansTotal;
+    private TextView ansSession;
 
     public static final String STUDY_TOTAL = "sb_total";
     public static final String STUDY_SESSIONS = "sb_sessions";
@@ -35,6 +38,40 @@ public class StudyActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.b_save_study);
         sb_total = (SeekBar) findViewById(R.id.sb_total);
         sb_session = (SeekBar) findViewById(R.id.sb_session);
+        ansTotal = (TextView) findViewById(R.id.tv_ans_total);
+        ansSession = (TextView) findViewById(R.id.tv_ans_session);
+
+
+        sb_total.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
+                String str;
+                str= String.valueOf(progress) + " hours";
+                ansTotal.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        sb_session.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
+                String str;
+                str= String.valueOf(progress*15) + " minutes";
+                ansSession.setText(str);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +79,7 @@ public class StudyActivity extends AppCompatActivity {
                 savePref();
             }
         });
+
         loadPref();
         updateStudyViews();
 
@@ -61,7 +99,7 @@ public class StudyActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if (id == R.id.trainingspref) {
-            Intent intent = new Intent(StudyActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(StudyActivity.this,TrainingActivity.class);
             startActivity(intent);
             finish();
             return true;
