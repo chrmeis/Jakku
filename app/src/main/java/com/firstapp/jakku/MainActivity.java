@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     static TextView info;
 //    Button settings;
-    Weather weather;
+    //Weather weather;
 
-    public static void updater(String string){
+    public static void updateInfo(String string){
         info.setText(string);
     }
 
@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 //        settings=(Button) findViewById(R.id.b_settings);
         //JSONArray jsonArray = new JSONArray();
         //final String[] string = {"fail"};
-        final String[] extra = {"Slow"};
+        //final String[] extra = {"Slow"};
         TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
         varName.execute();
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("Test1");
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }).start();
-
+        */
         /*try {
             //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
         } catch (JSONException e) {

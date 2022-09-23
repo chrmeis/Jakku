@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,17 +23,14 @@ public class Weather {
 
     private static String readStringFromUrl(String url) throws IOException {
 
-        InputStream inputStream = new URL(url).openStream();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+        try (InputStream inputStream = new URL(url).openStream()) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             StringBuilder stringBuilder = new StringBuilder();
             int cp;
             while ((cp = reader.read()) != -1) {
                 stringBuilder.append((char) cp);
             }
             return stringBuilder.toString();
-        } finally {
-            inputStream.close();
         }
     }
 
@@ -42,7 +41,7 @@ public class Weather {
 
     public static JSONArray requestWeather() {
 
-        //Smhi returns a JSON
+        //SMHI returns a JSON
         JSONObject jsonObject;
 
         //The JSON it returns contains an array with the forecast for the next 10 days
@@ -50,7 +49,7 @@ public class Weather {
 
         try {
 
-            //Read Json from the API, currently uses Gothenburgs Coordinates
+            //Read Json from the API, currently uses Gothenburg Coordinates
             jsonObject = readJsonFromUrl("https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/11.974560/lat/57.708870/data.json");
             //Add the weather forecast to the array
             jsonArray = (JSONArray) jsonObject.get("timeSeries");
@@ -69,7 +68,7 @@ public class Weather {
 
     public static JSONArray requestWeather(String latitude, String longitude) {
 
-        //Smhi returns a JSON
+        //SMHI returns a JSON
         JSONObject jsonObject;
 
         //The JSON it returns contains an array with the forecast for the next 10 days
@@ -143,7 +142,7 @@ public class Weather {
 
     }
 
-    public static String temperature() {
+    public static String currentTemp() {
         //JSONArray jsonArray = null;
         String string = "Error getting temperature";
         try {
