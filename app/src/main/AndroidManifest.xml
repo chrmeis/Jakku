@@ -18,7 +18,6 @@
             android:name=".AlarmReceiver"></receiver>
 
         <activity
-<<<<<<< HEAD
             android:name=".NotificationWorkout"
             android:exported="false"
             />
@@ -32,8 +31,6 @@
             android:exported="false" />
 
         <activity
-=======
->>>>>>> parent of 708e177 (Main only shows button that starts the notification function.)
             android:name=".MainActivity"
             android:exported="true">
 
@@ -43,6 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
     </application>
 
 </manifest>
