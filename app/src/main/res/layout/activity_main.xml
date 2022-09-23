@@ -6,47 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <!--this is a button, to use it activate in main activity and make visible again-->
+
+    <View
+        android:id="@+id/weatherview"
+        android:layout_width="357dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-      //this is a button, to use it activate in main activity and make visible again
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="352dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="currentweather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weatherview"
+        app:srcCompat="@drawable/sunshine" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="204dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        android:text="@string/_14_degrees_celcius"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
     <Button
         android:id="@+id/b_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#BDBDBD"
         android:text="SETTINGS"
+        android:textColor="#616161"
         android:textSize="30sp"
-        android:visibility="invisible"
+        android:visibility="visible"
+        app:iconTint="#050505"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.861" />
+-->
 
     <TextView
-        android:id="@+id/tv_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You pressed the button"
-        android:textSize="25sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/b_settings"
+        android:id="@+id/textView3"
+        android:layout_width="328dp"
+        android:layout_height="240dp"
+        android:text="Todays todo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:visibility="invisible" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/weatherview"
+        app:layout_constraintVertical_bias="0.102" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

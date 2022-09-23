@@ -3,48 +3,62 @@ package com.firstapp.jakku;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView info;
-    Button settings;
+    static TextView info;
+//    Button settings;
+    //Weather weather;
+
+    public static void updateInfo(String string){
+        info.setText(string);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        info=(TextView) findViewById(R.id.tv_info);
-        settings=(Button) findViewById(R.id.b_settings);
-
-        //code for active button
- /*     settings.setOnClickListener(new View.OnClickListener() {
+        info=(TextView) findViewById(R.id.textView2);
+//        settings=(Button) findViewById(R.id.b_settings);
+        //JSONArray jsonArray = new JSONArray();
+        //final String[] string = {"fail"};
+        //final String[] extra = {"Slow"};
+        TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
+        varName.execute();
+        /*new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                System.out.println("Button pressed");
-       //         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-
-                if (info.getVisibility()==View.VISIBLE) {
-                    info.setVisibility(View.INVISIBLE);
-                }else {
-                    info.setVisibility(View.VISIBLE);
-                }
-
+            public void run() {
+                System.out.println("Test1");
+                info.setText("fail");
+                //weather = new Weather();
+                //JSONArray jsonArray  = weather.getJsonArray();
+                //String  string = weather.temperature();
+                // After getting the result
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Post the result to the main thread
+                        System.out.println("Test2");
+                       // info.setText(string);
+                        //extra[0] = string;
+                    }
+                });
             }
-        }
-
-        ) */
-        ;
+        }).start();
+        */
+        /*try {
+            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+        //info.setText(extra[0]);
     }
 
     @Override
@@ -60,9 +74,23 @@ public class MainActivity extends AppCompatActivity {
         int id= item.getItemId();
 
         //this handles tab on activity, duplicate for every new item in the menu
-        if(id == R.id.sportspref){
+        if(id == R.id.trainingspref){
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+ //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+ //           startActivity(intent);
             return true;
         }
 
