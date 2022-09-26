@@ -73,32 +73,6 @@ public class NotificationWorkout extends AppCompatActivity {
 
             }
         });
-
-        /*
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                notificationSetup();
-            }
-        });*/
-    }
-
-    private void notificationSetup(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer
-            NotificationChannel channel = new NotificationChannel("Test", "Testing", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(NotificationWorkout.this,"Test");
-        Date currentTime = Calendar.getInstance().getTime();
-        builder.setContentTitle("Test_title");
-        builder.setContentText(currentTime.toString());
-        builder.setSmallIcon(R.drawable.ic_launcher_background);
-        builder.setAutoCancel(true);
-
-        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(NotificationWorkout.this);
-        managerCompat.notify(1,builder.build());
     }
 
 
@@ -150,6 +124,7 @@ public class NotificationWorkout extends AppCompatActivity {
         Intent intent = new Intent(this, AlarmReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        //Potential hardcode alarm
         /*
         if(calendar == null){
             calendar = Calendar.getInstance();
