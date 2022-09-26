@@ -49,33 +49,29 @@ public class StudyActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settingsmenu,menu);
-        return true;
+        menu.add("Home");
+        menu.add("Notifications");
+        menu.add("Training Preferences");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        int id = item.getItemId();
-
-        //this handles tab on activity, duplicate for every new item in the menu
-        if (id == R.id.trainingspref) {
-            Intent intent = new Intent(StudyActivity.this, SettingsActivity.class);
-            startActivity(intent);
+        if(item.getTitle().equals("Home")){
+            Intent i = new Intent(StudyActivity.this,MainActivity.class);
+            startActivity(i);
             finish();
             return true;
-        }
 
-        if (id == R.id.studypref) {
-//            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
-//            startActivity(intent);
+        } else if(item.getTitle().equals("Notifications")){
+            Intent i = new Intent(StudyActivity.this, Notifications.class);
+            startActivity(i);
+            finish();
             return true;
-        }
-
-        if (id == R.id.home) {
-            Intent intent = new Intent(StudyActivity.this, MainActivity.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Training Preferences")){
+            Intent i = new Intent(StudyActivity.this, practice_preferences.class);
+            startActivity(i);
             finish();
             return true;
         }

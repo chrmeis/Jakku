@@ -17,7 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SettingsActivity extends AppCompatActivity {
+public class practice_preferences extends AppCompatActivity {
     private Button back;
     private Switch cardiosettings;
     private Switch strengthsettings;
@@ -139,36 +139,31 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settingsmenu,menu);
-        return true;
+        menu.add("Home");
+        menu.add("Notifications");
+        menu.add("Study Preferences");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id= item.getItemId();
-
-        //this handles tab on activity, duplicate for every new item in the menu
-        if(id == R.id.trainingspref){
-//            Intent intent = new Intent (SettingsActivity.this, SettingsActivity.class);
-//            startActivity(intent);
+        if(item.getTitle().equals("Home")){
+            Intent i = new Intent(practice_preferences.this, MainActivity.class);
+            startActivity(i);
+            finish();
             return true;
-        }
-
-        if(id == R.id.studypref){
-            Intent intent = new Intent(SettingsActivity.this, StudyActivity.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Notifications")){
+            Intent i = new Intent(practice_preferences.this, Notifications.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Study Preferences")){
+            Intent i = new Intent(practice_preferences.this, StudyActivity.class);
+            startActivity(i);
             finish();
             return true;
         }
 
-        if(id == R.id.home){
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

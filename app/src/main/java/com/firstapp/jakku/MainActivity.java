@@ -63,39 +63,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settingsmenu,menu);
-        return true;
+        menu.add("Notifications");
+        menu.add("Study Preferences");
+        menu.add("Practice Preferences");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id= item.getItemId();
-
-        //this handles tab on activity, duplicate for every new item in the menu
-        if(id == R.id.trainingspref){
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
+    public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getTitle().equals("Notifications")){
+            Intent i = new Intent(MainActivity.this, Notifications.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Study Preferences")){
+            Intent i = new Intent(MainActivity.this, StudyActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Practice Preferences")){
+            Intent i = new Intent(MainActivity.this,practice_preferences.class);
+            startActivity(i);
             finish();
             return true;
         }
-
-        if(id == R.id.studypref){
-            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
-        if(id == R.id.home){
- //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
- //           startActivity(intent);
-            return true;
-        }
-
-
-        return super.onOptionsItemSelected(item);
+        int id = menuItem.getItemId();
+        return super.onOptionsItemSelected(menuItem);
     }
 }
 
