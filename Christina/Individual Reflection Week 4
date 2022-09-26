@@ -1,0 +1,36 @@
+19/9 3,5 h  team meeting planning hte upcoming week, deciding on what
+            tasks to choose, discussing with PO about stakeholders
+            feedback,
+     0,3 h  supervision
+21/9 3,5 h  displaying values according to seekbar,
+            saving chosen values
+      2 h   team check up and merging
+23/9  4 h getting IDE and github work togheter for the whole team, team reflection and sprint review
+
+Total: 16
+
+
+... the current situation or "what is" (A),
+... what you want the situation to be or "what might or should be" (B), and
+... a plan for getting from where you are to where you want to be or "feedback designed to reduce the gap" (A -> B).
+
+
+What do I want to learn or understand better?
+Week 4 was less intense on this course due to deadlines in another course. So the next week I
+want to try new and bigger parts. I think working out a scheduler that arranges study and exercise
+would be a great such task for wich I even can reflect back on classes from last year.
+
+
+How can I help someone else, or the entire team, to learn something new?
+I have helped out with getting github and AndroidStudio work together for my team mates and
+helped them to understand how and when to use fetch, commit or merge.
+
+What is my contribution towards the team’s use of Scrum?
+I stick to the planning we make in the beginning of each sprint, as the scrum master I also
+started booking group rooms for our onsite meetings so we don't lose time searching for a
+suitable place to sit.
+
+
+What is my contribution towards the team’s deliveries?
+I implemented a simple saving function for the set preferences. I also implemented that a
+numerical correspondence to the value in the seekbars is shown.
