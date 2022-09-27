@@ -46,7 +46,7 @@ public class StudyActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
                 String str;
-                str= String.valueOf(progress) + " hours";
+                str= String.valueOf(progress) + " times";
                 ansTotal.setText(str);
             }
 
@@ -106,8 +106,6 @@ public class StudyActivity extends AppCompatActivity {
         }
 
         if (id == R.id.studypref) {
-//            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
-//            startActivity(intent);
             return true;
         }
 
@@ -129,6 +127,9 @@ public class StudyActivity extends AppCompatActivity {
 
         editor.apply();
 
+        Schema.set_studypref(sb_total.getProgress(), sb_session.getProgress());
+        MainActivity.updateShedule();
+
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -141,6 +142,6 @@ public class StudyActivity extends AppCompatActivity {
     public void updateStudyViews(){
         sb_total.setProgress(total);
         sb_session.setProgress(session);
-
+        MainActivity.updateShedule();
     }
 }
