@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/drawable/ic_baseline_directions_run_24.xml" value="0.1965" />
         <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_settings.xml" value="0.24583333333333332" />
-        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/settings_activity.xml" value="0.3671875" />
-        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/menu/settingsmenu.xml" value="0.265625" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_study.xml" value="0.22" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_training.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/settings_activity.xml" value="0.17857142857142858" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/menu/settingsmenu.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/xml/root_preferences.xml" value="0.22" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
