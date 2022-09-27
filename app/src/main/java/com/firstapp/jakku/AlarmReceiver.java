@@ -34,7 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(42,builder.build());
+        notificationManagerCompat.notify(1,builder.build());
 
     }
 

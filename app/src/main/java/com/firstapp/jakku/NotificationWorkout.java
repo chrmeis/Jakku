@@ -158,8 +158,8 @@ public class NotificationWorkout extends AppCompatActivity {
         }
         */
 
-        //setInexactRepeating sets alarm +- 1 minute, we don't need more precision
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        //setRepeating should work like setInexactRepeating, intervall is set for testing purposes
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),10000,pendingIntent);
 
         Toast.makeText(this, "Reminder set Successfully", Toast.LENGTH_SHORT).show();
 
