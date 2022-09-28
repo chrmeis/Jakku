@@ -43,8 +43,30 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, NotificationWorkout.class);
                 startActivity(intent);
                 finish();
+
+
+                //notificationSetup();
             }
         });
     }
+    /*
+    private void notificationSetup(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer
+            NotificationChannel channel = new NotificationChannel("Test", "Testing", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"Test");
+        Date currentTime = Calendar.getInstance().getTime();
+        builder.setContentTitle("Test_title");
+        builder.setContentText(currentTime.toString());
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+        managerCompat.notify(1,builder.build());
+    }
+*/
 }
 
