@@ -1,4 +1,6 @@
-
+26/9 5h team meeting (including sprint retrospective, planning the comming week, KPIs, class diagram)
+        and supervidion
+27/9    creating a basic scheduler
 
 ... the current situation or "what is" (A),
 ... what you want the situation to be or "what might or should be" (B), and
@@ -9,10 +11,12 @@ What do I want to learn or understand better?
 
 
 How can I help someone else, or the entire team, to learn something new?
-
+-in draw.io, showing how for find the right shapes for class diagram, so we don't need
+    to create them by habd
 
 What is my contribution towards the team’s use of Scrum?
-
-
+-sticking towards the sed user stories
+-as a scrum master: making sure we have a group room for physical meeting
 
 What is my contribution towards the team’s deliveries?
+-making basic scheduler
