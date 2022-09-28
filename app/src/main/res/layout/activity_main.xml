@@ -9,8 +9,20 @@
 
 
     <TextView
-        android:id="@+id/testText"
-        android:layout_width="match_parent"
+        android:id="@+id/textView2"
+        android:layout_width="204dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        android:text="@string/_14_degrees_celcius"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+    <Button
+        android:id="@+id/b_settings"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:textAlignment="center"

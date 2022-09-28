@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.firstapp.jakku">
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
 
         android:allowBackup="true"
@@ -25,7 +25,12 @@
             android:name=".NotificationWorkout"
             android:exported="false"
             />
-
+		<activity
+            android:name=".StudyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TrainingActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
