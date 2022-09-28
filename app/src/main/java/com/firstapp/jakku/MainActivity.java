@@ -32,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
-        //JSONArray jsonArray = new JSONArray();
-        //final String[] string = {"fail"};
-        //final String[] extra = {"Slow"};
-        //TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
-        //varName.execute();
+
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -55,33 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Test1");
-                info.setText("fail");
-                //weather = new Weather();
-                //JSONArray jsonArray  = weather.getJsonArray();
-                //String  string = weather.temperature();
-                // After getting the result
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Post the result to the main thread
-                        System.out.println("Test2");
-                       // info.setText(string);
-                        //extra[0] = string;
-                    }
-                });
-            }
-        }).start();
-        */
-        /*try {
-            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        //info.setText(extra[0]);
     }
 
     @Override
