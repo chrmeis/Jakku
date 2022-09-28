@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -153,5 +154,34 @@ public class Weather {
 
 
         return string;
+    }
+
+    /**
+     * Looks to see if there's any precipitation within the next 24 hours at 07:00, 13:00 and 18:00 and returns a HashMap with the data.
+     * @return
+     */
+    public HashMap<Integer, Boolean> rainToday() throws JSONException {
+
+        HashMap<Integer, Boolean> hashMap = new HashMap<Integer, Boolean>();
+        JSONArray jsonArray = requestWeather();
+
+        //Loops over 24 hours
+        for (int i = 0; i < 24 ; i++){
+            String validTime =((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11,13);
+            if (validTime.equals("07") || validTime.equals("13") || validTime.equals("18")){    //Only looks at the weather forecast at 07:00, 13:00 and 18:00
+                for (int j = 0 ; j < 19 ; j++) {
+                    if(((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")){   //pcat is a category that has the number 0 if there is no precipitation and a number above 0 depending on the type of precipitation
+                        if(0 < (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0)){ //If true, there is precipitation, otherwise there is no precipitation.
+                            hashMap.put(Integer.parseInt(validTime), true);
+                        }
+                        else{
+                            hashMap.put(Integer.parseInt(validTime), false);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return hashMap;
     }
 }

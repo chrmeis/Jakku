@@ -5,18 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
 
-    static TextView info;
+    TextView info;
 //    Button settings;
     //Weather weather;
 
-    public static void updateInfo(String string){
+    public void updateInfo(String string){
         info.setText(string);
     }
 
@@ -30,8 +35,26 @@ public class MainActivity extends AppCompatActivity {
         //JSONArray jsonArray = new JSONArray();
         //final String[] string = {"fail"};
         //final String[] extra = {"Slow"};
-        TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
-        varName.execute();
+        //TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
+        //varName.execute();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                //Background work here
+                String temp = Weather.currentTemp();
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //UI Thread work here
+                        updateInfo(temp + " ℃");
+                    }
+                });
+            }
+        });
         /*new Thread(new Runnable() {
             @Override
             public void run() {

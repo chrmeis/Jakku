@@ -27,7 +27,7 @@ public class TalkToServer extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         // do something with data here-display it or send to MainActivity
-        MainActivity.updateInfo(result + " ℃");
+        //MainActivity.updateInfo(result + " ℃");
         //System.out.println(result + " C");
 
     }
