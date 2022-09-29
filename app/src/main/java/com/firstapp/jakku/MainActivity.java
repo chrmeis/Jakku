@@ -86,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(MainActivity.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+
 
         return super.onOptionsItemSelected(item);
     }

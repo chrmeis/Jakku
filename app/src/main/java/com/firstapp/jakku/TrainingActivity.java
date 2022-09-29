@@ -228,6 +228,12 @@ public class TrainingActivity extends AppCompatActivity {
             finish();
             return true;
         }
+        if (id == R.id.water_intake) {
+               Intent intent = new Intent(TrainingActivity.this, WaterIntake.class);
+               startActivity(intent);
+               finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

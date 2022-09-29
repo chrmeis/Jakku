@@ -17,4 +17,9 @@
         android:title="Home"
         app:showAsAction= "never" />
 
+    <item android:id="@+id/water_intake"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="Water Intake"
+        app:showAsAction= "never" />
+
 </menu>
