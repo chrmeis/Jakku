@@ -95,7 +95,7 @@ public class Notifications extends AppCompatActivity {
         }
         Intent notificationIntent = new Intent(this,Notification.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent contentIntent = PendingIntent.getActivity(this,0,notificationIntent,0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this,0,notificationIntent,PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id)
                 .setSmallIcon(R.drawable.ic_baseline_settings_24)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background))
