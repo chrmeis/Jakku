@@ -93,7 +93,7 @@ public class NotificationWorkout extends AppCompatActivity {
         builder.setAutoCancel(true);
 
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(NotificationWorkout.this);
-        managerCompat.notify(1,builder.build());
+        managerCompat.notify(2,builder.build());
     }
 
 
