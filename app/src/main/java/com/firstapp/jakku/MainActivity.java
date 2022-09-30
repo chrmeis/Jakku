@@ -25,10 +25,25 @@ import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
 import java.util.Date;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    TextView info;
+//    Button settings;
+    //Weather weather;
+
+    public void updateInfo(String string){
+        info.setText(string);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +51,72 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.notifStarter.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        info=(TextView) findViewById(R.id.textView2);
+//        settings=(Button) findViewById(R.id.b_settings);
 
-                Intent intent = new Intent(MainActivity.this, NotificationWorkout.class);
-                startActivity(intent);
-                finish();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                //Background work here
+                String temp = Weather.currentTemp();
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //UI Thread work here
+                        updateInfo(temp + " ℃");
+                    }
+                });
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id= item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if(id == R.id.trainingspref){
+            Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+ //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+ //           startActivity(intent);
+            return true;
+        }
+
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(MainActivity.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
