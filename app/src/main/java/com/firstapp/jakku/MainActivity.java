@@ -12,6 +12,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
 
+
+
+
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -92,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
+        }
+
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+
         }
 
         if(id == R.id.studypref){

@@ -11,6 +11,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,15 @@ public class NotificationWorkout extends AppCompatActivity {
         binding = ActivityNotificationWorkoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
+
+        final String SOME_ACTION = "com.android.firstapp.jakku.AlarmReceiver";
+        IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
+
+        AlarmReceiver trainreceiver = new AlarmReceiver();
+        this.registerReceiver(trainreceiver, intentFilter);
+
+
+        //this.registerReceiver(trainreceiver,null, Context.RECEIVER_VISIBLE_TO_INSTANT_APPS);
 
         binding.selectTimeBtn.setOnClickListener( new View.OnClickListener(){
             @Override
