@@ -63,15 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        }).start();
-        */
-        /*try {
-            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        //info.setText(extra[0]);
-
 
 
         //putting schema into homescreen
