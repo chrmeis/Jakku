@@ -1,6 +1,10 @@
-26/9 5h team meeting (including sprint retrospective, planning the comming week, KPIs, class diagram)
-        and supervidion
-27/9    creating a basic scheduler
+26/9 5h team meeting (including sprint retrospective, planning the coming week, KPIs, class diagram)
+        and supervision
+27/9 5h  creating a basic scheduler
+28/9 0,5h   mid week check up
+30/9 2h  team meeting including team reflection, sprint review and merging this weeks outcomes.
+
+total 12,5 h
 
 ... the current situation or "what is" (A),
 ... what you want the situation to be or "what might or should be" (B), and
@@ -8,15 +12,21 @@
 
 
 What do I want to learn or understand better?
+As I have already started with the scheduler, I would like to continue with that and figure out
+how to integrate the existing scheduler into the practising part.
 
 
 How can I help someone else, or the entire team, to learn something new?
--in draw.io, showing how for find the right shapes for class diagram, so we don't need
-    to create them by habd
+This week I helped out Erik in how to use draw.io for creating a class diagram without
+creating all forms from scratch. Since I made a bigger class diagram in an other course I don't
+want to take this task on me in this course so my teammates can have that learning experience
+as well, but I hope I can support them based on my prior experience.
+
 
 What is my contribution towards the team’s use of Scrum?
--sticking towards the sed user stories
--as a scrum master: making sure we have a group room for physical meeting
+As a part of the team I stuck to the set tasks for this sprint and
+as a scrum master I took care of the room booking as well as out KPIs
+
 
 What is my contribution towards the team’s deliveries?
--making basic scheduler
+this week I was making the basic scheduler and I want to continue with that for the next week.
