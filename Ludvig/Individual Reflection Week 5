@@ -1,0 +1,28 @@
+--
+What do I want to learn or understand better?
+Other teammembers handled the class diagrams with some add-ons, I was looking at making notifications work again at the time.
+
+One issue with my chosen user story this week was something trying to run on the main thread that can't run there.
+For the next sprint I want to understand threads a bit better. I will mainly do this by finding examples on how they're used in different code.
+
+
+--
+How can I help someone else, or the entire team, to learn something new?
+My experience with notifications helped another teammember with their notification issues this week.
+
+If a teammember asks for help I will try my best to help them. In order to do this everyone needs to ask when they need help, so I will 
+ask questions when I get stuck to try to encourage others to ask too.
+--
+What is my contribution towards the team's use of Scrum?
+As PO I need to make sure that the user stories being chosen are the highest priority ones. This week the team already chose user stories that I found 
+relevant, so I didn't have to do much. I want to make sure the team keeps picking relevant user stories, and I will do this by getting feedback from 
+the stakeholder.
+
+--
+What is my contribution towards the team's deliveries?
+Notifications are mostly working with weather data, some issues need to be fixed regarding the alarmreceiver running on its own thread.
+I did not manage to finish what I set out to do this week, due to issues with files not being added properly during merge.
+I want to finish what I set out to do during a sprint, and believe I would have if not for this unforseen issue.
+Hopefully next week has no unforseen issues, and I can properly estimate how much I can finish.
+
+--
