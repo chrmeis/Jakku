@@ -1,5 +1,6 @@
 package com.firstapp.jakku;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -48,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(id == R.id.home){
- //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
- //           startActivity(intent);
+            //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            //           startActivity(intent);
             return true;
         }
 
