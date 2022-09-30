@@ -14,10 +14,19 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
+
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Notifications extends AppCompatActivity {
 
@@ -26,9 +35,15 @@ public class Notifications extends AppCompatActivity {
     private final static int INTERVAL = 14400000; //4 hours in ms
     private Handler mHandler = new Handler();
 
+    public int getHour(){
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY); //Current Hour
+        return currentHour;
+    }
+
     private Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
+
             createNotif();
             mHandler.postDelayed(mHandlerTask,INTERVAL);
         }
@@ -36,30 +51,6 @@ public class Notifications extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       /* super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notifications);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        switch1 = findViewById(R.id.switch1);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-        switch1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // notification goes here
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(Notifications.this);
-                builder.setContentTitle("Hydrate!");
-                builder.setContentText("It's time to drink a glass of water");
-                builder.setSmallIcon(R.drawable.ic_launcher_background);
-                builder.setAutoCancel(true);
-
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Notifications.this);
-                managerCompat.notify(1,builder.build());
-            }
-        });
-        */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
         switch1 = findViewById(R.id.switch1);
@@ -71,7 +62,9 @@ public class Notifications extends AppCompatActivity {
     }
 
     public void startRepeatingTask(){
-        mHandlerTask.run();
+        if(!(getHour() > 0 && getHour() < 6)) {
+            mHandlerTask.run();
+        }
     }
 
     public void stopRepeatingTask(){
