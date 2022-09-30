@@ -17,12 +17,24 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView info;
+    /* Varning från commit
+    Warning: Do not place Android context classes in static fields; this is a memory leak
+     */
+    static TextView info;
+    static TextView Todo;
 //    Button settings;
     //Weather weather;
 
-    public void updateInfo(String string){
+
+    public static void updateInfo(String string){
         info.setText(string);
+    }
+
+    public static void updateShedule(){
+//        System.out.println("\n\n!!!!!!!!!!!!!!!!!!updateShedule!!!!!!!!!!!!!\n\n");
+       String str=Schema.make_schedule();
+        System.out.println("str: "+str);
+        Todo.setText(str);
     }
 
     @Override
@@ -51,6 +63,25 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        }).start();
+        */
+        /*try {
+            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+        //info.setText(extra[0]);
+
+
+
+        //putting schema into homescreen
+
+        Schema.get_study_amount();
+        Schema.get_study_duration();
+         Todo=(TextView) findViewById(R.id.textView3);
+         Todo.setText(Schema.make_schedule());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!after set text make shedule call!!!!!!!!!!!!!!!!!!!");
+
     }
 
     @Override
@@ -98,4 +129,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
 
