@@ -1,0 +1,25 @@
+Estimated time spent: 4h of meetings and 2h of coding.
+
+
+What do I want to learn or understand better?
+
+The main goal of week 4 was to find something to code that I haven't done before. I decided to code a java class that connects the API to our
+program via a HTTP connection. I managed to make it complete until I got the information that I didn't need an API key for this API, so one of our group members had
+already coded a similar java class already. To make certain situations better in the future, I need to get better at communicating with other team members while working
+on the same task.
+
+How can I help someone else, or the entire team, to learn something new?
+
+I think I had the most amount of problems with GitHub this week. We managed to fix it, but we are still not sure what the issue was. During week 5, we will do some
+class diagrams and I'm also gonna have the assignment of implementing the Notifications function. I will share with my team mates what I have learned after it's done.
+
+What is my contribution towards the team’s use of Scrum?
+
+As always, I attended all the meetings during week 4 and also did my contribution on finishing the user stories for the sprint. I didn't do as much as the other weeks
+on both the use of Scrum and the deliveries though. This is because I had a lab in another course that took away a lot of time. I don't have a lot of thoughts on how to
+make that better, sometimes stuff just comes in your way.
+
+What is my contribution towards the team’s deliveries?
+
+As mentioned above, I have been working with Oliver to make a HTTP connection between the API and the app. 
+
