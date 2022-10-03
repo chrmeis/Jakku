@@ -48,14 +48,6 @@ public class NotificationWorkout extends AppCompatActivity {
         setContentView(binding.getRoot());
         createNotificationChannel();
 
-        final String SOME_ACTION = "com.android.firstapp.jakku.AlarmReceiver";
-        IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
-
-        AlarmReceiver trainreceiver = new AlarmReceiver();
-        this.registerReceiver(trainreceiver, intentFilter);
-
-
-
         binding.selectTimeBtn.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v){
