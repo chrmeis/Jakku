@@ -29,7 +29,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent i = new Intent(context,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_IMMUTABLE);
-        HashMap<Integer, Boolean> raininfo = null;
 
 
 
@@ -45,7 +44,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(1,builder.build());
+        notificationManagerCompat.notify(42,builder.build());
 
 
 

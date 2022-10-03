@@ -15,6 +15,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class NotificationWorkout extends AppCompatActivity {
 
@@ -37,7 +39,8 @@ public class NotificationWorkout extends AppCompatActivity {
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    
+    private Handler notifHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,6 @@ public class NotificationWorkout extends AppCompatActivity {
         this.registerReceiver(trainreceiver, intentFilter);
 
 
-        //this.registerReceiver(trainreceiver,null, Context.RECEIVER_VISIBLE_TO_INSTANT_APPS);
 
         binding.selectTimeBtn.setOnClickListener( new View.OnClickListener(){
             @Override
@@ -71,7 +73,6 @@ public class NotificationWorkout extends AppCompatActivity {
             public void onClick(View v){
 
                 setAlarm();
-
             }
         });
 
@@ -167,6 +168,10 @@ public class NotificationWorkout extends AppCompatActivity {
         }
         */
 
+        if(calendar == null){
+            Toast.makeText(this, "Please set time first",Toast.LENGTH_SHORT).show();
+        }
+
         //setRepeating should work like setInexactRepeating, intervall is set for testing purposes
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),10000,pendingIntent);
 
@@ -187,4 +192,6 @@ public class NotificationWorkout extends AppCompatActivity {
         Toast.makeText(this, "Reminder Cancelled", Toast.LENGTH_SHORT).show();
 
     }
+
+
 }
