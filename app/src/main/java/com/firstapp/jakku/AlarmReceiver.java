@@ -30,44 +30,23 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_IMMUTABLE);
         HashMap<Integer, Boolean> raininfo = null;
-        try{
-           raininfo  = rainToday();
-        }
-            catch(JSONException e){
-                //do nothing
-
-            }
 
 
 
-        Boolean rain18 = raininfo.get(18);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
         builder.setContentTitle("Notification Manager");
-        if(rain18){
-            builder.setContentText("Reminder true!");
-            builder.setSmallIcon(R.drawable.ic_launcher_background);
-            builder.setAutoCancel(true);
-            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-            //High priority, should show up even if phone locked
-            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-            builder.setContentIntent(pendingIntent);
+        builder.setContentText("Workout time! Tap to see what you should do!");
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setAutoCancel(true);
+        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+        //High priority, should show up even if phone locked
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        builder.setContentIntent(pendingIntent);
 
-            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-            notificationManagerCompat.notify(1,builder.build());
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+        notificationManagerCompat.notify(1,builder.build());
 
-        }else{
-            builder.setContentText("Reminder false!");
-            builder.setSmallIcon(R.drawable.ic_launcher_background);
-            builder.setAutoCancel(true);
-            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-            //High priority, should show up even if phone locked
-            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-            builder.setContentIntent(pendingIntent);
-
-            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-            notificationManagerCompat.notify(1,builder.build());
-        }
 
 
 
