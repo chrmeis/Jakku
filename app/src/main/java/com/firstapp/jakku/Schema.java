@@ -5,39 +5,61 @@ public class Schema {
 
     private static int session_amount;
     private static int session_duration;
+    private static int training_amount;
+    private static int training_duration;
 
 
     public static String make_schedule(){
         System.out.println("\n \n make_shedule\n\n");
         StringBuilder schema=new StringBuilder();
-        int h;
-        int min;
-        int offset[] = {0,5,10,2,7};
+        int study_h;
+        int study_min;
+        int training_h;
+        int training_min;
+        int offset[] = {0,5,2,7};
+//        int offset[] = {0,5,10,2,7};
 
-        h=0;
-        min =session_duration;
- //       schema = "";
+        study_h=0;
+        study_min =session_duration;
+        training_h=0;
+        training_min =training_duration;
 
-        while (min >= 60){
-            h++;
-            min-=60;
+
+        while (study_min >= 60){
+            study_h++;
+            study_min-=60;
         }
+
+        while (training_min >= 60){
+            training_h++;
+            training_min-=60;
+        }
+
         System.out.println(session_amount+" is session_amount");
         for (int i=0; i<session_amount; i++){
-            System.out.println("inne i forloop");
-            String start=(8+offset[i])+":00";
-            String end;
-            if (min ==0){
-               end=(8+offset[i]+h)+":00";
-            }else{end=(8+offset[i]+h)+":"+min;
+            System.out.println("inne i studyloop");
+            String start1=(8+offset[i])+":00";
+            String end1;
+            if (study_min ==0){
+               end1=(8+offset[i]+study_h)+":00";
+            }else{end1=(8+offset[i]+study_h)+":"+study_min;
 
             }
-            schema.append(start+" - "+end+" studytime\n");
-//            schema.append((8+offset[i])+":00 - "+(8+offset[i]+h)+":"+min+" studytime\n");
- //           System.out.println(schema.toString());
+            schema.append(start1+" - "+end1+" studytime\n");
         }
- //       System.out.println(schema);
-
+        if (training_h>0 || training_min>0) {
+            for (int i = 0; i < training_amount; i++) {
+                System.out.println("inne i trainingloop");
+                String start2 = (8 + 10) + ":00";
+                String end2;
+                if (study_min == 0) {
+                    end2 = (8 + 10 + study_h) + ":00";
+                } else {
+                    end2 = (8 + 10 + study_h) + ":" + study_min;
+                }
+                schema.append(start2 + " - " + end2 + " training\n");
+            }
+        }
         return schema.toString();
     }
 
@@ -46,9 +68,6 @@ public class Schema {
     public static void set_studypref(int a, int b){
         session_amount=a;
         session_duration=b*15;
-//        System.out.println("!!!!!!!!!!!!!!!!studypref set!!!!!!!!!!!!!!!!!!!");
-//        System.out.println("session_amount = "+session_amount);
-//        System.out.println("session_duration = "+session_duration);
     }
 
 
@@ -59,5 +78,19 @@ public class Schema {
     public static int get_study_duration(){
         System.out.println("\nDuration: "+ session_duration+"\n");
         return session_duration;
+    };
+
+    public static void set_trainingpref(int a, int b){
+        training_amount=a;
+        training_duration=b*30;
+
+    }
+    public static int get_training_amount(){
+        System.out.println("\nAmount: "+training_amount+"\n");
+        return training_amount;
+    };
+    public static int get_training_duration(){
+        System.out.println("\nDuration: "+ training_duration+"\n");
+        return training_duration;
     };
 }

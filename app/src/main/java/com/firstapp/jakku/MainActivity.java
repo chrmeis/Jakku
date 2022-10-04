@@ -5,15 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,25 +39,39 @@ public class MainActivity extends AppCompatActivity {
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        executor.execute(new Runnable() {
+        //JSONArray jsonArray = new JSONArray();
+        //final String[] string = {"fail"};
+        //final String[] extra = {"Slow"};
+        TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
+        varName.execute();
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
-                //Background work here
-                String temp = Weather.currentTemp();
-
-                handler.post(new Runnable() {
+                System.out.println("Test1");
+                info.setText("fail");
+                //weather = new Weather();
+                //JSONArray jsonArray  = weather.getJsonArray();
+                //String  string = weather.temperature();
+                // After getting the result
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //UI Thread work here
-                        updateInfo(temp + " ℃");
+                        // Post the result to the main thread
+                        System.out.println("Test2");
+                       // info.setText(string);
+                        //extra[0] = string;
                     }
                 });
             }
-        });
+        }).start();
+        */
+        /*try {
+            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+        //info.setText(extra[0]);
+
 
 
         //putting schema into homescreen
@@ -107,14 +116,6 @@ public class MainActivity extends AppCompatActivity {
  //           startActivity(intent);
             return true;
         }
-
-        if(id == R.id.water_intake){
-            Intent intent = new Intent(MainActivity.this, WaterIntake.class);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
 
 
         return super.onOptionsItemSelected(item);
