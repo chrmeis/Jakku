@@ -19,7 +19,7 @@
         android:id="@+id/locationSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find Location"
+        android:text="Set Location"
         tools:layout_editor_absoluteX="134dp"
         tools:layout_editor_absoluteY="41dp" />
 <!-- TESTING BUTTON
