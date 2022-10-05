@@ -3,7 +3,9 @@ package com.firstapp.jakku;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,14 +28,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void updateShedule(){
-//        System.out.println("\n\n!!!!!!!!!!!!!!!!!!updateShedule!!!!!!!!!!!!!\n\n");
+        System.out.println("---Main updateShedule---");
        String str=Schema.make_schedule();
-        System.out.println("str: "+str);
+        System.out.println("updateSchedule is: \n"+str);
         Todo.setText(str);
+        System.out.println("---end Main updateShedule---");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("---Main onCreate---");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -75,13 +79,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         //putting schema into homescreen
+        Schema.set_weekday();
+//        Schema.get_study_amount();
+//        Schema.get_study_duration();
 
-        Schema.get_study_amount();
-        Schema.get_study_duration();
+        SharedPreferences theOldOnes = getApplicationContext().getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
+        int study_total= theOldOnes.getInt("total", 0);
+        int study_session= theOldOnes.getInt("session", 0);
+        System.out.println("---sp hämtat i main från study---");
+        System.out.println("study_total: "+study_total);
+        System.out.println("study_session: "+study_session);
+        System.out.println("---the end---");
+
          Todo=(TextView) findViewById(R.id.textView3);
          Todo.setText(Schema.make_schedule());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!after set text make shedule call!!!!!!!!!!!!!!!!!!!");
-
+        System.out.println("---end main onCreate---");
     }
 
     @Override
@@ -112,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(id == R.id.home){
- //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
- //           startActivity(intent);
             return true;
         }
 

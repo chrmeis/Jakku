@@ -23,13 +23,14 @@ public class StudyActivity extends AppCompatActivity {
     private SeekBar sb_session;
     private TextView ansTotal;
     private TextView ansSession;
+    SharedPreferences sharedPreferences;
 
     public static final String STUDY_TOTAL = "sb_total";
     public static final String STUDY_SESSIONS = "sb_sessions";
     public static final String SHARED_SPREFS = "sharedPref";
 
-    private int total;
-    private int session;
+    private static int total;
+    private static int session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +120,7 @@ public class StudyActivity extends AppCompatActivity {
     }
 
     public void savePref(){
-        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+        sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt(STUDY_TOTAL, sb_total.getProgress());
@@ -129,6 +130,7 @@ public class StudyActivity extends AppCompatActivity {
 
         Schema.set_studypref(sb_total.getProgress(), sb_session.getProgress());
         MainActivity.updateShedule();
+//
 
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
@@ -137,6 +139,7 @@ public class StudyActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
         total = sharedPreferences.getInt(STUDY_TOTAL, 5);
         session = sharedPreferences.getInt(STUDY_SESSIONS, 1);
+//        Schema.set_studypref(total,session);
     }
 
     public void updateStudyViews(){
@@ -144,4 +147,19 @@ public class StudyActivity extends AppCompatActivity {
         sb_session.setProgress(session);
         MainActivity.updateShedule();
     }
+/*
+    public static int get_session_amount(){
+        System.out.println("---get_session_amount---");
+        System.out.println("total: "+total);
+        System.out.println("---end get_session_amount---");
+        return total;
+    }
+
+    public static int get_session_duration(){
+        System.out.println("---get_session_duration---");
+        System.out.println("session: "+session);
+        System.out.println("---end get_session_duration---");
+        return session;
+    }
+ */
 }

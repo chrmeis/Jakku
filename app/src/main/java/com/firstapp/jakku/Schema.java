@@ -1,16 +1,21 @@
 package com.firstapp.jakku;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class Schema {
-//study hours are between 8am and 8pm
+//study hours are between 8am and 5pm
 
     private static int session_amount;
     private static int session_duration;
     private static int training_amount;
     private static int training_duration;
+    private static String today;
 
 
     public static String make_schedule(){
-        System.out.println("\n \n make_shedule\n\n");
+        System.out.println("---Schema make_shedule ---");
         StringBuilder schema=new StringBuilder();
         int study_h;
         int study_min;
@@ -35,9 +40,7 @@ public class Schema {
             training_min-=60;
         }
 
-        System.out.println(session_amount+" is session_amount");
         for (int i=0; i<session_amount; i++){
-            System.out.println("inne i studyloop");
             String start1=(8+offset[i])+":00";
             String end1;
             if (study_min ==0){
@@ -47,20 +50,53 @@ public class Schema {
             }
             schema.append(start1+" - "+end1+" studytime\n");
         }
-        if (training_h>0 || training_min>0) {
-            for (int i = 0; i < training_amount; i++) {
-                System.out.println("inne i trainingloop");
-                String start2 = (8 + 10) + ":00";
-                String end2;
-                if (study_min == 0) {
-                    end2 = (8 + 10 + study_h) + ":00";
-                } else {
-                    end2 = (8 + 10 + study_h) + ":" + study_min;
-                }
-                schema.append(start2 + " - " + end2 + " training\n");
+
+        if(training_amount==2){
+            if(today.equals("Tue")|| today.equals("Thu")) {
+                if (training_h>0 || training_min>0) {
+
+                        String start2 = (8 + 10) + ":00";
+                        String end2;
+                        if (study_min == 0) {
+                            end2 = (8 + 10 + study_h) + ":00";
+                        } else {
+                            end2 = (8 + 10 + study_h) + ":" + study_min;
+                        }
+                        schema.append(start2 + " - " + end2 + " training\n");
+                    }
             }
         }
-        return schema.toString();
+        else if(training_amount==3){
+            if((today.equals("Mon")|| today.equals("Wed")|| today.equals("Fri"))) {
+                if (training_h>0 || training_min>0) {
+                        String start2 = (8 + 10) + ":00";
+                        String end2;
+                        if (training_min == 0) {
+                            System.out.println("8 + 10 + study_h: "+(8 + 10 + training_h));
+                            end2 = (8 + 10 + training_h) + ":00";
+                        } else {
+                            end2 = (8 + 10 + training_h) + ":" + training_min;
+                        }
+                        schema.append(start2 + " - " + end2 + " training\n");
+                    }
+            }
+        }
+        else if(training_amount==1) {
+            if (today.equals("Sat")) {
+                if (training_h > 0 || training_min > 0) {
+                    String start2 = (8 + 10) + ":00";
+                    String end2;
+                    if (training_min == 0) {
+                        end2 = (8 + 10 + training_h) + ":00";
+                    } else {
+                        end2 = (8 + 10 + training_h) + ":" + training_min;
+                    }
+                    schema.append(start2 + " - " + end2 +" training\n");
+                }
+            }
+        }
+        System.out.println("---End Schema make_shedule---");
+            return schema.toString();
     }
 
 
@@ -69,14 +105,10 @@ public class Schema {
         session_amount=a;
         session_duration=b*15;
     }
-
-
     public static int get_study_amount(){
-        System.out.println("\nAmount: "+session_amount+"\n");
         return session_amount;
     };
     public static int get_study_duration(){
-        System.out.println("\nDuration: "+ session_duration+"\n");
         return session_duration;
     };
 
@@ -86,11 +118,18 @@ public class Schema {
 
     }
     public static int get_training_amount(){
-        System.out.println("\nAmount: "+training_amount+"\n");
         return training_amount;
     };
     public static int get_training_duration(){
-        System.out.println("\nDuration: "+ training_duration+"\n");
         return training_duration;
     };
+
+    //this gives only the weekday, always converted to 3-letter abbreviation in english, t.ex "Tue"
+    static void set_weekday(){
+        Calendar calendar = Calendar.getInstance();
+        String dayLongName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("en_us"));
+//        System.out.println("\ndayLongName = "+dayLongName+"\n");
+        today = dayLongName;
+    }
+
 }
