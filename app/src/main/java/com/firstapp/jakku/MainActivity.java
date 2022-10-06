@@ -13,6 +13,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //Background work here
+                SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
+
+                String lat = sharedPreferences.getString("latitude","");
+                String lon = sharedPreferences.getString("longitude","");
+                Weather.saveCoords(lon, lat);
                 String temp = Weather.currentTemp();
 
                 handler.post(new Runnable() {
