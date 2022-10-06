@@ -185,5 +185,43 @@ public class NotificationWorkout extends AppCompatActivity {
 
     }
 
+    //Sets a notification for the given time. Removes old alarm if available.
+    static public void workoutNotification(Context context, int hour,int minute){
+        AlarmManager manager = (AlarmManager) context.getSystemService((Context.ALARM_SERVICE));
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pintent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        //if previous alarm exists, remove
+        manager.cancel(pintent);
+
+        //notificaitonchannel required past Android 8
+        notificationChannelWorkout(context);
+
+        //Set up time for alarm
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY,hour);
+        cal.set(Calendar.MINUTE,minute);
+        cal.set(Calendar.SECOND,0);
+        cal.set(Calendar.MILLISECOND,0);
+
+
+
+        //set alarm
+        manager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pintent);
+
+    }
+
+    static public void notificationChannelWorkout(Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer, so always since we're using Android 9 or greater
+            //Importance high to have notifications show up on locked screen
+            NotificationChannel channel = new NotificationChannel("Notification", "tRAINing notifications", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Channel for tRAINing notification");
+
+
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+
 
 }
