@@ -4,19 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
 
-    static TextView info;
+    TextView info;
 //    Button settings;
     //Weather weather;
 
-    public static void updateInfo(String string){
+    public void updateInfo(String string){
         info.setText(string);
     }
 
@@ -26,39 +34,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         info=(TextView) findViewById(R.id.textView2);
-//        settings=(Button) findViewById(R.id.b_settings);
-        //JSONArray jsonArray = new JSONArray();
-        //final String[] string = {"fail"};
-        //final String[] extra = {"Slow"};
-        TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
-        varName.execute();
-        /*new Thread(new Runnable() {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Test1");
-                info.setText("fail");
-                //weather = new Weather();
-                //JSONArray jsonArray  = weather.getJsonArray();
-                //String  string = weather.temperature();
-                // After getting the result
-                runOnUiThread(new Runnable() {
+                SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
+                String lat = sharedPreferences.getString("latitude","57.708870");
+                String lon = sharedPreferences.getString("longitude","11.974560");
+                Weather.saveCoords(lon,lat);
+                String temp = null;
+                try{
+                    temp = Weather.currentTemp();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                String finalTemp = temp;
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        // Post the result to the main thread
-                        System.out.println("Test2");
-                       // info.setText(string);
-                        //extra[0] = string;
+                        updateInfo(finalTemp + " ℃");
                     }
                 });
             }
-        }).start();
-        */
-        /*try {
-            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        //info.setText(extra[0]);
+        });
+
     }
 
     @Override

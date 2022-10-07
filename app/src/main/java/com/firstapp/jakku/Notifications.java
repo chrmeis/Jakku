@@ -32,7 +32,7 @@ public class Notifications extends AppCompatActivity {
 
     private Switch switch1;
     private boolean clicked = false;
-    private final static int INTERVAL = 14400000; //4 hours in ms
+    private final static int INTERVAL = 10000; //4 hours in ms
     private Handler mHandler = new Handler();
 
     public int getHour(){
