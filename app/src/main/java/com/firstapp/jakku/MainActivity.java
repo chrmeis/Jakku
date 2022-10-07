@@ -2,18 +2,48 @@ package com.firstapp.jakku;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.firstapp.jakku.databinding.ActivityMainBinding;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
+import java.util.Date;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.json.JSONException;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
+
+
+
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(new Runnable() {
         //JSONArray jsonArray = new JSONArray();
         //final String[] string = {"fail"};
         //final String[] extra = {"Slow"};
@@ -85,12 +123,29 @@ public class MainActivity extends AppCompatActivity {
                 //String  string = weather.temperature();
                 // After getting the result
                 runOnUiThread(new Runnable() {
+                //Background work here
+                SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
+
+                String lat = sharedPreferences.getString("latitude","57.708870");
+                String lon = sharedPreferences.getString("longitude","11.974560");
+                Weather.saveCoords(lon, lat);
+                String temp = null;
+                try {
+                    temp = Weather.currentTemp();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String finalTemp = temp;
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         // Post the result to the main thread
                         System.out.println("Test2");
                        // info.setText(string);
                         //extra[0] = string;
+                        //UI Thread work here
+                        updateInfo(finalTemp + " ℃");
                     }
                 });
             }
@@ -190,6 +245,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+
+        }
+
         if(id == R.id.studypref){
             Intent intent = new Intent(MainActivity.this, StudyActivity.class);
             startActivity(intent);
@@ -198,9 +261,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(id == R.id.home){
+            //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            //           startActivity(intent);
             return true;
         }
 
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(MainActivity.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.location_setter){
+            Intent intent = new Intent(MainActivity.this, LocationSetter.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
