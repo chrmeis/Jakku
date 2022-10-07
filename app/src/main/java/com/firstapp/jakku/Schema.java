@@ -40,6 +40,8 @@ public class Schema {
             training_min-=60;
         }
 
+        schema.append("Today:\n\n");
+
         for (int i=0; i<session_amount; i++){
             String start1=(8+offset[i])+":00";
             String end1;
@@ -95,7 +97,7 @@ public class Schema {
                 }
             }
         }
-        System.out.println("---End Schema make_shedule---");
+        System.out.println("---End Schema make_schedule---");
             return schema.toString();
     }
 
@@ -131,5 +133,93 @@ public class Schema {
 //        System.out.println("\ndayLongName = "+dayLongName+"\n");
         today = dayLongName;
     }
+
+    public static String make_schedule_for_any_day(String today){
+        System.out.println("---Schema make_schedule_for_any_day ---");
+        StringBuilder schema=new StringBuilder();
+        int study_h;
+        int study_min;
+        int training_h;
+        int training_min;
+        int offset[] = {0,5,2,7};
+//        int offset[] = {0,5,10,2,7};
+
+        study_h=0;
+        study_min =session_duration;
+        training_h=0;
+        training_min =training_duration;
+
+
+        while (study_min >= 60){
+            study_h++;
+            study_min-=60;
+        }
+
+        while (training_min >= 60){
+            training_h++;
+            training_min-=60;
+        }
+
+        schema.append(today+": \n");
+
+        for (int i=0; i<session_amount; i++){
+            String start1=(8+offset[i])+":00";
+            String end1;
+            if (study_min ==0){
+                end1=(8+offset[i]+study_h)+":00";
+            }else{end1=(8+offset[i]+study_h)+":"+study_min;
+
+            }
+            schema.append(start1+" - "+end1+" studytime\n");
+        }
+
+        if(training_amount==2){
+            if(today.equals("Tue")|| today.equals("Thu")) {
+                if (training_h>0 || training_min>0) {
+
+                    String start2 = (8 + 10) + ":00";
+                    String end2;
+                    if (study_min == 0) {
+                        end2 = (8 + 10 + study_h) + ":00";
+                    } else {
+                        end2 = (8 + 10 + study_h) + ":" + study_min;
+                    }
+                    schema.append(start2 + " - " + end2 + " training\n");
+                }
+            }
+        }
+        else if(training_amount==3){
+            if((today.equals("Mon")|| today.equals("Wed")|| today.equals("Fri"))) {
+                if (training_h>0 || training_min>0) {
+                    String start2 = (8 + 10) + ":00";
+                    String end2;
+                    if (training_min == 0) {
+                        System.out.println("8 + 10 + study_h: "+(8 + 10 + training_h));
+                        end2 = (8 + 10 + training_h) + ":00";
+                    } else {
+                        end2 = (8 + 10 + training_h) + ":" + training_min;
+                    }
+                    schema.append(start2 + " - " + end2 + " training\n");
+                }
+            }
+        }
+        else if(training_amount==1) {
+            if (today.equals("Sat")) {
+                if (training_h > 0 || training_min > 0) {
+                    String start2 = (8 + 10) + ":00";
+                    String end2;
+                    if (training_min == 0) {
+                        end2 = (8 + 10 + training_h) + ":00";
+                    } else {
+                        end2 = (8 + 10 + training_h) + ":" + training_min;
+                    }
+                    schema.append(start2 + " - " + end2 +" training\n");
+                }
+            }
+        }
+        System.out.println("---End Schema make_schedule_for_any_day---");
+        return schema.toString();
+    }
+
 
 }
