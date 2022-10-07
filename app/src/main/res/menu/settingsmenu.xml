@@ -22,4 +22,14 @@
         android:title="Water Intake"
         app:showAsAction= "never" />
 
+    <item android:id="@+id/notification_workout"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="TrainingNotification"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/location_setter"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="Set Location"
+        app:showAsAction="never" />
+
 </menu>
