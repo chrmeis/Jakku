@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 //Background work here
                 SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
 
-                String lat = sharedPreferences.getString("latitude","");
-                String lon = sharedPreferences.getString("longitude","");
+                String lat = sharedPreferences.getString("latitude","57.708870");
+                String lon = sharedPreferences.getString("longitude","11.974560");
                 Weather.saveCoords(lon, lat);
                 String temp = Weather.currentTemp();
 
