@@ -1,0 +1,35 @@
+--
+What do I want to learn or understand better?
+In order to make the gps work it appears that one of the functions creates its own task/thread, so I got to understand a bit better how 
+that works.
+Furthermore by making some new notification functions I now feel like I understand how broadcasts work much better than before.
+
+Next week I'd like to learn more about how our settings menu works if time allows, to try to make the set location function a bit 
+more user friendly. Primarily I will look at the code and try to piece something together myself, but if that fails I will look up 
+geeksforgeeks most likely.
+
+--
+How can I help someone else, or the entire team, to learn something new?
+A team member encountered some errors. I showed what I do when I try to find the source of a bug, however in the end the issue was old software.
+
+I will continue to try my best to help the team with what they need. In order to do this, I will ask if they want me to show how I solved similar 
+issues when I hear they're working on something similar to what I have encountere previously and try my best if anyone asks for help.
+
+
+--
+What is my contribution towards the team's use of Scrum?
+I attended the 3 weekly meetings we have. I partook in trying to make good user stories during the first meeting, talking about how work's going 
+during the second, and team reflection/group work during the third meeting.
+I didn't have to do much specifically as PO this week, as I believe the team made good choices regarding the user stories, which I simply agreed to.
+
+I will continue to try and keep us on track, and I will do so by discussing when planning the user stories of the week.
+
+--
+What is my contribution towards the team's deliveries?
+This week I worked on getting the location from the gps, which was part of one of out user stories. I finished that part, and I'm happy with 
+the amount of work I did.
+
+Next week I will try to pick a user story that is not too big and not too small, like this week. I will do this by attending the meeting on Monday, 
+and discuss/think about how long a user story should take.
+
+--
