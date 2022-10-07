@@ -108,21 +108,8 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler(Looper.getMainLooper());
 
         executor.execute(new Runnable() {
-        //JSONArray jsonArray = new JSONArray();
-        //final String[] string = {"fail"};
-        //final String[] extra = {"Slow"};
-        TalkToServer varName = new TalkToServer(); //pass parameters if you need to the constructor
-        varName.execute();
-        /*new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Test1");
-                info.setText("fail");
-                //weather = new Weather();
-                //JSONArray jsonArray  = weather.getJsonArray();
-                //String  string = weather.temperature();
-                // After getting the result
-                runOnUiThread(new Runnable() {
                 //Background work here
                 SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
 
@@ -140,23 +127,13 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        // Post the result to the main thread
-                        System.out.println("Test2");
-                       // info.setText(string);
-                        //extra[0] = string;
                         //UI Thread work here
                         updateInfo(finalTemp + " ℃");
                     }
                 });
             }
-        }).start();
-        */
-        /*try {
-            //String string = ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        //info.setText(extra[0]);
+        });
+
 
         mon.setOnClickListener(new View.OnClickListener() {
             @Override
