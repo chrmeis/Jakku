@@ -110,15 +110,34 @@ public class Weather {
         return  jsonArray;
     }
 
-    public static String currentTemp() {
+    public static String currentTemp() throws JSONException {
         JSONArray jsonArray = requestShortWeather();
+
+        DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH");
+        LocalDateTime now = LocalDateTime.now();
         String string = "Error getting temperature";
-        try {
+
+        for (int i = 0; i < 34 ; i++) {
+            String validTime = ((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11, 13);
+            if (validTime.equals(hour.format(now))){
+                for (int j = 0; j < 5; j++) {
+                    try {
+                        if (((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("t")) {
+                             return ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0).toString();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+       /* try {
             string = ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(0)).get("parameters")).get(1)).get("values")).get(0).toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+*/
 
         return string;
     }

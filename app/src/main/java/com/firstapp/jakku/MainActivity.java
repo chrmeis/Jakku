@@ -35,6 +35,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -71,13 +73,19 @@ public class MainActivity extends AppCompatActivity {
                 String lat = sharedPreferences.getString("latitude","57.708870");
                 String lon = sharedPreferences.getString("longitude","11.974560");
                 Weather.saveCoords(lon, lat);
-                String temp = Weather.currentTemp();
+                String temp = null;
+                try {
+                    temp = Weather.currentTemp();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+                String finalTemp = temp;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         //UI Thread work here
-                        updateInfo(temp + " ℃");
+                        updateInfo(finalTemp + " ℃");
                     }
                 });
             }

@@ -20,7 +20,7 @@ public class TalkToServer extends AsyncTask<String, String, String> {
         //Weather weather = new Weather();
         //String string = Weather.currentTemp();
 //do your work here
-        return Weather.currentTemp();
+        return "hej";
     }
 
     @Override
