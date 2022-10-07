@@ -1,0 +1,38 @@
+03/10 5h    team meeting (including sprint retrospective, planning the coming week, KPIs, class diagram)
+            and supervision
+04/10 6h    creating a scheduler that combines both training- and studyschedule
+05/10 4h    accommodating for training ending up on different weekdays
+      1h    midweek checkup, reassigns members to new tasks according to the workload on different user-stories
+      2h    trying to find a way to show up the schedule right when the app starts
+06/10 6h    trying to find a way to show up the schedule right when the app starts
+07/10 4h    team meeting including team reflection, sprint retrospective, and solving schedule for all weekdays
+
+
+... the current situation or "what is" (A),
+... what you want the situation to be or "what might or should be" (B), and
+... a plan for getting from where you are to where you want to be or "feedback designed to reduce the gap" (A -> B).
+
+
+What do I want to learn or understand better?
+I suspect that using fragments would solve the problem we have with showing the schedule att start
+up. Since I really would like to solve that problem, I would like to understand fragments better.
+But this will stay second in place so we primarily can reach a minimal viable product. However,
+if we have some capacity left toward the end of the coming sprint, I'll gladly will look into that.
+
+
+How can I help someone else, or the entire team, to learn something new?
+This week I have collaborated with Eric and Oliver on creating tha schedule and in the process
+of that learned how to retrieve and use date and time values. That is something we have not used
+much before and that I can pass on to my team mates.
+
+
+What is my contribution towards the team’s use of Scrum?
+As the scrum master I booked group rooms for meetings, and in accordance with my teammates
+reassigned some team member to new tasks at midweek checkup in oder to balance the workload
+over the whole team.
+
+
+What is my contribution towards the team’s deliveries?
+I was part in adjusting the basic scheduler to account for training preferences and weekdays.
+I also tried to find a way to show the schema right when the app starts, but came to conclusion
+that it probably either to complicated to make possible in the current setup or nor possible.
