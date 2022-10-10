@@ -55,7 +55,7 @@ public class Schema {
             }else{end1=(8+offset[i]+study_h)+":"+study_min;
 
             }
-            schema.append(start1+" - "+end1+" "+MainActivity.where_to_train +" studytime\n");
+            schema.append(start1+" - "+end1+" studytime\n");
         }
 
         if(training_amount==2){
@@ -76,16 +76,21 @@ public class Schema {
         else if(training_amount==3){
             if((today.equals("Mon")|| today.equals("Wed")|| today.equals("Fri"))) {
                 if (training_h>0 || training_min>0) {
-                        String start2 = (8 + 10) + ":00";
-                        String end2;
-                        if (training_min == 0) {
-                            System.out.println("8 + 10 + study_h: "+(8 + 10 + training_h));
-                            end2 = (8 + 10 + training_h) + ":00";
-                        } else {
-                            end2 = (8 + 10 + training_h) + ":" + training_min;
-                        }
-                        schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train + " training\n");
+                    String start2 = (8 + 10) + ":00";
+                    String end2;
+                    if (training_min == 0) {
+                        System.out.println("8 + 10 + study_h: " + (8 + 10 + training_h));
+                        end2 = (8 + 10 + training_h) + ":00";
+                    } else {
+                        end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
+
+                    if (MainActivity.where_to_train==null) {
+                        schema.append(start2 + " - " + end2 +" training\n");
+                    } else {
+                        schema.append(start2 + " - " + end2 + " " + MainActivity.where_to_train + " training\n");
+                    }
+                }
             }
         }
         else if(training_amount==1) {

@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     static String where_to_train;
 
+    public static final String SHARED_SPREFS = "sharedPref";
+    public static final String STUDY_TOTAL = "sb_total";
+    public static final String STUDY_SESSIONS = "sb_sessions";
+    public static final String SHARED_TPREFS = "sharedPref";
+    private static final String  C_FREQ = "c-freq";
+    private static final String C_DUR = "c-dur";
+
 //    Button settings;
     //Weather weather;
 
@@ -93,18 +100,35 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("---Main onCreate---");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mon= (Button)findViewById(R.id.b_monday);
-        tue = (Button)findViewById(R.id.b_tuesday);
-        wed = (Button)findViewById(R.id.b_wednesday);
-        thu = (Button)findViewById(R.id.b_thursday);
-        fri = (Button)findViewById(R.id.b_friday);
-        sat = (Button)findViewById(R.id.b_saturday);
-        sun = (Button)findViewById(R.id.b_sunday);
+        mon = findViewById(R.id.b_monday);
+        tue = findViewById(R.id.b_tuesday);
+        wed = findViewById(R.id.b_wednesday);
+        thu = findViewById(R.id.b_thursday);
+        fri = findViewById(R.id.b_friday);
+        sat = findViewById(R.id.b_saturday);
+        sun = findViewById(R.id.b_sunday);
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
 
+        SharedPreferences sharedStudy = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+        int total = sharedStudy.getInt(STUDY_TOTAL, 5);
+        int session = sharedStudy.getInt(STUDY_SESSIONS, 1);
+        Schema.set_studypref(total,session);
 
+        System.out.println("\n\nshared study in main:");
+        System.out.println("total: "+total);
+        System.out.println("sessions: "+session+"\n\n");
+
+
+        SharedPreferences sharedTraining = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        int cFreq = sharedTraining.getInt(C_FREQ, 1);
+        int cDur = sharedTraining.getInt(C_DUR, 1);
+        Schema.set_trainingpref(cFreq, cDur);
+
+        System.out.println("\n\nshared training in main:");
+        System.out.println("cFreq: "+cFreq);
+        System.out.println("cDur: "+cDur+"\n\n");
 
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -152,42 +176,36 @@ public class MainActivity extends AppCompatActivity {
                 updateSchedule_by_button(mon.getText().toString());
             }
         });
-
         tue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateSchedule_by_button(tue.getText().toString());
             }
         });
-
         wed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateSchedule_by_button(wed.getText().toString());
             }
         });
-
         thu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateSchedule_by_button(thu.getText().toString());
             }
         });
-
         fri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateSchedule_by_button(fri.getText().toString());
             }
         });
-
         sat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateSchedule_by_button(sat.getText().toString());
             }
         });
-
         sun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,20 +215,8 @@ public class MainActivity extends AppCompatActivity {
 
         //putting schema into homescreen
         Schema.set_weekday();
-//        Schema.get_study_amount();
-//        Schema.get_study_duration();
 
-/*        SharedPreferences theOldOnes = getApplicationContext().getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
-        int study_total= theOldOnes.getInt("total", 0);
-        int study_session= theOldOnes.getInt("session", 0);
-        System.out.println("---sp hämtat i main från study---");
-        System.out.println("study_total: "+study_total);
-        System.out.println("study_session: "+study_session);
-        System.out.println("---the end---");
-
- */
-
-         Todo=(TextView) findViewById(R.id.textView3);
+        Todo=(TextView) findViewById(R.id.textView3);
          Todo.setText(Schema.make_schedule());
         System.out.println("---end main onCreate---");
     }
