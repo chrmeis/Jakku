@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView info;
 //    Button settings;
     //Weather weather;
+    private String temp;
 
     public void updateInfo(String string){
         info.setText(string);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 String lat = sharedPreferences.getString("latitude","57.708870");
                 String lon = sharedPreferences.getString("longitude","11.974560");
                 Weather.saveCoords(lon,lat);
-                String temp = null;
+                temp = null;
                 try{
                     temp = Weather.currentTemp();
                 } catch (JSONException e) {
@@ -68,7 +69,12 @@ public class MainActivity extends AppCompatActivity {
         menu.add("Notifications");
         menu.add("Study Preferences");
         menu.add("Practice Preferences");
+        menu.add("Travel Planning");
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public String getTemp(){
+        return temp;
     }
 
     @Override
@@ -85,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if(menuItem.getTitle().equals("Practice Preferences")){
             Intent i = new Intent(MainActivity.this,practice_preferences.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Travel Planning")){
+            Intent i = new Intent(MainActivity.this, Travel.class);
             startActivity(i);
             finish();
             return true;
