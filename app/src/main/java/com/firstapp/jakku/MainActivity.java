@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firstapp.jakku.databinding.ActivityMainBinding;
@@ -43,8 +44,10 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     TextView info;
+    ImageView weatherSymbol;
 //    Button settings;
     //Weather weather;
+
 
     public void updateInfo(String string){
         info.setText(string);
@@ -57,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
+        weatherSymbol = (ImageView) findViewById(R.id.imageView2);
 
 
-
-
+        weatherSymbol.setImageResource(R.drawable.rain);
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -79,13 +82,27 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                int rain = 0;
+                try {
+                    rain = Weather.currentRain();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 String finalTemp = temp;
+                int finalRain = rain;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         //UI Thread work here
                         updateInfo(finalTemp + " ℃");
+                        if (finalRain == 0){
+                            weatherSymbol.setImageResource(R.drawable.sunshine1);
+                        }
+                        else{
+                            weatherSymbol.setImageResource(R.drawable.rain);
+                        }
+
                     }
                 });
             }
