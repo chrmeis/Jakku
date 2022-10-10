@@ -53,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
     static TextView info;
     static TextView Todo;
     private Button mon;
-    Button tue;
-    Button wed;
-    Button thu;
-    Button fri;
-    Button sat;
-    Button sun;
+    private Button tue;
+    private Button wed;
+    private Button thu;
+    private Button fri;
+    private Button sat;
+    private Button sun;
+
+    static String where_to_train;
 
 //    Button settings;
     //Weather weather;
@@ -70,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateShedule(){
         System.out.println("---Main updateShedule---");
-       String str=Schema.make_schedule();
-        System.out.println("updateSchedule is: \n"+str);
+       String str=Schema.make_schedule()+ where_to_train;
+
+        System.out.println("updateSchedule is: \n" + str);
         Todo.setText(str);
         System.out.println("---end Main updateShedule---");
     }
@@ -119,6 +122,14 @@ public class MainActivity extends AppCompatActivity {
                 String temp = null;
                 try {
                     temp = Weather.currentTemp();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    System.out.println("where_to_train1: " +where_to_train);
+                    where_to_train = Weather.rain18();
+                    System.out.println("where_to_train2: " +where_to_train);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -189,13 +200,15 @@ public class MainActivity extends AppCompatActivity {
 //        Schema.get_study_amount();
 //        Schema.get_study_duration();
 
-        SharedPreferences theOldOnes = getApplicationContext().getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
+/*        SharedPreferences theOldOnes = getApplicationContext().getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
         int study_total= theOldOnes.getInt("total", 0);
         int study_session= theOldOnes.getInt("session", 0);
         System.out.println("---sp hämtat i main från study---");
         System.out.println("study_total: "+study_total);
         System.out.println("study_session: "+study_session);
         System.out.println("---the end---");
+
+ */
 
          Todo=(TextView) findViewById(R.id.textView3);
          Todo.setText(Schema.make_schedule());

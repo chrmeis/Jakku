@@ -15,6 +15,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
 public class StudyActivity extends AppCompatActivity {
 
     private Button saveButton;
@@ -77,7 +79,11 @@ public class StudyActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                savePref();
+                try {
+                    savePref();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -119,7 +125,7 @@ public class StudyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void savePref(){
+    public void savePref() throws JSONException {
         sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

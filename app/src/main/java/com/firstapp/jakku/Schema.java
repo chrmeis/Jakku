@@ -1,8 +1,12 @@
 package com.firstapp.jakku;
 
-import java.text.DateFormat;
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Schema {
 //study hours are between 8am and 5pm
@@ -12,6 +16,7 @@ public class Schema {
     private static int training_amount;
     private static int training_duration;
     private static String today;
+
 
 
     public static String make_schedule(){
@@ -50,7 +55,7 @@ public class Schema {
             }else{end1=(8+offset[i]+study_h)+":"+study_min;
 
             }
-            schema.append(start1+" - "+end1+" studytime\n");
+            schema.append(start1+" - "+end1+" "+MainActivity.where_to_train +" studytime\n");
         }
 
         if(training_amount==2){
@@ -79,7 +84,7 @@ public class Schema {
                         } else {
                             end2 = (8 + 10 + training_h) + ":" + training_min;
                         }
-                        schema.append(start2 + " - " + end2 + " training\n");
+                        schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train + " training\n");
                     }
             }
         }
@@ -93,7 +98,7 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-                    schema.append(start2 + " - " + end2 +" training\n");
+                    schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
                 }
             }
         }
@@ -130,11 +135,11 @@ public class Schema {
     static void set_weekday(){
         Calendar calendar = Calendar.getInstance();
         String dayLongName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("en_us"));
-//        System.out.println("\ndayLongName = "+dayLongName+"\n");
+        System.out.println("\n\nset weekday today = "+dayLongName+"\n\n");
         today = dayLongName;
     }
 
-    public static String make_schedule_for_any_day(String today){
+    public static String make_schedule_for_any_day(String button_day){
         System.out.println("---Schema make_schedule_for_any_day ---");
         StringBuilder schema=new StringBuilder();
         int study_h;
@@ -160,7 +165,7 @@ public class Schema {
             training_min-=60;
         }
 
-        schema.append(today+": \n");
+        schema.append(button_day+": \n");
 
         for (int i=0; i<session_amount; i++){
             String start1=(8+offset[i])+":00";
@@ -184,12 +189,16 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + study_h) + ":" + study_min;
                     }
-                    schema.append(start2 + " - " + end2 + " training\n");
+                    if(button_day.equals(today)){
+                        schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
+                    }else{
+                        schema.append(start2 + " - " + end2 +" training\n");
+                    }
                 }
             }
         }
         else if(training_amount==3){
-            if((today.equals("Mon")|| today.equals("Wed")|| today.equals("Fri"))) {
+            if((button_day.equals("Mon")|| button_day.equals("Wed")|| button_day.equals("Fri"))) {
                 if (training_h>0 || training_min>0) {
                     String start2 = (8 + 10) + ":00";
                     String end2;
@@ -199,7 +208,14 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-                    schema.append(start2 + " - " + end2 + " training\n");
+                    System.out.println("\n\ntoday: "+today);
+                    System.out.println("buttonday: "+button_day+"\n\n");
+                    if(today.equals(button_day)){
+                        schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
+                    }else{
+                    schema.append(start2 + " - " + end2 +" training\n");
+                    }
+
                 }
             }
         }
@@ -213,13 +229,16 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-                    schema.append(start2 + " - " + end2 +" training\n");
+                    if(button_day.equals(today)){
+                        schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
+                    }else{
+                        schema.append(start2 + " - " + end2 +" training\n");
+                    }
                 }
             }
         }
         System.out.println("---End Schema make_schedule_for_any_day---");
         return schema.toString();
     }
-
 
 }
