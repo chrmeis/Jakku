@@ -147,6 +147,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(id == R.id.travelRec){
+
+            Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }

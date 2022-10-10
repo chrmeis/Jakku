@@ -2,14 +2,19 @@ package com.firstapp.jakku;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -58,6 +63,68 @@ public class LocationSetter extends AppCompatActivity {
             }
         });
 */
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id= item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if(id == R.id.trainingspref){
+            Intent intent = new Intent(LocationSetter.this, TrainingActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(LocationSetter.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(LocationSetter.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+            Intent intent = new Intent(LocationSetter.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(LocationSetter.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.location_setter){
+            /*
+            Intent intent = new Intent(LocationSetter.this, LocationSetter.class);
+            startActivity(intent);
+            finish();
+            return true;
+            
+             */
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     //takes a while to run, is done when toast appears
