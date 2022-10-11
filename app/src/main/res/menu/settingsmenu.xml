@@ -32,4 +32,9 @@
         android:title="Set Location"
         app:showAsAction="never" />
 
+    <item android:id="@+id/exercise"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="Exercise"
+        app:showAsAction="never" />
+
 </menu>
