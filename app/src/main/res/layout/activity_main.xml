@@ -9,6 +9,67 @@
 
     <!--this is a button, to use it activate in main activity and make visible again-->
 
+    <Button
+        android:id="@+id/buttonMon"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="Mon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonWen"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="Wen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonThu"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonTue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonThu"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="Thu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFre"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonWen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonFre"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="Fri"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonThu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonTue"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="Tue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWen"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <View
         android:id="@+id/weatherview"
         android:layout_width="357dp"
@@ -34,13 +95,15 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="204dp"
+        android:layout_width="0dp"
         android:layout_height="31dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="42dp"
         android:layout_marginTop="164dp"
+        android:layout_marginEnd="59dp"
         android:text="@string/_14_degrees_celcius"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/textViewdate"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--
@@ -64,13 +127,27 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="328dp"
-        android:layout_height="240dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="246dp"
         android:text="Todays todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherview"
+        app:layout_constraintTop_toBottomOf="@+id/textViewdate"
         app:layout_constraintVertical_bias="0.102" />
+
+    <TextView
+        android:id="@+id/textViewdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="62dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

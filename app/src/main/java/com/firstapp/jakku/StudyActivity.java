@@ -15,6 +15,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.DayOfWeek;
+
 public class StudyActivity extends AppCompatActivity {
 
     private Button saveButton;
