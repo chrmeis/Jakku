@@ -25,7 +25,9 @@ public class Exercise extends AppCompatActivity {
         passButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Exercise.this,pass1.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
