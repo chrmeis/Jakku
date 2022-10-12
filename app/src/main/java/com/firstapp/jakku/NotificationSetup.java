@@ -36,7 +36,7 @@ public class NotificationSetup {
         int alarmHour = nextHour(context);
 
         //no studying scheduled, workout might still be scheduled
-        if(alarmHour == 0){
+        if(alarmHour == -1){
             int nextDay = nextWorkout(day, context);
             //if no workout scheduled either, don't make an alarm
             if(nextDay == -1){
@@ -198,6 +198,6 @@ public class NotificationSetup {
         }
 
         //If there is nothing scheduled today or tomorrow
-        return 0;
+        return -1;
     }
 }
