@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ *  Pass1 is a workout pass with different exercises and the ability to swap between them.
+ * @author Erik Gustavsson, Oliver Brottare
+ */
 public class Pass1 extends AppCompatActivity {
 
 
@@ -20,6 +24,13 @@ public class Pass1 extends AppCompatActivity {
     private Button previousButton;
     private ImageView trainingImg;
     private TextView trainingText;
+
+
+    /**
+     * onCreate sets current view to matching activity and initializes components from the activity.
+     * @param savedInstanceState - Is a reference to a Bundle object that stores data. Activity can use this
+     * data to restore itself to a previous state in some situations.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +60,20 @@ public class Pass1 extends AppCompatActivity {
 
 
     }
-
+    /**
+     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
+     * @param menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settingsmenu,menu);
         return true;
     }
-
+    /**
+     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
+     * @param item
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 

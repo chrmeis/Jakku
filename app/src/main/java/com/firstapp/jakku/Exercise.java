@@ -11,9 +11,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Exercise is a simple class working as a page for different workouts.
+ * @author Erik Gustavsson, Oliver Brottare
+ */
 public class Exercise extends AppCompatActivity {
 
     private Button passButton;
+
+    /**
+     * onCreate sets current view to matching activity and initializes components from the activity.
+     * @param savedInstanceState - Is a reference to a Bundle object that stores data. Activity can use this
+     * data to restore itself to a previous state in some situations.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,7 +42,10 @@ public class Exercise extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
+     * @param menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -40,6 +53,10 @@ public class Exercise extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
+     * @param item
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
