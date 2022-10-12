@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         return tempFinal;
     }
 
+    public int getRain(){
+        return finalRain;
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if(menuItem.getTitle().equals("Notifications")){
@@ -116,7 +120,11 @@ public class MainActivity extends AppCompatActivity {
             if(Double.parseDouble(tempFinal) < 10.0){
                 Toast.makeText(MainActivity.this, "It is recommended to put on a jacket", Toast.LENGTH_SHORT).show();
             }
-
+            if(getRain() > 0){
+                Toast.makeText(MainActivity.this, "It is recommended to take the bus or car", Toast.LENGTH_SHORT).show();
+            } else if(getRain() == 0) {
+                Toast.makeText(MainActivity.this, "It is recommended to to walk or take the bike", Toast.LENGTH_SHORT).show();
+            }
         }
         int id = menuItem.getItemId();
         return super.onOptionsItemSelected(menuItem);
