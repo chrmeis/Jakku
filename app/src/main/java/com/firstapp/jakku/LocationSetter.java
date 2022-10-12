@@ -120,7 +120,7 @@ public class LocationSetter extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
-            
+
              */
         }
 
@@ -128,7 +128,7 @@ public class LocationSetter extends AppCompatActivity {
     }
 
     //takes a while to run, is done when toast appears
-    // if toast is "Failed to find location", double-check if location is set in emulator
+    //if toast is "Failed to find location", double-check if location is set in emulator
     public void setLocation() {
 
         if (ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -146,7 +146,6 @@ public class LocationSetter extends AppCompatActivity {
                             String longitude = String.valueOf(location.getLongitude());
                             String latitude = String.valueOf(location.getLatitude());
                             String[] res = {latitude,longitude};
-                            //setResults(res);
                             savePref(res);
                             String loc = "latitude set to: " + res[0] + "longitude set to: " + res[1];
                             Toast.makeText(LocationSetter.this, loc, Toast.LENGTH_SHORT).show();
@@ -159,7 +158,7 @@ public class LocationSetter extends AppCompatActivity {
 
     }
     //Saves current location
-    public void savePref(String[] inData){
+    private void savePref(String[] inData){
         SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -168,7 +167,7 @@ public class LocationSetter extends AppCompatActivity {
         editor.apply();
     }
     //Returns saved location as an array, testing purposes
-    public String[] getLocation(){
+    private String[] getLocation(){
         SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
 
         String lat = sharedPreferences.getString("latitude","");

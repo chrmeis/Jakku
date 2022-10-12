@@ -48,7 +48,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
 
-
+        NotificationWorkout.workoutNotification(context,11, 00);
     }
 
 }
