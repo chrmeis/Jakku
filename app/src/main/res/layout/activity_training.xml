@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.152" />
 
     <SeekBar
-        android:id="@+id/sb_cfreq"
+        android:id="@+id/sb_Training_how_often"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.329" />
 
     <SeekBar
-        android:id="@+id/sb_cdur"
+        android:id="@+id/sb_Training_How_long"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"

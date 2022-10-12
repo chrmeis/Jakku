@@ -1,5 +1,7 @@
 package com.firstapp.jakku;
 
+import static java.sql.Types.NULL;
+
 import android.os.Handler;
 import android.os.Looper;
 
@@ -18,7 +20,6 @@ public class Schema {
     private static String today;
 
 
-
     public static String make_schedule(){
         System.out.println("---Schema make_shedule ---");
         StringBuilder schema=new StringBuilder();
@@ -26,6 +27,8 @@ public class Schema {
         int study_min;
         int training_h;
         int training_min;
+
+
         int offset[] = {0,5,2,7};
 //        int offset[] = {0,5,10,2,7};
 
@@ -33,29 +36,39 @@ public class Schema {
         study_min =session_duration;
         training_h=0;
         training_min =training_duration;
+        System.out.println("training_min är:"+training_min);
 
+
+
+ //       make_to_hours_and_minutes(study_min, study_h);
+ //       System.out.println("Study_h:study_min"+study_h+":"+study_min);
+ //       make_to_hours_and_minutes(training_min, training_h);
+ //       System.out.println("training_h:training_min"+training_h+":"+training_min);
 
         while (study_min >= 60){
             study_h++;
             study_min-=60;
         }
-
         while (training_min >= 60){
             training_h++;
             training_min-=60;
         }
 
-        schema.append("Today:\n\n");
+        schema.append("Today:\n");
 
         for (int i=0; i<session_amount; i++){
             String start1=(8+offset[i])+":00";
             String end1;
             if (study_min ==0){
                end1=(8+offset[i]+study_h)+":00";
-            }else{end1=(8+offset[i]+study_h)+":"+study_min;
-
+            }else{
+                end1=(8+offset[i]+study_h)+":"+study_min;
             }
-            schema.append(start1+" - "+end1+" studytime\n");
+            if (i!=2) {
+                schema.append(start1 + " - " + end1 + " studytime\n");
+            }else {
+                schema.insert(schema.indexOf("13"), start1 + " - " + end1 + " studytime\n");
+            }
         }
 
         if(training_amount==2){
@@ -69,7 +82,11 @@ public class Schema {
                         } else {
                             end2 = (8 + 10 + study_h) + ":" + study_min;
                         }
-                        schema.append(start2 + " - " + end2 + " training\n");
+                    if (MainActivity.where_to_train==null) {
+                        schema.append(start2 + " - " + end2 +" training\n");
+                    } else {
+                        schema.append(start2 + " - " + end2 + " " + MainActivity.where_to_train + " training\n");
+                    }
                     }
             }
         }
@@ -84,7 +101,6 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-
                     if (MainActivity.where_to_train==null) {
                         schema.append(start2 + " - " + end2 +" training\n");
                     } else {
@@ -103,7 +119,11 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-                    schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
+                    if (MainActivity.where_to_train==null) {
+                        schema.append(start2 + " - " + end2 +" training\n");
+                    } else {
+                        schema.append(start2 + " - " + end2 + " " + MainActivity.where_to_train + " training\n");
+                    }
                 }
             }
         }
@@ -113,9 +133,9 @@ public class Schema {
 
 
 
-    public static void set_studypref(int a, int b){
-        session_amount=a;
-        session_duration=b*15;
+    public static void set_studypref(int freq, int dur){
+        session_amount=freq;
+        session_duration=dur*15;
     }
     public static int get_study_amount(){
         return session_amount;
@@ -124,11 +144,12 @@ public class Schema {
         return session_duration;
     };
 
-    public static void set_trainingpref(int a, int b){
-        training_amount=a;
-        training_duration=b*30;
-
+    public static void set_trainingpref(int freq, int dur){
+        training_amount=freq;
+        training_duration=dur*30;
+        System.out.println("training_duration är: "+training_duration);
     }
+
     public static int get_training_amount(){
         return training_amount;
     };
@@ -160,15 +181,8 @@ public class Schema {
         training_min =training_duration;
 
 
-        while (study_min >= 60){
-            study_h++;
-            study_min-=60;
-        }
-
-        while (training_min >= 60){
-            training_h++;
-            training_min-=60;
-        }
+//        make_to_hours_and_minutes(study_min, study_h);
+//        make_to_hours_and_minutes(training_min, training_h);
 
         schema.append(button_day+": \n");
 
@@ -184,7 +198,7 @@ public class Schema {
         }
 
         if(training_amount==2){
-            if(today.equals("Tue")|| today.equals("Thu")) {
+            if(button_day.equals("Tue")|| button_day.equals("Thu")) {
                 if (training_h>0 || training_min>0) {
 
                     String start2 = (8 + 10) + ":00";
@@ -225,7 +239,7 @@ public class Schema {
             }
         }
         else if(training_amount==1) {
-            if (today.equals("Sat")) {
+            if (button_day.equals("Sat")) {
                 if (training_h > 0 || training_min > 0) {
                     String start2 = (8 + 10) + ":00";
                     String end2;

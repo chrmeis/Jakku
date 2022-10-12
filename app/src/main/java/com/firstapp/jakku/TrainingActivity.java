@@ -11,17 +11,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class TrainingActivity extends AppCompatActivity {
     private Button back;
 
-    private SeekBar sb_c_frequency;
-    private SeekBar sb_c_duration;
+    private SeekBar sb_Training_HowOften;
+    private SeekBar sb_Training_HowLong;
 
     private TextView c_freqQ;
     private TextView c_durQ;
@@ -32,27 +30,21 @@ public class TrainingActivity extends AppCompatActivity {
     private Button saveButtonTrain;
 
     public static final String SHARED_TPREFS = "sharedPref";
-    private static final String  C_FREQ = "c-freq";
-    private static final String C_DUR = "c-dur";
-    private static final String S_FREQ = "s_freq";
-    private static final String S_DUR = "s-dur";
-    private static final String C_SWITCH = "c-switch";
-    private static final String S_SWITCH = "s-switch";
+    private static final String T_HOW_OFTEN = "t_how_often";
+    private static final String T_HOW_LONG = "t_how_long";
 
-    private int cFreq;
-    private int cDur;
-    private int sFreq;
-    private int sDur;
-    private boolean cSwitch;
-    private boolean sSwitch;
+
+    private int t_frequency;
+    private int t_duration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        sb_c_frequency = findViewById(R.id.sb_cfreq);
-        sb_c_duration = findViewById(R.id.sb_cdur);
+        sb_Training_HowOften = findViewById(R.id.sb_Training_how_often);
+        sb_Training_HowLong = findViewById(R.id.sb_Training_How_long);
         c_freqQ = findViewById(R.id.tv_cfrequence);
         c_durQ = findViewById(R.id.tv_cduration);
         c_freq_ans = findViewById(R.id.tv_cfreq_ans2);
@@ -68,7 +60,7 @@ public class TrainingActivity extends AppCompatActivity {
          }
         });
 
-        sb_c_frequency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_Training_HowOften.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 String str;
@@ -83,7 +75,9 @@ public class TrainingActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        sb_c_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+        sb_Training_HowLong.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 String str;
@@ -118,8 +112,6 @@ public class TrainingActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if(id == R.id.trainingspref){
-//            Intent intent = new Intent (SettingsActivity.this, SettingsActivity.class);
-//            startActivity(intent);
             return true;
         }
 
@@ -143,12 +135,12 @@ public class TrainingActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(C_FREQ, sb_c_frequency.getProgress());
-        editor.putInt(C_DUR, sb_c_duration.getProgress());
+        editor.putInt(T_HOW_OFTEN, sb_Training_HowOften.getProgress());
+        editor.putInt(T_HOW_LONG, (sb_Training_HowLong.getProgress()));
 
         editor.apply();
 
-        Schema.set_trainingpref(sb_c_frequency.getProgress(), sb_c_duration.getProgress());
+        Schema.set_trainingpref(sb_Training_HowOften.getProgress(), (sb_Training_HowLong.getProgress()));
         MainActivity.updateShedule();
 
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
@@ -156,13 +148,15 @@ public class TrainingActivity extends AppCompatActivity {
 
     public void loadPrefTrain() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        cFreq = sharedPreferences.getInt(C_FREQ, 1);
-        cDur = sharedPreferences.getInt(C_DUR, 1);
+        t_frequency = sharedPreferences.getInt(T_HOW_OFTEN, 1);
+        t_duration = sharedPreferences.getInt(T_HOW_LONG, 1);
+        System.out.println("\n\nLoad t_duration: "+t_duration);
+
     }
 
     public void updateTrainViews(){
-        sb_c_frequency.setProgress(cFreq);
-        sb_c_duration.setProgress(cDur);
+        sb_Training_HowOften.setProgress(t_frequency);
+        sb_Training_HowLong.setProgress(t_duration);
 
     }
 }

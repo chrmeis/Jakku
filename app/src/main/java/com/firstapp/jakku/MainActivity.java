@@ -65,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_SPREFS = "sharedPref";
     public static final String STUDY_TOTAL = "sb_total";
     public static final String STUDY_SESSIONS = "sb_sessions";
+
     public static final String SHARED_TPREFS = "sharedPref";
-    private static final String  C_FREQ = "c-freq";
-    private static final String C_DUR = "c-dur";
+    private static final String T_HOW_OFTEN = "t_how_often";
+    private static final String T_HOW_LONG = "t_how_long";
 
 //    Button settings;
     //Weather weather;
@@ -79,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateShedule(){
         System.out.println("---Main updateShedule---");
-       String str=Schema.make_schedule()+ where_to_train;
-
+       String str=Schema.make_schedule();
         System.out.println("updateSchedule is: \n" + str);
         Todo.setText(str);
         System.out.println("---end Main updateShedule---");
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     public static void updateSchedule_by_button(String today){
         System.out.println("---Main updateSchedule_by_button---");
         String str=Schema.make_schedule_for_any_day(today);
-        System.out.println("updateSchedule is: \n"+str);
+//        System.out.println("updateSchedule is: \n"+str);
         Todo.setText(str);
         System.out.println("---end Main updateSchedule_by_button---");
     }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 //        settings=(Button) findViewById(R.id.b_settings);
 
         SharedPreferences sharedStudy = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
-        int total = sharedStudy.getInt(STUDY_TOTAL, 5);
+        int total = sharedStudy.getInt(STUDY_TOTAL, 4);
         int session = sharedStudy.getInt(STUDY_SESSIONS, 1);
         Schema.set_studypref(total,session);
 
@@ -121,14 +121,15 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("sessions: "+session+"\n\n");
 
 
-        SharedPreferences sharedTraining = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        int cFreq = sharedTraining.getInt(C_FREQ, 1);
-        int cDur = sharedTraining.getInt(C_DUR, 1);
-        Schema.set_trainingpref(cFreq, cDur);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        int t_frequency = sharedPreferences.getInt(T_HOW_OFTEN, 1);
+        int t_duration = sharedPreferences.getInt(T_HOW_LONG, 1);
+
+        Schema.set_trainingpref(t_frequency, t_duration);
 
         System.out.println("\n\nshared training in main:");
-        System.out.println("cFreq: "+cFreq);
-        System.out.println("cDur: "+cDur+"\n\n");
+        System.out.println("t_frequency: "+t_frequency);
+        System.out.println("t_duration: "+t_duration+"\n\n");
 
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -215,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
 
         //putting schema into homescreen
         Schema.set_weekday();
+        Schema.set_studypref(total,session);
+        Schema.set_trainingpref(t_frequency,t_duration);
 
         Todo=(TextView) findViewById(R.id.textView3);
          Todo.setText(Schema.make_schedule());
