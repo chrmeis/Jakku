@@ -57,11 +57,14 @@ public class NotificationWorkout extends AppCompatActivity {
                 //notificationSetup();
 
                 //testNotification();
+                /*
                 calendar = Calendar.getInstance();
 
                 int test = nextWorkout(calendar.get(Calendar.DAY_OF_WEEK));
 
                 toaster(test);
+                 */
+                NotificationSetup.nextNotification(NotificationWorkout.this);
 
             }
         });
