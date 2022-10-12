@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Jakku"
         tools:targetApi="31">
         <activity
-            android:name=".pass1"
+            android:name=".Pass1"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
