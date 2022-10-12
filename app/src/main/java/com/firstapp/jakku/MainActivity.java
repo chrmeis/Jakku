@@ -11,7 +11,9 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 //    Button settings;
     //Weather weather;
     private String temp;
+    private String tempFinal;
+    ImageView weatherSymbol;
+    private int finalRain;
 
     public void updateInfo(String string){
         info.setText(string);
@@ -35,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         info=(TextView) findViewById(R.id.textView2);
+        weatherSymbol = (ImageView) findViewById(R.id.imageView2);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -52,11 +58,23 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                String finalTemp = temp;
+                int rain = 0;
+                try{
+                    rain = Weather.currentRain();
+                } catch(JSONException e){
+                    e.printStackTrace();
+                }
+                tempFinal = temp;
+                finalRain = rain;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        updateInfo(finalTemp + " ℃");
+                        updateInfo(tempFinal + " ℃");
+                        if(finalRain == 0){
+                            weatherSymbol.setImageResource(R.drawable.sunshine1);
+                        } else {
+                            weatherSymbol.setImageResource(R.drawable.rain);
+                        }
                     }
                 });
             }
@@ -74,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getTemp(){
-        return temp;
+        return tempFinal;
     }
 
     @Override
@@ -95,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         } else if(menuItem.getTitle().equals("Travel Planning")){
-            Intent i = new Intent(MainActivity.this, Travel.class);
-            startActivity(i);
-            finish();
-            return true;
+            if(Double.parseDouble(tempFinal) < 10.0){
+                Toast.makeText(MainActivity.this, "It is recommended to put on a jacket", Toast.LENGTH_SHORT).show();
+            }
+
         }
         int id = menuItem.getItemId();
         return super.onOptionsItemSelected(menuItem);

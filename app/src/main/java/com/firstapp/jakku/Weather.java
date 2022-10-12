@@ -142,6 +142,33 @@ public class Weather {
         return string;
     }
 
+    public static int currentRain() throws JSONException{
+        JSONArray jsonArray = requestShortWeather();
+
+        //Looks at the current time according to the device it is running on.
+        DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH");
+        LocalDateTime now = LocalDateTime.now();
+
+        //Loops through the forecast to find one for the current time.
+        for (int i = 0; i < 34 ; i++) {
+            String validTime = ((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11, 13);
+            if (validTime.equals(hour.format(now))){
+                for (int j = 0; j < 5; j++) {
+                    try {
+                        if (((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")) {
+                            return (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        //If the loop fails to find a matching time then it returns this instead.
+        return -1;
+    }
+
     /**
      * Looks to see if there's any precipitation within the next 24 hours at 07:00, 13:00 and 18:00 and returns a HashMap with the data.
      * @return
