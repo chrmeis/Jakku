@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateSchedule_by_button(String today){
         System.out.println("---Main updateSchedule_by_button---");
-        String str=Schema.make_schedule_for_any_day(today);
+        String str=Schema.schedulemaker(today);
 //        System.out.println("updateSchedule is: \n"+str);
         Todo.setText(str);
         System.out.println("---end Main updateSchedule_by_button---");

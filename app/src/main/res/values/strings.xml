@@ -25,4 +25,6 @@
     <string name="answer_training_duration">Answer_training_duration</string>
     <string name="save">save</string>
     <string name="how_many_study_sessions_do_you_have_in_a_day">How many study sessions do you have in a day?</string>
+    <string name="study_preferences">Study preferences</string>
+    <string name="saveStudy">save</string>
 </resources>
