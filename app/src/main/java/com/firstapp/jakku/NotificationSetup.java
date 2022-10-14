@@ -30,36 +30,30 @@ public class NotificationSetup {
         notificationChannelWorkout(context);
 
         Calendar cal = Calendar.getInstance();
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        int week = cal.get(Calendar.WEEK_OF_MONTH);
 
         int alarmHour = nextHour(context);
 
         //no studying scheduled, workout might still be scheduled
         if(alarmHour == -1){
-            int nextDay = nextWorkout(day, context);
+            int nextDay = nextWorkout(cal.get(Calendar.DAY_OF_WEEK), context);
             //if no workout scheduled either, don't make an alarm
             if(nextDay == -1){
                 return;
             }
-            //if next workout is during next week
-            if(nextDay < cal.get(Calendar.DAY_OF_WEEK)){
-                cal.set(Calendar.WEEK_OF_MONTH,++week);
+
+            int offset = (nextDay - cal.get(Calendar.DAY_OF_WEEK));
+            //offset <= 0 if next workout is during next week
+            if(offset <= 0){
+                cal.set(Calendar.DAY_OF_YEAR,cal.get(Calendar.DAY_OF_YEAR) + 7 + offset);
+            }else{
+                cal.set(Calendar.DAY_OF_YEAR,cal.get(Calendar.DAY_OF_YEAR) + offset);
             }
-            //set to the correct weekday
-            cal.set(Calendar.DAY_OF_WEEK,nextDay);
             //hour set to 18 to set alarm for training
             alarmHour = 18;
         }else{
             //if the hour for the next alarm has happened, alarm is next day
             if(alarmHour < cal.get(Calendar.HOUR_OF_DAY)){
-                //if last day of week, set to first day of next week, otherwise set to next day
-                if(day== 7){
-                    cal.set(Calendar.DAY_OF_WEEK,1);
-                    cal.set(Calendar.WEEK_OF_MONTH,++week);
-                }else{
-                    cal.set(Calendar.DAY_OF_WEEK,++day);
-                }
+                cal.set(Calendar.DAY_OF_YEAR,cal.get(Calendar.DAY_OF_YEAR)+1);
             }
         }
         //Set time for alarm
@@ -73,7 +67,7 @@ public class NotificationSetup {
     }
 
     //Sets up the Notification Channel
-    static public void notificationChannelWorkout(Context context){
+    static private void notificationChannelWorkout(Context context){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer, so always since we're using Android 9 or greater
             //Importance high to have notifications show up on locked screen
             NotificationChannel channel = new NotificationChannel("Notification", "tRAINing notifications", NotificationManager.IMPORTANCE_HIGH);
@@ -199,5 +193,13 @@ public class NotificationSetup {
 
         //If there is nothing scheduled today or tomorrow
         return -1;
+    }
+    //Turns off notifications from the schedule
+    public static void cancelScheduleNotification(Context context){
+        AlarmManager manager = (AlarmManager) context.getSystemService((Context.ALARM_SERVICE));
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pintent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        manager.cancel(pintent);
     }
 }

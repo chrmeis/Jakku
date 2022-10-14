@@ -32,6 +32,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Calendar cal = Calendar.getInstance();
 
+        //If the notification is a workout notification
         if(cal.get(Calendar.HOUR_OF_DAY) == 18){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
             builder.setContentTitle("Notification Manager");
@@ -46,11 +47,22 @@ public class AlarmReceiver extends BroadcastReceiver {
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
             notificationManagerCompat.notify(42,builder.build());
         }
+        //If the notification is a study notification
+        else{
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
+            builder.setContentTitle("Notification Manager");
+            builder.setContentText("Time to study!");
+            builder.setSmallIcon(R.drawable.ic_launcher_background);
+            builder.setAutoCancel(true);
+            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+            //High priority, should show up even if phone locked
+            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+            builder.setContentIntent(pendingIntent);
 
-
-
-
-
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+            notificationManagerCompat.notify(42,builder.build());
+        }
+        //Set up the next notification
         NotificationSetup.nextNotification(context);
     }
 
