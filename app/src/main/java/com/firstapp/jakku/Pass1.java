@@ -46,15 +46,15 @@ public class Pass1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 trainingImg.setImageResource(R.drawable.pushup);
-                trainingText.setText("Time for some pushups!!");
+                trainingText.setText("Do 10 pushups x 3 \n Rest 30 sec inbetween");
             }
         });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                trainingImg.setImageResource(R.drawable.ic_baseline_directions_run_24);
-                trainingText.setText("Run for three years, two months, 14 days and 16 hours. Run Forest Run!!");
+                trainingImg.setImageResource(R.drawable.situp);
+                trainingText.setText("Do 10 situps x 3 \n Rest 30 sec.");
             }
         });
 

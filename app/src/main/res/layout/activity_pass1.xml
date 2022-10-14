@@ -16,14 +16,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_directions_run_24" />
+        app:srcCompat="![](../drawable-v24/situp.png)" />
 
     <TextView
         android:id="@+id/pass_instruction"
         android:layout_width="342dp"
         android:layout_height="0dp"
         android:layout_marginBottom="215dp"
-        android:text="Run for three years, two months, 14 days and 16 hours. Run Forest Run!!"
+        android:text="Do 10 situps x 3 Rest 30 sec."
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
