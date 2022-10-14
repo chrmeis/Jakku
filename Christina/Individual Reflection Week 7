@@ -1,8 +1,6 @@
-10/10
-11/10
-12/10
-13/10
-14/10
+10/10   4h making schema show up att app start and incorporating indoor/outdoor, sprint planning, supervision
+12/10   4h 1h team meeting, 1h lecture, 2h reprogramming mondays losses
+14/10   4h refactoring and renaming variables, team meeting including sprint review and team reflection
 
 
 ... the current situation or "what is" (A),
@@ -11,17 +9,26 @@
 
 
 What do I want to learn or understand better?
-
+Since we're about to finish work on the functionality of the app and progress to polishing it
+I expect to get new insights to our code that I have not been realizing before and maybe being
+able to make it more efficient or readable.
 
 
 How can I help someone else, or the entire team, to learn something new?
-
+As this week more of us worked with visualizing features I realized how much I have learned about
+textview, constraints and so on. I was abel to help my team mates with that. The new week we
+mostly will polish our code and improve our comments, so I I can help them with that as well.
 
 
 What is my contribution towards the team’s use of Scrum?
-
+I contributed towards our meetings and kept towards this weeks user stories. As the scrum master
+I also made sure we had locations to meet and did my best to distribute the workload evenly
+to all of us.
 
 
 What is my contribution towards the team’s deliveries?
-
+this week I unfortunately have not contributed that much. Something went wrong with a push
+on monday that resulted in some part of the new code was pushed, other parts got reset. So A lot
+of this week went through programming mondays part and later reprogramming it. But I also increased
+the code quality by making it more readable for humans.
 
