@@ -1,0 +1,22 @@
+7/10 Estimated time 10 hours so far
+
+A: This sprint I worked on schemacreator together with Christina. I tried to implement
+a system where main has a instance of an date object which could be sent into schema creator to make
+it visualize choosen schema. I implemented buttons and made the date object work but for some reason the
+schema object didn't return the schema i wanted. Christina made a different solution that worked
+so i scraped my branch. I also spent a couple of hours error to make android studio work since the
+emulator struggled to start. I realized in the end that my laptop with 8 GB of ram wasn't sufficient to
+run the emultor since we switched to a Pixel 3. When running om my desktop ram usage was around 13-14 gb.
+Lesson learned: you need alot of ram to emulate a phone in android studio. Even do my solution didn't end up
+in the project we developed the schema we wanted and I've learnt more about app development this week.
+
+B: Next week we want to join together notifications, weather, schema and training to have a minimal viable
+product of what we thought of from the beginning.
+
+C: To get there, I will work on my desktop since my laptop isn't strong enough. We will also distribute
+and estimate user stories since this is working well.
+
+
+... the current situation or "what is" (A),
+... what you want the situation to be or "what might or should be" (B), and
+... a plan for getting from where you are to where you want to be or "feedback designed to reduce the gap" (A -> B).
