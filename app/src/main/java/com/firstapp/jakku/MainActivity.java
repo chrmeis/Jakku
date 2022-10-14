@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     static String where_to_train;
 
+    public static final String STUDY_FREQUENCY = "sb_sfrequency";
+    public static final String STUDY_DURATION = "sb_sduration";
     public static final String SHARED_SPREFS = "sharedPref";
-    public static final String STUDY_TOTAL = "sb_total";
-    public static final String STUDY_SESSIONS = "sb_sessions";
 
     public static final String SHARED_TPREFS = "sharedPref";
-    private static final String T_HOW_OFTEN = "t_how_often";
-    private static final String T_HOW_LONG = "t_how_long";
+    private static final String T_FREQUENCY = "t_how_often";
+    private static final String T_DURATION = "t_how_long";
 
 //    Button settings;
     //Weather weather;
@@ -111,19 +111,19 @@ public class MainActivity extends AppCompatActivity {
         info=(TextView) findViewById(R.id.textView2);
 //        settings=(Button) findViewById(R.id.b_settings);
 
-        SharedPreferences sharedStudy = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
-        int total = sharedStudy.getInt(STUDY_TOTAL, 4);
-        int session = sharedStudy.getInt(STUDY_SESSIONS, 1);
-        Schema.set_studypref(total,session);
+        SharedPreferences SP_Study = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+        int s_frequency = SP_Study.getInt(STUDY_FREQUENCY, 4);
+        int s_duration = SP_Study.getInt(STUDY_DURATION, 1);
+        Schema.set_studypref(s_frequency,s_duration);
 
         System.out.println("\n\nshared study in main:");
-        System.out.println("total: "+total);
-        System.out.println("sessions: "+session+"\n\n");
+        System.out.println("s_frequency: "+s_frequency);
+        System.out.println("s_duration: "+s_duration+"\n\n");
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        int t_frequency = sharedPreferences.getInt(T_HOW_OFTEN, 1);
-        int t_duration = sharedPreferences.getInt(T_HOW_LONG, 1);
+        SharedPreferences SP_train = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        int t_frequency = SP_train.getInt(T_FREQUENCY, 1);
+        int t_duration = SP_train.getInt(T_DURATION, 1);
 
         Schema.set_trainingpref(t_frequency, t_duration);
 
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
 
         //putting schema into homescreen
         Schema.set_weekday();
-        Schema.set_studypref(total,session);
+        Schema.set_studypref(s_frequency,s_duration);
         Schema.set_trainingpref(t_frequency,t_duration);
 
         Todo=(TextView) findViewById(R.id.textView3);

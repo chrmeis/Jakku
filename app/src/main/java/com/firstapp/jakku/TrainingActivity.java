@@ -18,20 +18,17 @@ import android.widget.Toast;
 public class TrainingActivity extends AppCompatActivity {
     private Button back;
 
-    private SeekBar sb_Training_HowOften;
-    private SeekBar sb_Training_HowLong;
-
-    private TextView c_freqQ;
-    private TextView c_durQ;
-    private TextView c_freq_ans;
-    private TextView c_dur_ans;
+    private SeekBar sb_training_frequency;
+    private SeekBar sb_training_duration;
+    private TextView t_freq_ans;
+    private TextView t_dur_ans;
 
 
     private Button saveButtonTrain;
 
     public static final String SHARED_TPREFS = "sharedPref";
-    private static final String T_HOW_OFTEN = "t_how_often";
-    private static final String T_HOW_LONG = "t_how_long";
+    private static final String T_FREQUENCY = "t_how_often";
+    private static final String T_DURATION = "t_how_long";
 
 
     private int t_frequency;
@@ -43,16 +40,13 @@ public class TrainingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        sb_Training_HowOften = findViewById(R.id.sb_Training_how_often);
-        sb_Training_HowLong = findViewById(R.id.sb_Training_How_long);
-        c_freqQ = findViewById(R.id.tv_cfrequence);
-        c_durQ = findViewById(R.id.tv_cduration);
-        c_freq_ans = findViewById(R.id.tv_cfreq_ans2);
-        c_dur_ans = findViewById(R.id.tv_cdur_ans2);
+        sb_training_frequency = findViewById(R.id.sb_training_frequency);
+        sb_training_duration = findViewById(R.id.sb_training_duration);
+        t_freq_ans = findViewById(R.id.tv_ans_train_freq);
+        t_dur_ans = findViewById(R.id.tv_ans_train_dur);
 
 
-        saveButtonTrain = (Button) findViewById(R.id.b_save_training);
-
+        saveButtonTrain = findViewById(R.id.b_save_training);
         saveButtonTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,12 +54,23 @@ public class TrainingActivity extends AppCompatActivity {
          }
         });
 
-        sb_Training_HowOften.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_training_frequency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                String str;
-                str= String.valueOf(progress) + " times";
-                c_freq_ans.setText(str);
+                t_freq_ans.setText(progress + " times");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+
+        sb_training_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                t_dur_ans.setText(progress*30 + " minutes");
             }
 
             @Override
@@ -74,24 +79,6 @@ public class TrainingActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-
-
-        sb_Training_HowLong.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                String str;
-                str= String.valueOf(progress*30) + " minutes";
-                c_dur_ans.setText(str);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
 
 
         loadPrefTrain();
@@ -135,12 +122,12 @@ public class TrainingActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(T_HOW_OFTEN, sb_Training_HowOften.getProgress());
-        editor.putInt(T_HOW_LONG, (sb_Training_HowLong.getProgress()));
+        editor.putInt(T_FREQUENCY, sb_training_frequency.getProgress());
+        editor.putInt(T_DURATION, (sb_training_duration.getProgress()));
 
         editor.apply();
 
-        Schema.set_trainingpref(sb_Training_HowOften.getProgress(), (sb_Training_HowLong.getProgress()));
+        Schema.set_trainingpref(sb_training_frequency.getProgress(), (sb_training_duration.getProgress()));
         MainActivity.updateShedule();
 
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
@@ -148,15 +135,17 @@ public class TrainingActivity extends AppCompatActivity {
 
     public void loadPrefTrain() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        t_frequency = sharedPreferences.getInt(T_HOW_OFTEN, 1);
-        t_duration = sharedPreferences.getInt(T_HOW_LONG, 1);
+        t_frequency = sharedPreferences.getInt(T_FREQUENCY, 1);
+        t_duration = sharedPreferences.getInt(T_DURATION, 1);
         System.out.println("\n\nLoad t_duration: "+t_duration);
 
     }
 
     public void updateTrainViews(){
-        sb_Training_HowOften.setProgress(t_frequency);
-        sb_Training_HowLong.setProgress(t_duration);
+        sb_training_frequency.setProgress(t_frequency);
+        sb_training_duration.setProgress(t_duration);
+        t_freq_ans.setText((sb_training_frequency.getProgress()) + " times");
+        t_dur_ans.setText((sb_training_duration.getProgress()*30) + " minutes");
 
     }
 }

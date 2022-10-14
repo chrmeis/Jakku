@@ -13,9 +13,9 @@ import java.util.concurrent.Executors;
 public class Schema {
 //study hours are between 8am and 5pm
 
-    private static int session_amount;
-    private static int session_duration;
-    private static int training_amount;
+    private static int study_frequency;
+    private static int study_duration;
+    private static int training_frequency;
     private static int training_duration;
     private static String today;
 
@@ -33,10 +33,10 @@ public class Schema {
 //        int offset[] = {0,5,10,2,7};
 
         study_h=0;
-        study_min =session_duration;
+        study_min =study_duration;
         training_h=0;
         training_min =training_duration;
-        System.out.println("training_min är:"+training_min);
+//        System.out.println("training_min är:"+training_min);
 
 
 
@@ -56,7 +56,7 @@ public class Schema {
 
         schema.append("Today:\n");
 
-        for (int i=0; i<session_amount; i++){
+        for (int i=0; i<study_frequency; i++){
             String start1=(8+offset[i])+":00";
             String end1;
             if (study_min ==0){
@@ -71,7 +71,7 @@ public class Schema {
             }
         }
 
-        if(training_amount==2){
+        if(training_frequency==2){
             if(today.equals("Tue")|| today.equals("Thu")) {
                 if (training_h>0 || training_min>0) {
 
@@ -90,7 +90,7 @@ public class Schema {
                     }
             }
         }
-        else if(training_amount==3){
+        else if(training_frequency==3){
             if((today.equals("Mon")|| today.equals("Wed")|| today.equals("Fri"))) {
                 if (training_h>0 || training_min>0) {
                     String start2 = (8 + 10) + ":00";
@@ -109,7 +109,7 @@ public class Schema {
                 }
             }
         }
-        else if(training_amount==1) {
+        else if(training_frequency==1) {
             if (today.equals("Sat")) {
                 if (training_h > 0 || training_min > 0) {
                     String start2 = (8 + 10) + ":00";
@@ -134,24 +134,24 @@ public class Schema {
 
 
     public static void set_studypref(int freq, int dur){
-        session_amount=freq;
-        session_duration=dur*15;
+        study_frequency=freq;
+        study_duration=dur*15;
     }
     public static int get_study_amount(){
-        return session_amount;
+        return study_frequency;
     };
     public static int get_study_duration(){
-        return session_duration;
+        return study_duration;
     };
 
     public static void set_trainingpref(int freq, int dur){
-        training_amount=freq;
+        training_frequency=freq;
         training_duration=dur*30;
         System.out.println("training_duration är: "+training_duration);
     }
 
     public static int get_training_amount(){
-        return training_amount;
+        return training_frequency;
     };
     public static int get_training_duration(){
         return training_duration;
@@ -172,11 +172,13 @@ public class Schema {
         int study_min;
         int training_h;
         int training_min;
+
+
         int offset[] = {0,5,2,7};
 //        int offset[] = {0,5,10,2,7};
 
         study_h=0;
-        study_min =session_duration;
+        study_min =study_duration;
         training_h=0;
         training_min =training_duration;
 
@@ -184,9 +186,18 @@ public class Schema {
 //        make_to_hours_and_minutes(study_min, study_h);
 //        make_to_hours_and_minutes(training_min, training_h);
 
+        while (study_min >= 60){
+            study_h++;
+            study_min-=60;
+        }
+        while (training_min >= 60){
+            training_h++;
+            training_min-=60;
+        }
+
         schema.append(button_day+": \n");
 
-        for (int i=0; i<session_amount; i++){
+        for (int i=0; i<study_frequency; i++){
             String start1=(8+offset[i])+":00";
             String end1;
             if (study_min ==0){
@@ -194,10 +205,14 @@ public class Schema {
             }else{end1=(8+offset[i]+study_h)+":"+study_min;
 
             }
-            schema.append(start1+" - "+end1+" studytime\n");
+            if (i!=2) {
+                schema.append(start1 + " - " + end1 + " studytime\n");
+            }else {
+                schema.insert(schema.indexOf("13"), start1 + " - " + end1 + " studytime\n");
+            }
         }
 
-        if(training_amount==2){
+        if(training_frequency==2){
             if(button_day.equals("Tue")|| button_day.equals("Thu")) {
                 if (training_h>0 || training_min>0) {
 
@@ -216,7 +231,7 @@ public class Schema {
                 }
             }
         }
-        else if(training_amount==3){
+        else if(training_frequency==3){
             if((button_day.equals("Mon")|| button_day.equals("Wed")|| button_day.equals("Fri"))) {
                 if (training_h>0 || training_min>0) {
                     String start2 = (8 + 10) + ":00";
@@ -227,9 +242,7 @@ public class Schema {
                     } else {
                         end2 = (8 + 10 + training_h) + ":" + training_min;
                     }
-                    System.out.println("\n\ntoday: "+today);
-                    System.out.println("buttonday: "+button_day+"\n\n");
-                    if(today.equals(button_day)){
+                   if(today.equals(button_day)){
                         schema.append(start2 + " - " + end2 +" "+MainActivity.where_to_train +" training\n");
                     }else{
                     schema.append(start2 + " - " + end2 +" training\n");
@@ -238,7 +251,7 @@ public class Schema {
                 }
             }
         }
-        else if(training_amount==1) {
+        else if(training_frequency==1) {
             if (button_day.equals("Sat")) {
                 if (training_h > 0 || training_min > 0) {
                     String start2 = (8 + 10) + ":00";

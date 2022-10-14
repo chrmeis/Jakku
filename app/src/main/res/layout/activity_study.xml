@@ -11,7 +11,7 @@
         android:id="@+id/b_save_study"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="save"
+        android:text="@string/saveStudy"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/tv_studypref"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Study preferences"
+        android:text="@string/study_preferences"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.047" />
 
     <TextView
-        android:id="@+id/tv_Q_total"
+        android:id="@+id/tv_q_study_frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/how_many_study_sessions_do_you_have_in_a_day"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.28" />
 
     <TextView
-        android:id="@+id/tv_Q_session"
+        android:id="@+id/tv_q_study_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.461" />
 
     <SeekBar
-        android:id="@+id/sb_total"
+        android:id="@+id/sb_study_frequency"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.321" />
 
     <SeekBar
-        android:id="@+id/sb_session"
+        android:id="@+id/sb_study_duration"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.538" />
 
     <TextView
-        android:id="@+id/tv_ans_total"
+        android:id="@+id/tv_ans_study_frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.388" />
 
     <TextView
-        android:id="@+id/tv_ans_session"
+        android:id="@+id/tv_ans_study_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""

@@ -9,8 +9,7 @@
     tools:ignore="MissingClass,MissingDefaultResource">
 
 
-    <TextView
-        android:id="@+id/tv_Settings"
+    <TextView android:id="@+id/tv_Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/training_preferences"
@@ -22,8 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01" />
 
-    <TextView
-        android:id="@+id/tv_cfrequence"
+    <TextView android:id="@+id/tv_q_train_frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/how_often_do_you_practice_per_week"
@@ -36,8 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.152" />
 
-    <SeekBar
-        android:id="@+id/sb_Training_how_often"
+    <SeekBar android:id="@+id/sb_training_frequency"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
@@ -52,8 +49,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
 
-    <TextView
-        android:id="@+id/tv_cfreq_ans2"
+    <TextView android:id="@+id/tv_ans_train_freq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_training_amount"
@@ -65,8 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.24" />
 
-    <TextView
-        android:id="@+id/tv_cduration"
+    <TextView android:id="@+id/tv_q_train_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/how_long_is_each_session"
@@ -79,8 +74,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329" />
 
-    <SeekBar
-        android:id="@+id/sb_Training_How_long"
+    <SeekBar android:id="@+id/sb_training_duration"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
@@ -95,8 +89,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.373" />
 
-    <TextView
-        android:id="@+id/tv_cdur_ans2"
+    <TextView android:id="@+id/tv_ans_train_dur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_training_duration"
@@ -108,8 +101,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.419" />
 
-    <Button
-        android:id="@+id/b_save_training"
+    <Button android:id="@+id/b_save_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
