@@ -22,7 +22,9 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView travelTextView;
     TextView info;
+    TextView planner;
 //    Button settings;
     //Weather weather;
     private String temp;
@@ -39,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        travelTextView = (TextView) findViewById(R.id.travelText);
         info=(TextView) findViewById(R.id.textView2);
         weatherSymbol = (ImageView) findViewById(R.id.imageView2);
+        planner = (TextView) findViewById(R.id.textView3);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -75,11 +79,33 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             weatherSymbol.setImageResource(R.drawable.rain);
                         }
+                        if(getRain() > 0 && Double.parseDouble(getTemp()) < 10.0){
+                            travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
+                        } else if(getRain() > 0){
+                            travelTextView.setText("It's recommended to take the bus today!");
+                        }
+                        if(getRain() == 0 && Double.parseDouble(getTemp()) < 10.0){
+                            travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
+                        } else if(getRain() == 0){
+                            travelTextView.setText("It's recommended to take a walk or go biking today!");
+                        }
                     }
                 });
             }
         });
+    }
 
+    public void updateTravelPlans(){
+        if(getRain() > 0 && Double.parseDouble(getTemp()) < 10.0){
+            travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
+        } else if(getRain() > 0){
+            travelTextView.setText("It's recommended to take the bus today!");
+        }
+        if(getRain() == 0 && Double.parseDouble(getTemp()) < 10.0){
+            travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
+        } else if(getRain() == 0){
+            travelTextView.setText("It's recommended to take a walk or go biking today!");
+        }
     }
 
     @Override
@@ -87,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         menu.add("Notifications");
         menu.add("Study Preferences");
         menu.add("Practice Preferences");
-        menu.add("Travel Planning");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -116,15 +141,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             finish();
             return true;
-        } else if(menuItem.getTitle().equals("Travel Planning")){
-            if(Double.parseDouble(tempFinal) < 10.0){
-                Toast.makeText(MainActivity.this, "It is recommended to put on a jacket", Toast.LENGTH_SHORT).show();
-            }
-            if(getRain() > 0){
-                Toast.makeText(MainActivity.this, "It is recommended to take the bus or car", Toast.LENGTH_SHORT).show();
-            } else if(getRain() == 0) {
-                Toast.makeText(MainActivity.this, "It is recommended to to walk or take the bike", Toast.LENGTH_SHORT).show();
-            }
         }
         int id = menuItem.getItemId();
         return super.onOptionsItemSelected(menuItem);
