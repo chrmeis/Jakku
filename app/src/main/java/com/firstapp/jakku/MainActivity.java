@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
         } else if(getRain() == 0){
             travelTextView.setText("It's recommended to take a walk or go biking today!");
+        } else {
+            travelTextView.setText("Error, could not make travel plans");
         }
     }
 
