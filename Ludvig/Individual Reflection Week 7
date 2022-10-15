@@ -1,0 +1,31 @@
+--
+What do I want to learn or understand better?
+Our settings menu does work the way I thought, it could potentially be used to set location, however after feedback from stakeholder we have decided 
+not to implement it this way.
+
+For this final week I want to get a deeper understanding of some parts of the code that I haven't really looked at. I will do this by looking though our 
+code and asking questions when I see something I find unclear and pay attention while merging.
+
+--
+How can I help someone else, or the entire team, to learn something new?
+This week things mostly went smoothly, so I didn't find any opportunities to help the team learn.
+
+This final week there shouldn't be that many new things, but I will try to explain parts of the code that could be unclear and share what I know about 
+merging. I will do this during our meetings.
+
+--
+What is my contribution towards the team's use of Scrum?
+We finished up our final user stories this week, so choosing was easy.
+I participated in our meetings as usual, however I ended up distracting myself during some of the meetings trying to fix something before the meeting 
+that ended up taking much longer than I thought.
+
+I will give the meetings my full attention this week, luckily that should be easy since we don't have a lot to do besides merging and fixing those issues.
+
+--
+What is my contribution towards the team's deliveries?
+This week I created a class to handle notifications for studying and training that sets the next notification automatically based on the schedule, which 
+was the user story I chose for this week. I believe this was a good amount of work for the week.
+
+Next week we need to merge the final parts and make sure everything works together. I will try to keep up my contribution by helping fix merge conflicts.
+
+--
