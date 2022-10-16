@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="![](../drawable-v24/situp.png)" />
+        app:srcCompat="@drawable/situp" />
 
     <TextView
         android:id="@+id/pass_instruction"
