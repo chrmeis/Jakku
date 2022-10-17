@@ -18,4 +18,13 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_settings2">SettingsActivity2</string>
     <string name="_14_degrees_celcius">14 degrees celcius</string>
+    <string name="how_long_is_each_session">How long is each session</string>
+    <string name="answer_training_amount">Answer training amount</string>
+    <string name="how_often_do_you_practice_per_week">How often do you practice per week</string>
+    <string name="training_preferences">Training preferences</string>
+    <string name="answer_training_duration">Answer_training_duration</string>
+    <string name="save">save</string>
+    <string name="saveStudy">save</string>
+    <string name="study_preferences">Study preferences</string>
+    <string name="how_many_study_sessions_do_you_have_in_a_day">How many study sessions do you have in a day?</string>
 </resources>

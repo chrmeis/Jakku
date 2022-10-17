@@ -9,11 +9,10 @@
     tools:ignore="MissingClass,MissingDefaultResource">
 
 
-    <TextView
-        android:id="@+id/tv_Settings"
+    <TextView android:id="@+id/tv_Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Training preferences"
+        android:text="@string/training_preferences"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,26 +21,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01" />
 
-    <Switch
-        android:id="@+id/s_Cardio"
+    <TextView android:id="@+id/tv_q_train_frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cardio"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
-
-    <TextView
-        android:id="@+id/tv_cfrequence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How often do you practice per week?"
+        android:text="@string/how_often_do_you_practice_per_week"
         android:textSize="18sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.556"
@@ -49,15 +34,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.152" />
 
-    <SeekBar
-        android:id="@+id/sb_cfreq"
+    <SeekBar android:id="@+id/sb_training_frequency"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
-        android:max="7"
-        android:progress="3"
-        android:textSize="20dp"
-        android:visibility="invisible"
+        android:max="3"
+        android:progress="2"
+        android:textSize="20sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -65,26 +49,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
 
-    <TextView
-        android:id="@+id/tv_cfreq_ans2"
+    <TextView android:id="@+id/tv_ans_train_freq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x_times"
+        android:text="@string/answer_training_amount"
         android:textSize="18sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.24" />
 
-    <TextView
-        android:id="@+id/tv_cduration"
+    <TextView android:id="@+id/tv_q_train_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How long is each session?"
+        android:text="@string/how_long_is_each_session"
         android:textSize="18sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
@@ -92,15 +74,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329" />
 
-    <SeekBar
-        android:id="@+id/sb_cdur"
+    <SeekBar android:id="@+id/sb_training_duration"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="360sp"
         android:layout_height="35sp"
-        android:max="8"
-        android:progress="3"
-        android:textSize="20dp"
-        android:visibility="invisible"
+        android:max="4"
+        android:progress="2"
+        android:textSize="20sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -108,124 +89,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.373" />
 
-    <TextView
-        android:id="@+id/tv_cdur_ans2"
+    <TextView android:id="@+id/tv_ans_train_dur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x_min"
+        android:text="@string/answer_training_duration"
         android:textSize="18sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.419" />
 
-    <Switch
-        android:id="@+id/s_Strength"
+    <Button android:id="@+id/b_save_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Strength"
-        android:textSize="20dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
-
-    <TextView
-        android:id="@+id/tv_sfrequence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How often do you practice per week?"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566" />
-
-    <SeekBar
-        android:id="@+id/sb_sfreq"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="360sp"
-        android:layout_height="35sp"
-        android:max="7"
-        android:progress="3"
-        android:textSize="20dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
-
-    <TextView
-        android:id="@+id/tv_sfreq_ans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="x_times"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654" />
-
-    <TextView
-        android:id="@+id/tv_sduration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How long is each session?"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
-
-    <SeekBar
-        android:id="@+id/sb_sdur"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="360sp"
-        android:layout_height="35sp"
-        android:max="8"
-        android:progress="3"
-        android:textSize="20dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.785" />
-
-    <TextView
-        android:id="@+id/tv_sdur_ans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="x_min"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
-
-    <Button
-        android:id="@+id/b_save_training"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save"
+        android:text="@string/save"
         android:visibility="visible"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

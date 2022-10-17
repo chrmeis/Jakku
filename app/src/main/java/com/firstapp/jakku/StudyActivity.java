@@ -15,54 +15,52 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
 public class StudyActivity extends AppCompatActivity {
 
     private Button saveButton;
 
-    private SeekBar sb_total;
-    private SeekBar sb_session;
-    private TextView ansTotal;
-    private TextView ansSession;
+    private SeekBar sb_study_frequency;
+    private SeekBar sb_study_duration;
+    private TextView ans_study_frequency;
+    private TextView ans_study_duration;
+    SharedPreferences sharedPreferences;
 
-    public static final String STUDY_TOTAL = "sb_total";
-    public static final String STUDY_SESSIONS = "sb_sessions";
+    public static final String STUDY_FREQUENCY = "sb_sfrequency";
+    public static final String STUDY_DURATION = "sb_sduration";
     public static final String SHARED_SPREFS = "sharedPref";
 
-    private int total;
-    private int session;
+    private static int s_frequency;
+    private static int s_duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
-        saveButton = (Button) findViewById(R.id.b_save_study);
-        sb_total = (SeekBar) findViewById(R.id.sb_total);
-        sb_session = (SeekBar) findViewById(R.id.sb_session);
-        ansTotal = (TextView) findViewById(R.id.tv_ans_total);
-        ansSession = (TextView) findViewById(R.id.tv_ans_session);
+        saveButton = findViewById(R.id.b_save_study);
+        sb_study_frequency = findViewById(R.id.sb_study_frequency);
+        sb_study_duration = findViewById(R.id.sb_study_duration);
+        ans_study_frequency = findViewById(R.id.tv_ans_study_frequency);
+        ans_study_duration = findViewById(R.id.tv_ans_study_duration);
 
 
-        sb_total.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_study_frequency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
-                String str;
-                str= String.valueOf(progress) + " hours";
-                ansTotal.setText(str);
+                ans_study_frequency.setText(progress + " times");
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        sb_session.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_study_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
-                String str;
-                str= String.valueOf(progress*15) + " minutes";
-                ansSession.setText(str);
+                ans_study_duration.setText(progress*15 + " minutes");
             }
 
             @Override
@@ -76,7 +74,11 @@ public class StudyActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                savePref();
+                try {
+                    savePref();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -106,8 +108,6 @@ public class StudyActivity extends AppCompatActivity {
         }
 
         if (id == R.id.studypref) {
-//            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
-//            startActivity(intent);
             return true;
         }
 
@@ -117,37 +117,38 @@ public class StudyActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
-        if (id == R.id.water_intake) {
-               Intent intent = new Intent(StudyActivity.this, WaterIntake.class);
-               startActivity(intent);
-               finish();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
-    public void savePref(){
-        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+    public void savePref() throws JSONException {
+        sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(STUDY_TOTAL, sb_total.getProgress());
-        editor.putInt(STUDY_SESSIONS, sb_session.getProgress());
+        editor.putInt(STUDY_FREQUENCY, sb_study_frequency.getProgress());
+        editor.putInt(STUDY_DURATION, sb_study_duration.getProgress());
 
         editor.apply();
+
+        Schema.set_studypref(sb_study_frequency.getProgress(), sb_study_duration.getProgress());
+        MainActivity.updateShedule();
 
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
     public void loadPref() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
-        total = sharedPreferences.getInt(STUDY_TOTAL, 5);
-        session = sharedPreferences.getInt(STUDY_SESSIONS, 1);
+        s_frequency = sharedPreferences.getInt(STUDY_FREQUENCY, 4);
+        s_duration = sharedPreferences.getInt(STUDY_DURATION, 1);
+
     }
 
     public void updateStudyViews(){
-        sb_total.setProgress(total);
-        sb_session.setProgress(session);
+        sb_study_frequency.setProgress(s_frequency);
+        sb_study_duration.setProgress(s_duration);
+        ans_study_frequency.setText(sb_study_frequency.getProgress() + " times");
+        ans_study_duration.setText(sb_study_duration.getProgress()*15 + " minutes");
 
+        MainActivity.updateShedule();
     }
+
 }
