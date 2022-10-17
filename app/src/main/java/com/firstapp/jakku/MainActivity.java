@@ -2,43 +2,19 @@ package com.firstapp.jakku;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.firstapp.jakku.databinding.ActivityMainBinding;
-import com.google.android.material.timepicker.MaterialTimePicker;
-import com.google.android.material.timepicker.TimeFormat;
-
-import java.util.Calendar;
-import java.util.Date;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -51,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     /* Varning från commit
     Warning: Do not place Android context classes in static fields; this is a memory leak
      */
-    static TextView info;
+    //static TextView info;
     static TextView Todo;
     private Button mon;
     private Button tue;
@@ -79,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public static void updateInfo(String string){
+    public void updateInfo(String string){
         info.setText(string);
     }
 
@@ -179,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         //UI Thread work here
                         updateInfo(finalTemp + " ℃");
                         if (finalRain == 0){
-                            weatherSymbol.setImageResource(R.drawable.sunshine1);
+                            weatherSymbol.setImageResource(R.drawable.sunshine);
                         }
                         else{
                             weatherSymbol.setImageResource(R.drawable.rain);
