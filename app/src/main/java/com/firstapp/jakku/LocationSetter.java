@@ -28,9 +28,6 @@ import java.util.List;
 
 public class LocationSetter extends AppCompatActivity {
 
-
-    String[] results;
-
     private ActivityLocationSetBinding binding;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -49,20 +46,6 @@ public class LocationSetter extends AppCompatActivity {
                 setLocation();
             }
         });
-
-        //Testing purposes only, also change xml to use
-        /*
-        binding.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String[] test = getLocation();
-
-                String checker = "latitude: " + test[0] + " longitude: " + test[1];
-
-                Toast.makeText(LocationSetter.this, checker, Toast.LENGTH_SHORT).show();
-            }
-        });
-*/
     }
 
     @Override
@@ -165,17 +148,6 @@ public class LocationSetter extends AppCompatActivity {
         editor.putString("latitude",inData[0]);
         editor.putString("longitude",inData[1]);
         editor.apply();
-    }
-    //Returns saved location as an array, testing purposes
-    private String[] getLocation(){
-        SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
-
-        String lat = sharedPreferences.getString("latitude","");
-        String lon = sharedPreferences.getString("longitude","");
-
-        String[] res = {lat,lon};
-
-        return res;
     }
 
 
