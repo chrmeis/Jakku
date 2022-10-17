@@ -19,6 +19,7 @@ import org.json.JSONException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -27,13 +28,13 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context,MainActivity.class);
+        String action = intent.getAction();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_IMMUTABLE);
 
-        Calendar cal = Calendar.getInstance();
 
         //If the notification is a workout notification
-        if(cal.get(Calendar.HOUR_OF_DAY) == 18){
+        if(Objects.equals(action, "Training")){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
             builder.setContentTitle("Notification Manager");
             builder.setContentText("Workout time! Tap to see what you should do!");
@@ -48,7 +49,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManagerCompat.notify(42,builder.build());
         }
         //If the notification is a study notification
-        else{
+        else if(Objects.equals(action, "Study")){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
             builder.setContentTitle("Notification Manager");
             builder.setContentText("Time to study!");

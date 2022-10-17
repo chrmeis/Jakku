@@ -21,10 +21,15 @@ public class NotificationSetup {
     static public void nextNotification(Context context){
         AlarmManager manager = (AlarmManager) context.getSystemService((Context.ALARM_SERVICE));
         Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pintent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
 
         //if previous alarm exists, remove
-        manager.cancel(pintent);
+        intent.setAction("Study");
+        PendingIntent cancelStudy = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        manager.cancel(cancelStudy);
+        intent.setAction("Training");
+        PendingIntent cancelTraining = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        manager.cancel(cancelTraining);
 
         //notificationchannel required past Android 8
         notificationChannelWorkout(context);
@@ -63,6 +68,13 @@ public class NotificationSetup {
         cal.set(Calendar.MILLISECOND,0);
 
         //Set alarm
+        if(alarmHour == 18){
+            intent.setAction("Training");
+        }else{
+            intent.setAction("Study");
+        }
+        PendingIntent pintent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
         manager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pintent);
     }
 
