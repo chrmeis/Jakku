@@ -11,7 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +82,6 @@ public class TrainingActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-
         loadPrefTrain();
         updateTrainViews();
     }
@@ -99,6 +100,8 @@ public class TrainingActivity extends AppCompatActivity {
 
         //this handles tab on activity, duplicate for every new item in the menu
         if(id == R.id.trainingspref){
+//            Intent intent = new Intent (SettingsActivity.this, SettingsActivity.class);
+//            startActivity(intent);
             return true;
         }
 
@@ -111,6 +114,19 @@ public class TrainingActivity extends AppCompatActivity {
 
         if(id == R.id.home){
             Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if (id == R.id.water_intake) {
+               Intent intent = new Intent(TrainingActivity.this, WaterIntake.class);
+               startActivity(intent);
+               finish();
+            return true;
+        }
+
+        if(id == R.id.exercise){
+            Intent intent = new Intent(TrainingActivity.this, Exercise.class);
             startActivity(intent);
             finish();
             return true;
