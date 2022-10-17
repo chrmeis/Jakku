@@ -220,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
         Schema.set_trainingpref(t_frequency,t_duration);
 
         Todo=(TextView) findViewById(R.id.textView3);
-//         Todo.setText(Schema.make_schedule());
         Todo.setText(Schema.schedulemaker(Schema.getToday()));
         System.out.println("---end main onCreate---");
     }
