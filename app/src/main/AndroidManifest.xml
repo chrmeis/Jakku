@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     xmlns:tools="http://schemas.android.com/tools"
     package="com.firstapp.jakku">
 
@@ -20,6 +27,44 @@
         android:theme="@style/Theme.Jakku"
         tools:targetApi="31">
         <activity
+            android:name=".Pass1"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Exercise"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <receiver
+            android:name=".AlarmReceiver"
+            android:exported="true">
+        </receiver>
+
+        <activity
+
+
+
+            android:name=".WaterIntake"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LocationSetter"
+            android:exported="false"
+            />
+		<activity
+		android:name=".NotificationWorkout"
+            android:exported="false"
+            />
+        <activity
             android:name=".Travel"
             android:exported="false">
             <meta-data
@@ -33,7 +78,7 @@
             android:name=".StudyActivity"
             android:exported="false" />
         <activity
-            android:name=".practice_preferences"
+            android:name=".TrainingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
