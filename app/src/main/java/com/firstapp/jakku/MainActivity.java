@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firstapp.jakku.databinding.ActivityMainBinding;
@@ -70,8 +71,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String T_FREQUENCY = "t_how_often";
     private static final String T_DURATION = "t_how_long";
 
+    TextView info;
+    ImageView weatherSymbol;
 //    Button settings;
     //Weather weather;
+
+
 
 
     public static void updateInfo(String string){
@@ -124,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences SP_train = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         int t_frequency = SP_train.getInt(T_FREQUENCY, 1);
         int t_duration = SP_train.getInt(T_DURATION, 1);
+        weatherSymbol = (ImageView) findViewById(R.id.imageView2);
 
         Schema.set_trainingpref(t_frequency, t_duration);
 
@@ -131,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("t_frequency: "+t_frequency);
         System.out.println("t_duration: "+t_duration+"\n\n");
 
-
+        weatherSymbol.setImageResource(R.drawable.rain);
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -158,13 +164,27 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                int rain = 0;
+                try {
+                    rain = Weather.currentRain();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 String finalTemp = temp;
+                int finalRain = rain;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         //UI Thread work here
                         updateInfo(finalTemp + " ℃");
+                        if (finalRain == 0){
+                            weatherSymbol.setImageResource(R.drawable.sunshine1);
+                        }
+                        else{
+                            weatherSymbol.setImageResource(R.drawable.rain);
+                        }
+
                     }
                 });
             }
@@ -278,6 +298,14 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         }
+
+        if(id == R.id.exercise){
+            Intent intent = new Intent(MainActivity.this, Exercise.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

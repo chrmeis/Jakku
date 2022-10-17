@@ -13,6 +13,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
+/**
+ * WaterIntake - simple class to enable user to track how many glasses of
+ * water that has been consumed during the day.
+ *
+ * @author Erik Gustavsson
+ */
 public class WaterIntake extends AppCompatActivity {
 
     private SeekBar sb_water;
@@ -22,6 +28,11 @@ public class WaterIntake extends AppCompatActivity {
 
     private int total;
 
+    /**
+     * onCreate sets current view to matching activity and initializes components from the activity.
+     * @param savedInstanceState - Is a reference to a Bundle object that stores data. Activity can use this
+     * data to restore itself to a previous state in some situations.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +41,14 @@ public class WaterIntake extends AppCompatActivity {
         waterTotal = (TextView) findViewById(R.id.waterTotal);
 
         sb_water.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            /**
+             * Method to set up what happens when user change the bar.
+             * @param seekBar - The seekbar whose progress has changed
+             * @param progress - The current progress level
+             * @param fromUser - boolean true if progress change was initialized by user
+             */
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean Studentinput) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String str;
                 str= String.valueOf(progress) + " Glasses (2dl/glass)";
                 waterTotal.setText(str);
@@ -48,6 +65,10 @@ public class WaterIntake extends AppCompatActivity {
         updateStudyViews();
     }
 
+    /**
+     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
+     * @param menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -55,6 +76,10 @@ public class WaterIntake extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
+     * @param item
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -85,6 +110,13 @@ public class WaterIntake extends AppCompatActivity {
             //   Intent intent = new Intent(WaterIntake.this, WaterIntake.class);
             //   startActivity(intent);
             //   finish();
+            return true;
+        }
+
+        if(id == R.id.exercise){
+            Intent intent = new Intent(WaterIntake.this, Exercise.class);
+            startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

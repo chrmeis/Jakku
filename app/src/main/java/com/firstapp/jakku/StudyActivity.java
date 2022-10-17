@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import org.json.JSONException;
+
 public class StudyActivity extends AppCompatActivity {
 
     private Button saveButton;
@@ -81,7 +83,6 @@ public class StudyActivity extends AppCompatActivity {
                 }
             }
         });
-
         loadPref();
         updateStudyViews();
 
@@ -108,11 +109,27 @@ public class StudyActivity extends AppCompatActivity {
         }
 
         if (id == R.id.studypref) {
+//            Intent intent = new Intent(StudyActivity.this, StudyActivity.class);
+//            startActivity(intent);
             return true;
         }
 
         if (id == R.id.home) {
             Intent intent = new Intent(StudyActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.water_intake) {
+               Intent intent = new Intent(StudyActivity.this, WaterIntake.class);
+               startActivity(intent);
+               finish();
+            return true;
+        }
+
+        if(id == R.id.exercise){
+            Intent intent = new Intent(StudyActivity.this, Exercise.class);
             startActivity(intent);
             finish();
             return true;
