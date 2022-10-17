@@ -130,11 +130,14 @@ public class NotificationSetup {
         return -1;
     }
 
+    //Returns an integer representing the hour for the next alarm. Requires a Context.
+    //Returns -1 if nothing is scheduled, or if training is scheduled but not today.
     private static int nextHour(Context context){
         SharedPreferences sharedPref = context.getSharedPreferences("sharedPref", MODE_PRIVATE);
         int studySession = sharedPref.getInt("sb_total",4);
         int trainingSession = sharedPref.getInt("t_how_often",1);
 
+        //Could be boolean, is int for readability (also because it works now and I don't want to touch)
         int[] timeSlotsDay = {0,0,0,0,0};
 
         Calendar cal = Calendar.getInstance();
