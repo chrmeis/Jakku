@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateShedule(){
         System.out.println("---Main updateShedule---");
-       String str=Schema.make_schedule();
+       String str=Schema.schedulemaker(Schema.getToday());
         System.out.println("updateSchedule is: \n" + str);
         Todo.setText(str);
         System.out.println("---end Main updateShedule---");
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateSchedule_by_button(String today){
         System.out.println("---Main updateSchedule_by_button---");
-        String str=Schema.make_schedule_for_any_day(today);
+        String str=Schema.schedulemaker(today);
 //        System.out.println("updateSchedule is: \n"+str);
         Todo.setText(str);
         System.out.println("---end Main updateSchedule_by_button---");
@@ -220,7 +220,8 @@ public class MainActivity extends AppCompatActivity {
         Schema.set_trainingpref(t_frequency,t_duration);
 
         Todo=(TextView) findViewById(R.id.textView3);
-         Todo.setText(Schema.make_schedule());
+//         Todo.setText(Schema.make_schedule());
+        Todo.setText(Schema.schedulemaker(Schema.getToday()));
         System.out.println("---end main onCreate---");
     }
 
