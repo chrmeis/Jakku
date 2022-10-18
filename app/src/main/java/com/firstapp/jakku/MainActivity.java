@@ -2,16 +2,37 @@ package com.firstapp.jakku;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.firstapp.jakku.databinding.ActivityMainBinding;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
+import java.util.Date;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Menu;
@@ -39,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     /* Varning från commit
     Warning: Do not place Android context classes in static fields; this is a memory leak
      */
-    static TextView info;
+    //static TextView info;
     static TextView Todo;
     private Button mon;
     private Button tue;
@@ -67,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
     private String tempFinal;
    // ImageView weatherSymbol;
     private int finalRain;
+
+
+
 
    /* public void updateInfo(String string) {
         info.setText(string);
@@ -163,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
-                String lat = sharedPreferences.getString("latitude","57.708870");
+/*
+               String lat = sharedPreferences.getString("latitude","57.708870");
                 String lon = sharedPreferences.getString("longitude","11.974560");
                 Weather.saveCoords(lon,lat);
                 temp = null;
@@ -204,10 +229,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-             /*//Background work here
-                SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
-
+ */
                 String lat = sharedPreferences.getString("latitude","57.708870");
                 String lon = sharedPreferences.getString("longitude","11.974560");
                 Weather.saveCoords(lon, lat);
@@ -250,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-*/
+
 
         mon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //setting variables for schema into homescreen
+        //putting schema into homescreen
         Schema.set_weekday();
         Schema.set_studypref(s_frequency,s_duration);
         Schema.set_trainingpref(t_frequency,t_duration);
@@ -307,25 +329,71 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Hydrate Notifications");
-        menu.add("Study Preferences");
-        menu.add("Training Preferences");
-        menu.add("Exercises");
-        menu.add("Set Location");
-        menu.add("Workout Notifications");
-        menu.add("Water Intake");
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public String getTemp(){
-        return tempFinal;
-    }
-
-    public int getRain(){
-        return finalRain;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id= item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if(id == R.id.trainingspref){
+            Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+            //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            //           startActivity(intent);
+            return true;
+        }
+
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(MainActivity.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.location_setter){
+            Intent intent = new Intent(MainActivity.this, LocationSetter.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.exercise){
+            Intent intent = new Intent(MainActivity.this, Exercise.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /*
+        @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if(menuItem.getTitle().equals("Hydrate Notifications")){
             Intent i = new Intent(MainActivity.this, Notifications.class);
@@ -365,5 +433,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(menuItem);
     }
+     */
 }
+
+
 

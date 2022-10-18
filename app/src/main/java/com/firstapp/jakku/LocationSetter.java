@@ -10,6 +10,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -48,24 +51,72 @@ public class LocationSetter extends AppCompatActivity {
                 setLocation();
             }
         });
+    }
 
-        //Testing purposes only, also change xml to use
-        /*
-        binding.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String[] test = getLocation();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
 
-                String checker = "latitude: " + test[0] + " longitude: " + test[1];
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-                Toast.makeText(LocationSetter.this, checker, Toast.LENGTH_SHORT).show();
-            }
-        });
-*/
+        int id= item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if(id == R.id.trainingspref){
+            Intent intent = new Intent(LocationSetter.this, TrainingActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(LocationSetter.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+
+        }
+
+        if(id == R.id.studypref){
+            Intent intent = new Intent(LocationSetter.this, StudyActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.home){
+            Intent intent = new Intent(LocationSetter.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.water_intake){
+            Intent intent = new Intent(LocationSetter.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.location_setter){
+            /*
+            Intent intent = new Intent(LocationSetter.this, LocationSetter.class);
+            startActivity(intent);
+            finish();
+            return true;
+
+             */
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     //takes a while to run, is done when toast appears
-    // if toast is "Failed to find location", double-check if location is set in emulator
+    //if toast is "Failed to find location", double-check if location is set in emulator
     public void setLocation() {
 
         if (ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -83,7 +134,6 @@ public class LocationSetter extends AppCompatActivity {
                             String longitude = String.valueOf(location.getLongitude());
                             String latitude = String.valueOf(location.getLatitude());
                             String[] res = {latitude,longitude};
-                            //setResults(res);
                             savePref(res);
                             String loc = "latitude set to: " + res[0] + "longitude set to: " + res[1];
                             Toast.makeText(LocationSetter.this, loc, Toast.LENGTH_SHORT).show();
@@ -96,7 +146,7 @@ public class LocationSetter extends AppCompatActivity {
 
     }
     //Saves current location
-    public void savePref(String[] inData){
+    private void savePref(String[] inData){
         SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -116,7 +166,7 @@ public class LocationSetter extends AppCompatActivity {
         return res;
     }
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add("Home");
         menu.add("Hydrate Notifications");
@@ -127,6 +177,8 @@ public class LocationSetter extends AppCompatActivity {
         menu.add("Water Intake");
         return super.onCreateOptionsMenu(menu);
     }
+
+ */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){

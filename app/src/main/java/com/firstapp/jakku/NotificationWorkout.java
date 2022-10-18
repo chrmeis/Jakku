@@ -55,9 +55,20 @@ public class NotificationWorkout extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
+                //commented in ludvigs kod
                 showTimePicker();
 
                 //notificationSetup();
+
+                //testNotification();
+                /*
+                calendar = Calendar.getInstance();
+
+                int test = nextWorkout(calendar.get(Calendar.DAY_OF_WEEK));
+
+                toaster(test);
+                 */
+                NotificationSetup.nextNotification(NotificationWorkout.this);
 
             }
         });
@@ -197,23 +208,41 @@ public class NotificationWorkout extends AppCompatActivity {
         //if previous alarm exists, remove
         manager.cancel(pintent);
 
-        //notificaitonchannel required past Android 8
+        //notificationchannel required past Android 8
         notificationChannelWorkout(context);
 
-        //Set up time for alarm
+
         Calendar cal = Calendar.getInstance();
+
+        int nextDay = nextWorkout(cal.get(Calendar.DAY_OF_WEEK));
+        //if no workout scheduled anymore
+        if(nextDay == -1){
+            return;
+        }
+
+        //if next workout is during next week
+        if(nextDay < cal.get(Calendar.DAY_OF_WEEK)){
+            int week = cal.get(Calendar.WEEK_OF_MONTH);
+            cal.set(Calendar.WEEK_OF_MONTH,++week);
+        }
+
+
+        //if set during the workout hour, look at when the next workout is instead
+        if(cal.get(Calendar.HOUR_OF_DAY) == hour){
+            cal.set(Calendar.DAY_OF_WEEK,nextDay);
+        }
+        //Set time for alarm
         cal.set(Calendar.HOUR_OF_DAY,hour);
         cal.set(Calendar.MINUTE,minute);
         cal.set(Calendar.SECOND,0);
         cal.set(Calendar.MILLISECOND,0);
 
-
-
-        //set alarm
+        //Set alarm
         manager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pintent);
 
     }
 
+    //Sets up the notificationChannel
     static public void notificationChannelWorkout(Context context){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer, so always since we're using Android 9 or greater
             //Importance high to have notifications show up on locked screen
@@ -226,7 +255,35 @@ public class NotificationWorkout extends AppCompatActivity {
         }
     }
 
-    @Override
+    //Returns an integer representing the day of the week when the next workout is
+    //scheduled. Returns -1 if no workout scheduled.
+    private static int nextWorkout(int currentDay){
+        int[] testSchedule = {1,0,0,0,0,0,0};
+        int check = currentDay;
+        for(int i = 1;i<7;i++){
+            if(testSchedule[check] != 0){
+                //days count from 1, not 0
+                return check + 1;
+            }
+            check++;
+            //After saturday is checked
+            if(check == 7){
+                check = 0;
+            }
+        }
+        return -1;
+    }
+
+    private void testNotification(){
+        workoutNotification(NotificationWorkout.this,10,50);
+        Toast.makeText(this, "Reminder set Successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    private void toaster(int test){
+        Toast.makeText(this, Integer.toString(test),Toast.LENGTH_SHORT).show();
+    }
+/*   tror det är dubbelt med nästa funktion
+ @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add("Home");
         menu.add("Hydrate Notifications");
@@ -237,6 +294,8 @@ public class NotificationWorkout extends AppCompatActivity {
         menu.add("Water Intake");
         return super.onCreateOptionsMenu(menu);
     }
+
+ */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
