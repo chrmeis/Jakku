@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     TextView travelTextView;
-    TextView info;
+    //TextView info;
     TextView planner;
     /* Varning från commit
     Warning: Do not place Android context classes in static fields; this is a memory leak
@@ -65,16 +65,31 @@ public class MainActivity extends AppCompatActivity {
     //Weather weather;
     private String temp;
     private String tempFinal;
-    ImageView weatherSymbol;
+   // ImageView weatherSymbol;
     private int finalRain;
 
-    public void updateInfo(String string){
+   /* public void updateInfo(String string) {
         info.setText(string);
-
-
+    }
+*/
 
     public void updateInfo(String string){
         weatherText.setText(string);
+    }
+
+    public void updateTravelPlans() {
+        if (getRain() > 0 && Double.parseDouble(getTemp()) < 10.0) {
+            travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
+        } else if (getRain() > 0) {
+            travelTextView.setText("It's recommended to take the bus today!");
+        }
+        if (getRain() == 0 && Double.parseDouble(getTemp()) < 10.0) {
+            travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
+        } else if (getRain() == 0) {
+            travelTextView.setText("It's recommended to take a walk or go biking today!");
+        } else {
+            travelTextView.setText("Error, could not make travel plans");
+        }
     }
 
     public static void updateShedule(){
@@ -131,10 +146,7 @@ public class MainActivity extends AppCompatActivity {
         weatherSymbol = (ImageView) findViewById(R.id.imageView2);
         planner = (TextView) findViewById(R.id.textView3);
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        executor.execute(new Runnable() {
+       // executor.execute(new Runnable() {
         Schema.set_trainingpref(t_frequency, t_duration);
 
 /*        System.out.println("\n\nshared training in main:");
@@ -191,22 +203,9 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-    }
 
-    public void updateTravelPlans(){
-        if(getRain() > 0 && Double.parseDouble(getTemp()) < 10.0){
-            travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
-        } else if(getRain() > 0){
-            travelTextView.setText("It's recommended to take the bus today!");
-        }
-        if(getRain() == 0 && Double.parseDouble(getTemp()) < 10.0){
-            travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
-        } else if(getRain() == 0){
-            travelTextView.setText("It's recommended to take a walk or go biking today!");
-        } else {
-            travelTextView.setText("Error, could not make travel plans");
-        }
-                //Background work here
+
+             /*//Background work here
                 SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
 
                 String lat = sharedPreferences.getString("latitude","57.708870");
@@ -251,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
+*/
 
         mon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -308,9 +307,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Notifications");
+        menu.add("Hydrate Notifications");
         menu.add("Study Preferences");
-        menu.add("Practice Preferences");
+        menu.add("Training Preferences");
+        menu.add("Exercises");
+        menu.add("Location Settings");
+        menu.add("Workout Notifications");
+        menu.add("Water Intake");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -324,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
-        if(menuItem.getTitle().equals("Notifications")){
+        if(menuItem.getTitle().equals("Hydrate Notifications")){
             Intent i = new Intent(MainActivity.this, Notifications.class);
             startActivity(i);
             finish();
@@ -334,13 +337,32 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             finish();
             return true;
-        } else if(menuItem.getTitle().equals("Practice Preferences")){
-            Intent i = new Intent(MainActivity.this,practice_preferences.class);
+        } else if(menuItem.getTitle().equals("Training Preferences")){
+            Intent i = new Intent(MainActivity.this,TrainingActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Exercises")){
+            Intent i = new Intent(MainActivity.this, Exercise.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Location Settings")){
+            Intent i = new Intent(MainActivity.this, LocationSetter.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Workout Notifications")){
+            Intent i = new Intent(MainActivity.this, NotificationWorkout.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(menuItem.getTitle().equals("Water Intake")){
+            Intent i = new Intent(MainActivity.this, WaterIntake.class);
             startActivity(i);
             finish();
             return true;
         }
-        int id = menuItem.getItemId();
         return super.onOptionsItemSelected(menuItem);
     }
 }

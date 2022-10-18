@@ -91,8 +91,12 @@ public class StudyActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Home");
-        menu.add("Notifications");
+        menu.add("Hydrate Notifications");
         menu.add("Training Preferences");
+        menu.add("Exercises");
+        menu.add("Set Location");
+        menu.add("Workout Settings");
+        menu.add("Water Intake");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -104,15 +108,33 @@ public class StudyActivity extends AppCompatActivity {
             startActivity(i);
             finish();
             return true;
-        }
-
-        } else if(item.getTitle().equals("Notifications")){
+        } else if(item.getTitle().equals("Hydrate Notifications")){
             Intent i = new Intent(StudyActivity.this, Notifications.class);
             startActivity(i);
             finish();
             return true;
         } else if(item.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(StudyActivity.this, practice_preferences.class);
+            Intent i = new Intent(StudyActivity.this, TrainingActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Exercises")){
+            Intent i = new Intent(StudyActivity.this, Exercise.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Set Location")){
+            Intent i = new Intent(StudyActivity.this, LocationSetter.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Workout Settings")){
+            Intent i = new Intent(StudyActivity.this, NotificationWorkout.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Water Intake")){
+            Intent i = new Intent(StudyActivity.this, WaterIntake.class);
             startActivity(i);
             finish();
             return true;

@@ -167,7 +167,7 @@ public class Weather {
      * @return Int with the precipitation. 0 for no precipitation and above 0 for precipitation.
      * @throws JSONException If an error has occurred with the SMHI request
      */
-    public static int currentRain() throws JSONException {
+    /*public static int currentRain() throws JSONException {
         JSONArray jsonArray = requestShortWeather();
 
         //Looks at the current time according to the device it is running on.
@@ -193,12 +193,12 @@ public class Weather {
         //If the loop fails to find a matching time then it returns this instead.
         return -1;
     }
-
+*/
     /**
      * Looks to see if there's any precipitation within the next 24 hours at 07:00, 13:00 and 18:00 and returns a HashMap with the data.
      * @return Returns a HashMap with the times and boolean for precipitation.
      */
-    public static HashMap<Integer, Boolean> rainToday() throws JSONException {
+    /*public static HashMap<Integer, Boolean> rainToday() throws JSONException {
 
         HashMap<Integer, Boolean> hashMap = new HashMap<>();
         JSONArray jsonArray = requestWeather();
@@ -223,6 +223,7 @@ public class Weather {
         }
         return hashMap;
     }
+    */
     /**
      * Checks if there is going to be any rain at 18:00.
      * If the clock is before 19:00 it returns based on the weather today and after 19:00 it returns for tomorrow.
@@ -271,7 +272,7 @@ public class Weather {
 
         return "Error";
     }
-
+    // Rätt metod
     public static int currentRain() throws JSONException{
         JSONArray jsonArray = requestShortWeather();
 
@@ -303,6 +304,7 @@ public class Weather {
      * Looks to see if there's any precipitation within the next 24 hours at 07:00, 13:00 and 18:00 and returns a HashMap with the data.
      * @return
      */
+    // rätt
     public static HashMap<Integer, Boolean> rainToday() throws JSONException {
 
         HashMap<Integer, Boolean> hashMap = new HashMap<Integer, Boolean>();
@@ -331,7 +333,7 @@ public class Weather {
      *
      * @return String "Outdoor" or "Indoor" depending on the weather
      */
-    public static String rain18() throws JSONException {
+   /* public static String rain18() throws JSONException {
         DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH");
         DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
         LocalDateTime now = LocalDateTime.now();
@@ -372,4 +374,5 @@ public class Weather {
 
         return "Error";
     }
+    */
 }

@@ -2,14 +2,18 @@ package com.firstapp.jakku;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -112,5 +116,57 @@ public class LocationSetter extends AppCompatActivity {
         return res;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        menu.add("Home");
+        menu.add("Hydrate Notifications");
+        menu.add("Study Preferences");
+        menu.add("Training Preferences");
+        menu.add("Exercises");
+        menu.add("Workout Settings");
+        menu.add("Water Intake");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if(item.getTitle().equals("Home")){
+            Intent i = new Intent(LocationSetter.this, MainActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Hydrate Notifications")){
+            Intent i = new Intent(LocationSetter.this, Notifications.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Study Preferences")){
+            Intent i = new Intent(LocationSetter.this, StudyActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Training Preferences")){
+            Intent i = new Intent(LocationSetter.this, TrainingActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Exercises")){
+            Intent i = new Intent(LocationSetter.this, Exercise.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Workout Settings")){
+            Intent i = new Intent(LocationSetter.this, NotificationWorkout.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Water Intake")){
+            Intent i = new Intent(LocationSetter.this, WaterIntake.class);
+            startActivity(i);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -84,7 +84,7 @@ public class Travel extends AppCompatActivity {
             finish();
             return true;
         } else if(menuItem.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(Travel.this, practice_preferences.class);
+            Intent i = new Intent(Travel.this, TrainingActivity.class);
             startActivity(i);
             finish();
             return true;

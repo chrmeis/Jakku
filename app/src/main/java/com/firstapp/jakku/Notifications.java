@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
 
+import java.security.spec.ECField;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -111,6 +112,10 @@ public class Notifications extends AppCompatActivity {
         item.add("Home");
         item.add("Study Preferences");
         item.add("Training Preferences");
+        item.add("Exercises");
+        item.add("Set Location");
+        item.add("Workout Notifications");
+        item.add("Water Intake");
         return super.onCreateOptionsMenu(item);
     }
 
@@ -127,7 +132,27 @@ public class Notifications extends AppCompatActivity {
             finish();
             return true;
         } else if(item.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(Notifications.this,practice_preferences.class);
+            Intent i = new Intent(Notifications.this,TrainingActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Exercises")){
+            Intent i = new Intent(Notifications.this, Exercise.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Set Location")){
+            Intent i = new Intent(Notifications.this, LocationSetter.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Workout Notifications")){
+            Intent i = new Intent(Notifications.this, Exercise.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if(item.getTitle().equals("Water Intake")){
+            Intent i = new Intent(Notifications.this, WaterIntake.class);
             startActivity(i);
             finish();
             return true;
