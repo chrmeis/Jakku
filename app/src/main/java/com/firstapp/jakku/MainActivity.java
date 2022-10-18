@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
         menu.add("Study Preferences");
         menu.add("Training Preferences");
         menu.add("Exercises");
-        menu.add("Location Settings");
+        menu.add("Set Location");
         menu.add("Workout Notifications");
         menu.add("Water Intake");
         return super.onCreateOptionsMenu(menu);
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             finish();
             return true;
-        } else if(menuItem.getTitle().equals("Location Settings")){
+        } else if(menuItem.getTitle().equals("Set Location")){
             Intent i = new Intent(MainActivity.this, LocationSetter.class);
             startActivity(i);
             finish();
