@@ -357,7 +357,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if(id == R.id.location_setter){
-            Intent intent = new Intent(MainActivity.this, LocationSetter.class);
+
+        }
+        if(id ==R.id.water_notification){
+            Intent intent = new Intent(MainActivity.this, Notifications.class);
             startActivity(intent);
             finish();
             return true;

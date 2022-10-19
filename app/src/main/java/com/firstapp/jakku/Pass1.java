@@ -113,6 +113,12 @@ public class Pass1 extends AppCompatActivity {
             finish();
             return true;
         }
+        if(id ==R.id.water_notification){
+            Intent intent = new Intent(Pass1.this, Notifications.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

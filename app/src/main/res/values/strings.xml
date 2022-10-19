@@ -42,4 +42,5 @@
     <string name="fri">Fri</string>
     <string name="sat">Sat</string>
     <string name="mon">Mon</string>
+    <string name="water_notification">Water Notification</string>
 </resources>

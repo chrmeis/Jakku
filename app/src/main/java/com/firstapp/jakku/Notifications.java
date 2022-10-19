@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
@@ -44,7 +45,6 @@ public class Notifications extends AppCompatActivity {
     private Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
-
             createNotif();
             mHandler.postDelayed(mHandlerTask,INTERVAL);
         }
@@ -107,54 +107,70 @@ public class Notifications extends AppCompatActivity {
         m.notify(1, builder.build());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu item){
-        item.add("Home");
-        item.add("Study Preferences");
-        item.add("Training Preferences");
-        item.add("Exercises");
-        item.add("Set Location");
-        item.add("Workout Notifications");
-        item.add("Water Intake");
-        return super.onCreateOptionsMenu(item);
-    }
+    /**
+     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
+     * @param menu
+     * @author Menu made by Liam Mattsson
+     */
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        if(item.getTitle().equals("Home")){
-            Intent i = new Intent(Notifications.this, MainActivity.class);
-            startActivity(i);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
+
+    /**
+     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
+     * @param item
+     */
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if (id == R.id.trainingspref) {
+            Intent intent = new Intent(Notifications.this, TrainingActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Study Preferences")){
-            Intent i = new Intent(Notifications.this, StudyActivity.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.studypref) {
+            Intent intent = new Intent(Notifications.this, StudyActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(Notifications.this,TrainingActivity.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.home) {
+            Intent intent = new Intent(Notifications.this, MainActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Exercises")){
-            Intent i = new Intent(Notifications.this, Exercise.class);
-            startActivity(i);
+        }
+        if (id == R.id.water_intake) {
+            Intent intent = new Intent(Notifications.this, WaterIntake.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Set Location")){
-            Intent i = new Intent(Notifications.this, LocationSetter.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.exercise) {
+            Intent intent = new Intent(Notifications.this, Exercise.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Workout Notifications")){
-            Intent i = new Intent(Notifications.this, Exercise.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.location_setter) {
+            Intent intent = new Intent(Notifications.this, LocationSetter.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Water Intake")){
-            Intent i = new Intent(Notifications.this, WaterIntake.class);
-            startActivity(i);
-            finish();
+        }
+        if(id ==R.id.water_notification){
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -136,6 +136,12 @@ public class TrainingActivity extends AppCompatActivity {
             finish();
             return true;
         }
+        if(id ==R.id.water_notification){
+            Intent intent = new Intent(TrainingActivity.this, Notifications.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
