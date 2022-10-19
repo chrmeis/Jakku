@@ -123,6 +123,12 @@ public class WaterIntake extends AppCompatActivity {
             finish();
             return true;
         }
+        if(id ==R.id.water_notification){
+            Intent intent = new Intent(WaterIntake.this, Notifications.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

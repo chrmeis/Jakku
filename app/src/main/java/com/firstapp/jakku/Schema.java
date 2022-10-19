@@ -96,7 +96,7 @@ public class Schema {
     static void set_weekday(){
         Calendar calendar = Calendar.getInstance();
         String dayLongName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("en_us"));
-       today = dayLongName;
+        today = dayLongName;
     }
     public static void set_studypref(int freq, int dur){
         study_frequency=freq;
@@ -117,8 +117,6 @@ public class Schema {
         temp[1]=duration;
         return temp;
     }
-
-
 
     static String getToday(){
         return today;
