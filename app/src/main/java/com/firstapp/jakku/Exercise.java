@@ -48,57 +48,60 @@ public class Exercise extends AppCompatActivity {
      * @param menu
      * @author Menu made by Liam Mattsson
      */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Home");
-        menu.add("Hydrate Notifications");
-        menu.add("Study Preferences");
-        menu.add("Training Preferences");
-        menu.add("Set Location");
-        menu.add("Workout Settings");
-        menu.add("Water Intake");
-        return super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
     }
+
+
 
     /**
      * onOptionsItemSelected switches to other activities based on what user choose in menubar.
      * @param item
      */
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getTitle().equals("Home")){
-            Intent i = new Intent(Exercise.this, MainActivity.class);
-            startActivity(i);
+        int id = item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if (id == R.id.trainingspref) {
+            Intent intent = new Intent(Exercise.this, TrainingActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Hydrate Notifications")){
-            Intent i = new Intent(Exercise.this, Notifications.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.studypref) {
+            Intent intent = new Intent(Exercise.this, StudyActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Study Preferences")){
-            Intent i = new Intent(Exercise.this, StudyActivity.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.home) {
+            Intent intent = new Intent(Exercise.this, MainActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(Exercise.this, TrainingActivity.class);
-            startActivity(i);
+        }
+        if (id == R.id.water_intake) {
+            Intent intent = new Intent(Exercise.this, WaterIntake.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Set Location")){
-            Intent i = new Intent(Exercise.this, LocationSetter.class);
-            startActivity(i);
-            finish();
+        }
+
+        if (id == R.id.exercise) {
             return true;
-        } else if(item.getTitle().equals("Workout Settings")){
-            Intent i = new Intent(Exercise.this, NotificationWorkout.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(item.getTitle().equals("Water Intake")){
-            Intent i = new Intent(Exercise.this, WaterIntake.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.location_setter) {
+            Intent intent = new Intent(Exercise.this, LocationSetter.class);
+            startActivity(intent);
             finish();
             return true;
         }

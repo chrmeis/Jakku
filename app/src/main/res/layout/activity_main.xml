@@ -71,7 +71,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="59dp"
-        android:text="Todays todo"
+        android:text="@string/todays_todo"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/travelText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="This is about to be updated"
+        android:text="@string/this_is_about_to_be_updated"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/b_tuesday"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,16 +94,13 @@
         android:id="@+id/b_sunday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="157dp"
-        android:text="Sun"
+        android:text="@string/sun"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintVertical_bias="0.963" />
 
     <Button
         android:id="@+id/b_tuesday"
@@ -111,13 +108,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="26dp"
-        android:text="Tue"
+        android:text="@string/tue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <Button
         android:id="@+id/b_wednesday"
@@ -125,13 +122,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="44dp"
-        android:text="Wed"
+        android:text="@string/wed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.749" />
 
     <Button
         android:id="@+id/b_thursday"
@@ -139,25 +136,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="19dp"
-        android:text="Thu"
+        android:text="@string/thu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.864" />
 
     <Button
         android:id="@+id/b_friday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="26dp"
-        android:text="Fri"
+        android:text="@string/fri"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.902" />
 
     <Button
         android:id="@+id/b_saturday"
@@ -165,19 +163,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="14dp"
-        android:text="Sat"
+        android:text="@string/sat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.865" />
 
     <Button
         android:id="@+id/b_monday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mon"
+        android:text="@string/mon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.126"

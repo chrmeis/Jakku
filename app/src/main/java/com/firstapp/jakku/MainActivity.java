@@ -330,12 +330,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         }
-        if(id == R.id.notification_workout){
-            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
-            startActivity(intent);
-            finish();
-            return true;
-        }
         if(id == R.id.location_setter){
             Intent intent = new Intent(MainActivity.this, LocationSetter.class);
             startActivity(intent);

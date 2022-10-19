@@ -86,58 +86,59 @@ public class TrainingActivity extends AppCompatActivity {
         updateTrainViews();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Home");
-        menu.add("Hydrate Notifications");
-        menu.add("Study Preferences");
-        menu.add("Exercises");
-        menu.add("Set Location");
-        menu.add("Workout Settings");
-        menu.add("Water Intake");
-        return super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getTitle().equals("Home")){
-            Intent i = new Intent(TrainingActivity.this, MainActivity.class);
-            startActivity(i);
+        int id = item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if (id == R.id.trainingspref) {
+            return true;
+        }
+
+        if (id == R.id.studypref) {
+            Intent intent = new Intent(TrainingActivity.this, StudyActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Hydrate Notifications")){
-            Intent i = new Intent(TrainingActivity.this, Notifications.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.home) {
+            Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Study Preferences")){
-            Intent i = new Intent(TrainingActivity.this, StudyActivity.class);
-            startActivity(i);
+        }
+        if (id == R.id.water_intake) {
+            Intent intent = new Intent(TrainingActivity.this, WaterIntake.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Exercises")){
-            Intent i = new Intent(TrainingActivity.this, Exercise.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.exercise) {
+            Intent intent = new Intent(TrainingActivity.this, Exercise.class);
+            startActivity(intent);
             finish();
             return true;
-        } else if(item.getTitle().equals("Set Location")){
-            Intent i = new Intent(TrainingActivity.this, LocationSetter.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(item.getTitle().equals("Workout Settings")){
-            Intent i = new Intent(TrainingActivity.this, NotificationWorkout.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(item.getTitle().equals("Water Intake")){
-            Intent i = new Intent(TrainingActivity.this, WaterIntake.class);
-            startActivity(i);
+        }
+
+        if (id == R.id.location_setter) {
+            Intent intent = new Intent(TrainingActivity.this, LocationSetter.class);
+            startActivity(intent);
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public void savePrefTrain(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);

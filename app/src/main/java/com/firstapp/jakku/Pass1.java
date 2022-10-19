@@ -114,13 +114,6 @@ public class Pass1 extends AppCompatActivity {
             return true;
         }
 
-        if(id == R.id.notification_workout){
-            Intent intent = new Intent(Pass1.this,NotificationWorkout.class);
-            startActivity(intent);
-            finish();
-            return true;
-
-        }
         return super.onOptionsItemSelected(item);
     }
 }
