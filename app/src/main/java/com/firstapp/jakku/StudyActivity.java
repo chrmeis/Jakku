@@ -88,7 +88,97 @@ public class StudyActivity extends AppCompatActivity {
 
     }
 
+
+    public void savePref() throws JSONException {
+        sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt(STUDY_FREQUENCY, sb_study_frequency.getProgress());
+        editor.putInt(STUDY_DURATION, sb_study_duration.getProgress());
+
+        editor.apply();
+
+        Schema.set_studypref(sb_study_frequency.getProgress(), sb_study_duration.getProgress());
+        MainActivity.updateShedule();
+
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadPref() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
+        s_frequency = sharedPreferences.getInt(STUDY_FREQUENCY, 4);
+        s_duration = sharedPreferences.getInt(STUDY_DURATION, 1);
+
+    }
+
+    public void updateStudyViews(){
+        sb_study_frequency.setProgress(s_frequency);
+        sb_study_duration.setProgress(s_duration);
+        ans_study_frequency.setText(sb_study_frequency.getProgress() + " times");
+        ans_study_duration.setText(sb_study_duration.getProgress()*15 + " minutes");
+
+        MainActivity.updateShedule();
+    }
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //this handles tab on activity, duplicate for every new item in the menu
+        if (id == R.id.trainingspref) {
+            Intent intent = new Intent(StudyActivity.this, TrainingActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.studypref) {
+            return true;
+        }
+
+        if (id == R.id.home) {
+            Intent intent = new Intent(StudyActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if (id == R.id.water_intake) {
+            Intent intent = new Intent(StudyActivity.this, WaterIntake.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.exercise) {
+            Intent intent = new Intent(StudyActivity.this, Exercise.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.notification_workout) {
+            Intent intent = new Intent(StudyActivity.this, NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.location_setter) {
+            Intent intent = new Intent(StudyActivity.this, LocationSetter.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Home");
         menu.add("Hydrate Notifications");
@@ -142,35 +232,6 @@ public class StudyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void savePref() throws JSONException {
-        sharedPreferences =getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putInt(STUDY_FREQUENCY, sb_study_frequency.getProgress());
-        editor.putInt(STUDY_DURATION, sb_study_duration.getProgress());
-
-        editor.apply();
-
-        Schema.set_studypref(sb_study_frequency.getProgress(), sb_study_duration.getProgress());
-        MainActivity.updateShedule();
-
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-    }
-
-    public void loadPref() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_SPREFS, MODE_PRIVATE);
-        s_frequency = sharedPreferences.getInt(STUDY_FREQUENCY, 4);
-        s_duration = sharedPreferences.getInt(STUDY_DURATION, 1);
-
-    }
-
-    public void updateStudyViews(){
-        sb_study_frequency.setProgress(s_frequency);
-        sb_study_duration.setProgress(s_duration);
-        ans_study_frequency.setText(sb_study_frequency.getProgress() + " times");
-        ans_study_duration.setText(sb_study_duration.getProgress()*15 + " minutes");
-
-        MainActivity.updateShedule();
-    }
+  */
 
 }

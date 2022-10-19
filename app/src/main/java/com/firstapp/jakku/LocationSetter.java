@@ -60,7 +60,7 @@ public class LocationSetter extends AppCompatActivity {
         return true;
     }
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id= item.getItemId();
@@ -103,17 +103,18 @@ public class LocationSetter extends AppCompatActivity {
         }
 
         if(id == R.id.location_setter){
-            /*
+            
             Intent intent = new Intent(LocationSetter.this, LocationSetter.class);
             startActivity(intent);
             finish();
             return true;
 
-             */
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+    */
 
     //takes a while to run, is done when toast appears
     //if toast is "Failed to find location", double-check if location is set in emulator

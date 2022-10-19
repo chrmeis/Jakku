@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
         weatherText.setText(string);
     }
 
-    public void updateTravelPlans() {
+
+        public void updateTravelPlans() {
         if (getRain() > 0 && Double.parseDouble(getTemp()) < 10.0) {
             travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
         } else if (getRain() > 0) {
@@ -116,26 +117,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     public static void updateShedule(){
-        System.out.println("---Main updateShedule---");
        String str=Schema.schedulemaker(Schema.getToday());
-        System.out.println("updateSchedule is: \n" + str);
         Todo.setText(str);
-        System.out.println("---end Main updateShedule---");
     }
 
     public static void updateSchedule_by_button(String today){
-        System.out.println("---Main updateSchedule_by_button---");
         String str=Schema.schedulemaker(today);
-//        System.out.println("updateSchedule is: \n"+str);
         Todo.setText(str);
-        System.out.println("---end Main updateSchedule_by_button---");
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("---Main onCreate---");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mon = findViewById(R.id.b_monday);
@@ -153,12 +149,6 @@ public class MainActivity extends AppCompatActivity {
         int s_duration = SP_Study.getInt(STUDY_DURATION, 1);
         Schema.set_studypref(s_frequency,s_duration);
 
-/*        System.out.println("\n\nshared study in main:");
-        System.out.println("s_frequency: "+s_frequency);
-        System.out.println("s_duration: "+s_duration+"\n\n");
-
- */
-
 
         SharedPreferences SP_train = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         int t_frequency = SP_train.getInt(T_FREQUENCY, 1);
@@ -166,18 +156,12 @@ public class MainActivity extends AppCompatActivity {
         weatherSymbol = (ImageView) findViewById(R.id.imageView2);
 
         travelTextView = (TextView) findViewById(R.id.travelText);
-        info=(TextView) findViewById(R.id.textView2);
+        weatherText=(TextView) findViewById(R.id.textView2);
         weatherSymbol = (ImageView) findViewById(R.id.imageView2);
         planner = (TextView) findViewById(R.id.textView3);
 
        // executor.execute(new Runnable() {
         Schema.set_trainingpref(t_frequency, t_duration);
-
-/*        System.out.println("\n\nshared training in main:");
-        System.out.println("t_frequency: "+t_frequency);
-        System.out.println("t_duration: "+t_duration+"\n\n");
-
- */
 
         weatherSymbol.setImageResource(R.drawable.rain);
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -187,41 +171,48 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
-/*
-               String lat = sharedPreferences.getString("latitude","57.708870");
-                String lon = sharedPreferences.getString("longitude","11.974560");
-                Weather.saveCoords(lon,lat);
+
+                String lat = sharedPreferences.getString("latitude", "57.708870");
+                String lon = sharedPreferences.getString("longitude", "11.974560");
+                Weather.saveCoords(lon, lat);
                 temp = null;
-                try{
+                try {
                     temp = Weather.currentTemp();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 int rain = 0;
-                try{
+                try {
                     rain = Weather.currentRain();
-                } catch(JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                try {
+                    where_to_train = Weather.rain18();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 tempFinal = temp;
                 finalRain = rain;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         updateInfo(tempFinal + " ℃");
-                        if(finalRain == 0){
+                        if (finalRain == 0) {
                             weatherSymbol.setImageResource(R.drawable.sunshine1);
                         } else {
                             weatherSymbol.setImageResource(R.drawable.rain);
                         }
-                        if(getRain() > 0 && Double.parseDouble(getTemp()) < 10.0){
+                        if (getRain() > 0 && Double.parseDouble(getTemp()) < 10.0) {
                             travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
-                        } else if(getRain() > 0){
+                        } else if (getRain() > 0) {
                             travelTextView.setText("It's recommended to take the bus today!");
                         }
-                        if(getRain() == 0 && Double.parseDouble(getTemp()) < 10.0){
+                        if (getRain() == 0 && Double.parseDouble(getTemp()) < 10.0) {
                             travelTextView.setText("It's recommended to take a walk or go biking today, be sure to bring a jacket");
-                        } else if(getRain() == 0){
+                        } else if (getRain() == 0) {
                             travelTextView.setText("It's recommended to take a walk or go biking today!");
                         }
                     }
@@ -229,49 +220,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
- */
-                String lat = sharedPreferences.getString("latitude","57.708870");
-                String lon = sharedPreferences.getString("longitude","11.974560");
-                Weather.saveCoords(lon, lat);
-                String temp = null;
-                try {
-                    temp = Weather.currentTemp();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-                try {
-                    System.out.println("where_to_train1: " +where_to_train);
-                    where_to_train = Weather.rain18();
-                    System.out.println("where_to_train2: " +where_to_train);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                int rain = 0;
-                try {
-                    rain = Weather.currentRain();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-                String finalTemp = temp;
-                int finalRain = rain;
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //UI Thread work here
-                        updateInfo(finalTemp + " ℃");
-                        if (finalRain == 0){
-                            weatherSymbol.setImageResource(R.drawable.sunshine1);
-                        }
-                        else{
-                            weatherSymbol.setImageResource(R.drawable.rain);
-                        }
 
-                    }
-                });
-            }
-        });
+
+
+
+
 
 
         mon.setOnClickListener(new View.OnClickListener() {
@@ -322,9 +277,16 @@ public class MainActivity extends AppCompatActivity {
         Schema.set_studypref(s_frequency,s_duration);
         Schema.set_trainingpref(t_frequency,t_duration);
 
-        Todo=(TextView) findViewById(R.id.textView3);
+        Todo= findViewById(R.id.textView3);
         Todo.setText(Schema.schedulemaker(Schema.getToday()));
-        System.out.println("---end main onCreate---");
+    }
+
+    public String getTemp(){
+        return tempFinal;
+    }
+
+    public int getRain(){
+        return finalRain;
     }
 
     @Override
@@ -340,50 +302,42 @@ public class MainActivity extends AppCompatActivity {
         int id= item.getItemId();
 
         //this handles tab on activity, duplicate for every new item in the menu
+
+        if(id == R.id.home){
+            return true;
+        }
         if(id == R.id.trainingspref){
             Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
             startActivity(intent);
             finish();
             return true;
         }
-
-        if(id == R.id.notification_workout){
-            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
-            startActivity(intent);
-            finish();
-            return true;
-
-        }
-
         if(id == R.id.studypref){
             Intent intent = new Intent(MainActivity.this, StudyActivity.class);
             startActivity(intent);
             finish();
             return true;
         }
-
-        if(id == R.id.home){
-            //           Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            //           startActivity(intent);
-            return true;
-        }
-
         if(id == R.id.water_intake){
             Intent intent = new Intent(MainActivity.this, WaterIntake.class);
             startActivity(intent);
             finish();
             return true;
         }
-
-        if(id == R.id.location_setter){
-            Intent intent = new Intent(MainActivity.this, LocationSetter.class);
+        if(id == R.id.exercise){
+            Intent intent = new Intent(MainActivity.this, Exercise.class);
             startActivity(intent);
             finish();
             return true;
         }
-
-        if(id == R.id.exercise){
-            Intent intent = new Intent(MainActivity.this, Exercise.class);
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id == R.id.location_setter){
+            Intent intent = new Intent(MainActivity.this, LocationSetter.class);
             startActivity(intent);
             finish();
             return true;

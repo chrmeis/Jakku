@@ -23,7 +23,6 @@ public class Schema {
 
 
     public static String schedulemaker(String button_day){
-        System.out.println("---Schema make_schedule_for_any_day ---");
         StringBuilder schema=new StringBuilder();
         int[] study_time = new int[2];
         int[] training_time = new int[2];
@@ -38,8 +37,6 @@ public class Schema {
         schema.append(make_study_string(study_frequency,study_time));
         schema.append(choose_training_string(training_frequency, training_time, button_day));
 
-
-        System.out.println("---End Schema make_schedule_for_any_day---");
         return schema.toString();
     }
 
@@ -99,8 +96,7 @@ public class Schema {
     static void set_weekday(){
         Calendar calendar = Calendar.getInstance();
         String dayLongName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("en_us"));
-        System.out.println("\n\nset weekday today = "+dayLongName+"\n\n");
-        today = dayLongName;
+       today = dayLongName;
     }
     public static void set_studypref(int freq, int dur){
         study_frequency=freq;
@@ -109,7 +105,6 @@ public class Schema {
     public static void set_trainingpref(int freq, int dur){
         training_frequency=freq;
         training_duration=dur*30;
-        System.out.println("training_duration är: "+training_duration);
     }
     private static int[] set_hours_and_minutes(int duration){
         int h=0;

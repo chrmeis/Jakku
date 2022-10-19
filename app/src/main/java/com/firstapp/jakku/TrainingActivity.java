@@ -158,8 +158,6 @@ public class TrainingActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         t_frequency = sharedPreferences.getInt(T_FREQUENCY, 1);
         t_duration = sharedPreferences.getInt(T_DURATION, 1);
-        System.out.println("\n\nLoad t_duration: "+t_duration);
-
     }
 
     public void updateTrainViews(){
