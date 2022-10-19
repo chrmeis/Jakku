@@ -51,7 +51,10 @@ import org.json.JSONException;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+/**
+ * The MainActivity program that has code for the main page as well as getting data from other classes to display.
+ * @author Christina Meisoll, Erik Gustavsson, Liam Mattsson, Ludvig Andersson and Oliver Brottare
+ */
 public class MainActivity extends AppCompatActivity {
 
     TextView travelTextView;

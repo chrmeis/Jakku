@@ -14,6 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Code for getting the data from the weather API SMHI. Contains various help functions for
+ * @author Oliver Brottare
+ */
 public class Weather {
     //private static JSONArray jsonArray = requestShortWeather();
 
