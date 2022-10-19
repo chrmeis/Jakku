@@ -27,4 +27,19 @@
     <string name="saveStudy">save</string>
     <string name="study_preferences">Study preferences</string>
     <string name="how_many_study_sessions_do_you_have_in_a_day">How many study sessions do you have in a day?</string>
+    <string name="home">Home</string>
+    <string name="water_intake">Water Intake</string>
+    <string name="exercises">Exercises</string>
+    <string name="training_settings">Training settings</string>
+    <string name="study_settings">Study settings</string>
+    <string name="set_location">Set Location</string>
+    <string name="todays_todo">Todays todo</string>
+    <string name="this_is_about_to_be_updated">This is about to be updated</string>
+    <string name="sun">Sun</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="mon">Mon</string>
 </resources>
