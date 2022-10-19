@@ -97,12 +97,18 @@ public class MainActivity extends AppCompatActivity {
     }
 */
 
+    /**
+     * Updates the temperature on the main page
+     * @param string The new text
+     */
     public void updateInfo(String string){
         weatherText.setText(string);
     }
 
-
-        public void updateTravelPlans() {
+    /**
+     * Shows a small travel recommendation text based on the weather.
+     */
+    public void updateTravelPlans() {
         if (getRain() > 0 && Double.parseDouble(getTemp()) < 10.0) {
             travelTextView.setText("It's recommended to take the bus today, be sure to bring a jacket!");
         } else if (getRain() > 0) {
@@ -118,18 +124,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Updates the schedule the todo with data according to today's date.
+     */
     public static void updateShedule(){
        String str=Schema.schedulemaker(Schema.getToday());
         Todo.setText(str);
     }
 
+    /**
+     * Updates the schedule the todo with data according to the chosen date
+     * @param today The chosen day.
+     */
     public static void updateSchedule_by_button(String today){
         String str=Schema.schedulemaker(today);
         Todo.setText(str);
     }
 
-
+    /**
+     * Is run on creation, runs an additional thread that checks the weather and sets up action listeners
+     * @param savedInstanceState The shared instance of the class
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
+        //Runs and additional branch that checks the weather and then does things based on the weather.
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -220,15 +236,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
+        //sets up OnClickListeners for the days buttons.
         mon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -281,14 +289,27 @@ public class MainActivity extends AppCompatActivity {
         Todo.setText(Schema.schedulemaker(Schema.getToday()));
     }
 
+    /**
+     * Getter method for temperature from SMHI
+     * @return the temperature from SMHI, will be null if the temperature hasn't been gathered from SMHI yet.
+     */
     public String getTemp(){
         return tempFinal;
     }
 
+    /**
+     * Getter method for rain from SMHI
+     * @return the precipitation category from SMHI, will be null if the precipitation hasn't been gathered from SMHI yet.
+     */
     public int getRain(){
         return finalRain;
     }
 
+    /**
+     * Inflates the menu on creation
+     * @param menu The menu instance
+     * @return true if success.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -296,6 +317,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This handles the menu buttons in the top right.
+     * @param item The MenuItem instance that should be handled
+     * @return true if successful.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
