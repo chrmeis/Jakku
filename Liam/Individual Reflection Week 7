@@ -1,0 +1,23 @@
+Estimated time spent:
+1h meeting on monday
+1h lecture about final report
+4h Sprint review and team reflection
+2,5h Coding on travel recommendation
+
+What do I want to learn or understand better?
+This will be my final week on working on the code for the project. Next week, we will make javadoc comments on all our code including classes, methods and variables.
+We also have an exam this week in another course, so we all will take a small break on the project before we begin with the final reflection report. Therefore, I feel
+like I have learned what I have wanted to learn and I also feel like this project was the perfect fit for us. We all had knowledge about programming in Java before this
+project but developing an app for Android was something new for all of us. I feel like everyone involved has learned something new from the project.
+
+How can I help someone else, or the entire team, to learn something new?
+After having lots of good communication with my team members, I will be happy to help with any documentation of the code if someone in the team doesnt understand it.
+
+What is my contribution towards the team’s use of Scrum?
+I have attended the meetings with my team members this week. I also attended the last lecture that covered information about the final report, which I will use to do my
+best on writing the report with my team members.
+
+What is my contribution towards the team’s deliveries?
+My contribution this week has been the same as the last week but now it is finally implemented. I ended up using the approach I thought of the most, using a string
+that updates itself whenever it's raining, whenever it's sunny or when it's cold outside. The string then tells the user weather it's recommended to take the bike, 
+take a walk or go biking. I'm really happy how it turned out.
