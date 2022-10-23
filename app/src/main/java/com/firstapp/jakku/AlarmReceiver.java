@@ -21,10 +21,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * @author Ludvig
+ * AlarmReveiver wakes up the phone and sends notifications based on the intent of the caller.
+ */
 public class AlarmReceiver extends BroadcastReceiver {
 
 
-
+    /**
+     *
+     * @param context Context variable required to get app information.
+     * @param intent Intent of the caller, used to get the requested action to send the right notification.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context,MainActivity.class);
