@@ -29,6 +29,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * This class represents the notifications sent to the user every
+ * 4 hours, reminding them to drink a glass of water
+ * @author Liam Mattsson
+ * @version 1.0
+ */
+
 public class Notifications extends AppCompatActivity {
 
     private Switch switch1;
@@ -36,11 +43,20 @@ public class Notifications extends AppCompatActivity {
     private final static int INTERVAL = 14400000; //4 hours in ms
     private Handler mHandler = new Handler();
 
+    /**
+     * Gets the current hour
+     * @return the current hour on the clock
+     */
     public int getHour(){
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY); //Current Hour
         return currentHour;
     }
 
+    /**
+     * This is a task that runs the notification code,
+     * and repeats it after a certain interval. The interval
+     * here is 4 hours.
+     */
     private Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
@@ -50,6 +66,10 @@ public class Notifications extends AppCompatActivity {
         }
     };
 
+    /**
+     * Runs the code inside this method when creating the page
+     * @param savedInstanceState previous stored data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +82,27 @@ public class Notifications extends AppCompatActivity {
         });
     }
 
+    /**
+     * This function makes sure that the user won't receive
+     * notifications during 00.00 and 06.00
+     */
     public void startRepeatingTask(){
         if(!(getHour() > 0 && getHour() < 6)) {
             mHandlerTask.run();
         }
     }
 
+    /**
+     * This function can stop the notification task from running
+     */
     public void stopRepeatingTask(){
         mHandler.removeCallbacks(mHandlerTask);
     }
 
+    /**
+     * Private helper function which includes all the code
+     * for the notification
+     */
     private void createNotif(){
         String id = "my_channel_id_01";
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -107,6 +138,11 @@ public class Notifications extends AppCompatActivity {
         m.notify(1, builder.build());
     }
 
+    /**
+     * This function creates the side menu
+     * @param item a list of items in the menu
+     * @return true if the menu was created
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu item){
         item.add("Home");
@@ -119,6 +155,12 @@ public class Notifications extends AppCompatActivity {
         return super.onCreateOptionsMenu(item);
     }
 
+    /**
+     * This function redirects you to the correct
+     * page after clicking on it in the menu
+     * @param item item in the menu
+     * @return true if you were redirected
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if(item.getTitle().equals("Home")){

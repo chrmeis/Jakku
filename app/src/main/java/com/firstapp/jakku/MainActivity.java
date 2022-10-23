@@ -54,13 +54,8 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView travelTextView;
-    //TextView info;
-    TextView planner;
-    /* Varning från commit
-    Warning: Do not place Android context classes in static fields; this is a memory leak
-     */
-    //static TextView info;
+    private TextView travelTextView;
+    private TextView planner;
     static TextView Todo;
     private Button mon;
     private Button tue;
@@ -80,22 +75,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String T_FREQUENCY = "t_how_often";
     private static final String T_DURATION = "t_how_long";
 
-    TextView weatherText;
-    ImageView weatherSymbol;
-//    Button settings;
-    //Weather weather;
+    private TextView weatherText;
+    private ImageView weatherSymbol;
     private String temp;
     private String tempFinal;
-   // ImageView weatherSymbol;
     private int finalRain;
-
-
-
-
-   /* public void updateInfo(String string) {
-        info.setText(string);
-    }
-*/
 
     public void updateInfo(String string){
         weatherText.setText(string);
@@ -345,49 +329,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*
-        @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
-        if(menuItem.getTitle().equals("Hydrate Notifications")){
-            Intent i = new Intent(MainActivity.this, Notifications.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Study Preferences")){
-            Intent i = new Intent(MainActivity.this, StudyActivity.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(MainActivity.this,TrainingActivity.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Exercises")){
-            Intent i = new Intent(MainActivity.this, Exercise.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Set Location")){
-            Intent i = new Intent(MainActivity.this, LocationSetter.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Workout Notifications")){
-            Intent i = new Intent(MainActivity.this, NotificationWorkout.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Water Intake")){
-            Intent i = new Intent(MainActivity.this, WaterIntake.class);
-            startActivity(i);
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(menuItem);
-    }
-     */
 }
 
 
