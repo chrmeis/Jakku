@@ -1,3 +1,27 @@
 Estimated spent time:
 
-3/10 2,5 meeting, weekly planning and supervision preparation
+5h meeting, weekly planning and supervision preparation
+1h Weekly checkup
+2h Coding and researching about Travel Planner
+4h Team Reflection, Sprint Retrospective, discussion about any weekly problems
+
+What do I want to learn or understand better?
+This week, I wanted to learn how I can use any incoming information to update a variable, such as a text or an image, in Android Studio. I already have an idea
+how to realize this, but I'm going to do some research anyways.
+
+How can I help someone else, or the entire team, to learn something new?
+We are at the end of the course, and everyone in the team have their own thing to work on right now. But this thing I'm working on this week can surely be implemented
+in a similar way when developing other things in the app. We have good communication within the team via discord, so if I see anyone that needs help with this I will be
+willing to help.
+
+What is my contribution towards the team’s use of Scrum?
+I attended all of the meetings for the week, aswell as joining in all the activities such as supervision, team reflection and retrospective. I also updated our trello
+workplace such as placing out my name on the current user story that I was about to work on.
+
+What is my contribution towards the team’s deliveries?
+My contribution this week has been to try to develop the travel recommendations feature into the app, which should provide the user with the help of the weather API to
+give recommendations on weather to travel with bus, car, walking or biking depending on the Weather. I did some good research at the beginning of the week, but got stuck
+at a point where the program crashed when running. I discussed this with the team at the end of the week, and after some look into the code we came to the conclustion
+that we needed to implement multithreads for this to work. I wanted to do this as simple as possible, so the multithreaded approach was out of the picture pretty fast.
+Ludwig came up with an idea to send a message to the user with the travel recommendation. I then thought more of that and came up with the idea to update a text string
+on the main page. This is what good teamwork looks like! I will continue this implementation during next week.
