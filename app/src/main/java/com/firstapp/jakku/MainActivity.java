@@ -331,48 +331,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-        @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
-        if(menuItem.getTitle().equals("Hydrate Notifications")){
-            Intent i = new Intent(MainActivity.this, Notifications.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Study Preferences")){
-            Intent i = new Intent(MainActivity.this, StudyActivity.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Training Preferences")){
-            Intent i = new Intent(MainActivity.this,TrainingActivity.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Exercises")){
-            Intent i = new Intent(MainActivity.this, Exercise.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Set Location")){
-            Intent i = new Intent(MainActivity.this, LocationSetter.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Workout Notifications")){
-            Intent i = new Intent(MainActivity.this, NotificationWorkout.class);
-            startActivity(i);
-            finish();
-            return true;
-        } else if(menuItem.getTitle().equals("Water Intake")){
-            Intent i = new Intent(MainActivity.this, WaterIntake.class);
-            startActivity(i);
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(menuItem);
-    }
-     */
 }
 
 

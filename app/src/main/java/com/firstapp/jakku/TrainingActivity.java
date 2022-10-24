@@ -36,7 +36,9 @@ public class TrainingActivity extends AppCompatActivity {
     private int t_frequency;
     private int t_duration;
 
-
+    /**
+     * Updates the the study preferences within StudyActivity and the MainActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +88,44 @@ public class TrainingActivity extends AppCompatActivity {
         updateTrainViews();
     }
 
+    public void savePrefTrain(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        editor.putInt(T_FREQUENCY, sb_training_frequency.getProgress());
+        editor.putInt(T_DURATION, (sb_training_duration.getProgress()));
+
+        editor.apply();
+
+        Schema.set_trainingpref(sb_training_frequency.getProgress(), (sb_training_duration.getProgress()));
+        MainActivity.updateShedule();
+
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+    /**
+     * Loads the sharedreferences for training
+     */
+    public void loadPrefTrain() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
+        t_frequency = sharedPreferences.getInt(T_FREQUENCY, 1);
+        t_duration = sharedPreferences.getInt(T_DURATION, 1);
+    }
+    /**
+     * Updates the the training preferences within TrainingActivity and the MainActivity
+     */
+    public void updateTrainViews(){
+        sb_training_frequency.setProgress(t_frequency);
+        sb_training_duration.setProgress(t_duration);
+        t_freq_ans.setText((sb_training_frequency.getProgress()) + " times");
+        t_dur_ans.setText((sb_training_duration.getProgress()*30) + " minutes");
+
+    }
+
+    /**
+     * Inflates the menu on creation
+     * @param menu The menu instance
+     * @return true if success.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -94,6 +133,11 @@ public class TrainingActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This handles the menu buttons in the top right.
+     * @param item The MenuItem instance that should be handled
+     * @return true if successful.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -145,33 +189,4 @@ public class TrainingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void savePrefTrain(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putInt(T_FREQUENCY, sb_training_frequency.getProgress());
-        editor.putInt(T_DURATION, (sb_training_duration.getProgress()));
-
-        editor.apply();
-
-        Schema.set_trainingpref(sb_training_frequency.getProgress(), (sb_training_duration.getProgress()));
-        MainActivity.updateShedule();
-
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-    }
-
-    public void loadPrefTrain() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
-        t_frequency = sharedPreferences.getInt(T_FREQUENCY, 1);
-        t_duration = sharedPreferences.getInt(T_DURATION, 1);
-    }
-
-    public void updateTrainViews(){
-        sb_training_frequency.setProgress(t_frequency);
-        sb_training_duration.setProgress(t_duration);
-        t_freq_ans.setText((sb_training_frequency.getProgress()) + " times");
-        t_dur_ans.setText((sb_training_duration.getProgress()*30) + " minutes");
-
-    }
 }
