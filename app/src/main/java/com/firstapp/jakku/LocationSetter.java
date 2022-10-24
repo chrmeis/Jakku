@@ -28,15 +28,22 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 
+/**
+ * @author Ludvig
+ * LocationSetter is used by the user to set up the location to be used by the rest of the app
+ */
 public class LocationSetter extends AppCompatActivity {
 
-
-    String[] results;
 
     private ActivityLocationSetBinding binding;
 
     private FusedLocationProviderClient fusedLocationClient;
 
+    /**
+     * onCreate sets current view to matching activity and initializes components from the activity.
+     * @param savedInstanceState - Is a reference to a Bundle object that stores data. Activity can use this
+     * data to restore itself to a previous state in some situations.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +59,20 @@ public class LocationSetter extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
+     * @param menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settingsmenu,menu);
         return true;
     }
-
+    /**
+     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
+     * @param item
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -109,8 +122,11 @@ public class LocationSetter extends AppCompatActivity {
     }
 
 
-    //takes a while to run, is done when toast appears
-    //if toast is "Failed to find location", double-check if location is set in emulator
+    /**
+     * Gets the current location of the device and saves it for the rest of the app to use.
+     * On success, shows a toast showing what coordinates were set.
+     * On failure, shows a toast with the text "Failed to find location"
+     */
     public void setLocation() {
 
         if (ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LocationSetter.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -139,7 +155,11 @@ public class LocationSetter extends AppCompatActivity {
                 });
 
     }
-    //Saves current location
+
+    /**
+     * Sets the latitude and longitude in the shared preference "locationshare".
+     * @param inData Latitude is set to inData[0] and longitude is set to inData[1].
+     */
     private void savePref(String[] inData){
         SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -147,17 +167,6 @@ public class LocationSetter extends AppCompatActivity {
         editor.putString("latitude",inData[0]);
         editor.putString("longitude",inData[1]);
         editor.apply();
-    }
-    //Returns saved location as an array, testing purposes
-    public String[] getLocation(){
-        SharedPreferences sharedPreferences = getSharedPreferences("locationshare", MODE_PRIVATE);
-
-        String lat = sharedPreferences.getString("latitude","");
-        String lon = sharedPreferences.getString("longitude","");
-
-        String[] res = {lat,lon};
-
-        return res;
     }
 
 }

@@ -15,9 +15,18 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 
-
+/**
+ * @author Ludvig
+ * NotificationSetup is used to set up notifications based on data saved in shared preference
+ * called "sharedPref".
+ */
 public class NotificationSetup {
-    //Sets alarm for the next scheduled notification. Removes old alarm if available.
+    /**
+     * Finds the next notification that should be set based on data in shared preference
+     * called "sharedPref" and sets it.
+     * If an old notification was set by an activity calling this method, remove it first.
+     * @param context Context variable required to get app information.
+     */
     static public void nextNotification(Context context){
         AlarmManager manager = (AlarmManager) context.getSystemService((Context.ALARM_SERVICE));
         Intent intent = new Intent(context, AlarmReceiver.class);
@@ -78,7 +87,10 @@ public class NotificationSetup {
         manager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pintent);
     }
 
-    //Sets up the Notification Channel
+    /**
+     * Sets up a notificationChannel
+     * @param context Context variable required to get app information.
+     */
     static private void notificationChannelWorkout(Context context){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if Android 8 or newer, so always since we're using Android 9 or greater
             //Importance high to have notifications show up on locked screen
@@ -90,8 +102,14 @@ public class NotificationSetup {
             manager.createNotificationChannel(channel);
         }
     }
-    //Returns an integer representing the day of the week when the next workout is
-    //scheduled. Returns -1 if no workout scheduled.
+
+    /**
+     * Finds the integer representing the day of the week when the next workout is scheduled.
+     * @param currentDay The integer representing the current day.
+     * @param context Context variable required to get app information.
+     * @return Integer representing the day of the week for the next workout.
+     * Returns -1 if no workout is scheduled.
+     */
     private static int nextWorkout(int currentDay, Context context){
         SharedPreferences sharedPref = context.getSharedPreferences("sharedPref", MODE_PRIVATE);
         int trainingSession = sharedPref.getInt("t_how_often",1);
@@ -130,8 +148,12 @@ public class NotificationSetup {
         return -1;
     }
 
-    //Returns an integer representing the hour for the next alarm. Requires a Context.
-    //Returns -1 if nothing is scheduled, or if training is scheduled but not today.
+    /**
+     * Finds the hour of the next notification to be set.
+     * @param context Context variable required to get app information.
+     * @return Integer for the hour of the next alarm in 24 hour clock format.
+     * Returns -1 if nothing is scheduled, or if only training is scheduled but not for today.
+     */
     private static int nextHour(Context context){
         SharedPreferences sharedPref = context.getSharedPreferences("sharedPref", MODE_PRIVATE);
         int studySession = sharedPref.getInt("sb_total",4);
@@ -208,13 +230,5 @@ public class NotificationSetup {
 
         //If there is nothing scheduled today or tomorrow
         return -1;
-    }
-    //Turns off notifications from the schedule
-    public static void cancelScheduleNotification(Context context){
-        AlarmManager manager = (AlarmManager) context.getSystemService((Context.ALARM_SERVICE));
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pintent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
-        manager.cancel(pintent);
     }
 }
