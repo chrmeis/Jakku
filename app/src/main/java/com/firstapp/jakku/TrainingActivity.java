@@ -17,6 +17,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author Christina Meisoll
+ * TrainingActivity takes in the users training preferences saves loads and uppdates them
+ */
 public class TrainingActivity extends AppCompatActivity {
     private Button back;
 
@@ -88,6 +92,9 @@ public class TrainingActivity extends AppCompatActivity {
         updateTrainViews();
     }
 
+/**
+     * Saves sharedPreferences for training in TrainingActivity, Schema and updates the MainActivity
+     */
     public void savePrefTrain(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -103,7 +110,7 @@ public class TrainingActivity extends AppCompatActivity {
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
     /**
-     * Loads the sharedreferences for training
+     * Loads the sharedPreferences for training
      */
     public void loadPrefTrain() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);

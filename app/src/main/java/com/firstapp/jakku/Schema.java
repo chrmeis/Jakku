@@ -11,6 +11,10 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Christina Meisoll
+ * Schema is used to create the schema accomodating for both study time and training
+ */
 public class Schema {
 //study hours are between 8am and 5pm
 
@@ -25,7 +29,6 @@ public class Schema {
      * Calls end combines study and trainings schedule
      * @param button_day the day for that the schedule should be valid
      * @return the finished String containing the schedule for the chosen day
-     * @author Christina Meisoll
      */
     public static String schedulemaker(String button_day){
         StringBuilder schema=new StringBuilder();
@@ -50,8 +53,7 @@ public class Schema {
      * @param frequency How often the user wnt to train
      * @param time how many hours and minutes the user want to train
      * @param day the day for that training should be scheduled
-     * @return Stringbuilder containing the text for the training schedule
-     * @author Christina Meisoll
+     * @return StringBuilder containing the text for the training schedule
      */
     private static StringBuilder choose_training_string(int frequency, int[] time, String day){
         StringBuilder temp= new StringBuilder();
@@ -66,11 +68,10 @@ public class Schema {
     }
 
     /**
-     * Creates a Stringbuilder containing the training schedule for that day
+     * Creates a StringBuilder containing the training schedule for that day
      * @param time how long the user wants to study each time
      * @param day the day for which the schedule is valid
-     * @return Stringbuilder containing the text for the training schedule
-     * @author Christina Meisoll
+     * @return StringBuilder containing the text for the training schedule
      */
     private static StringBuilder make_training_string(int[] time, String day){
         StringBuilder temp= new StringBuilder();
@@ -96,7 +97,6 @@ public class Schema {
      * @param frequency how often the user want to study per day
      * @param time how long the user wants to study each time
      * @return Stringbuilder containing the text for the study schedule
-     * @author Christina Meisoll
      */
     private static StringBuilder make_study_string(int frequency, int[] time){
         StringBuilder temp= new StringBuilder();
@@ -122,7 +122,6 @@ public class Schema {
 
     /**
      * Sets todays day of the week in form of the english 3-letter abbreviation, for example Tue for Tuesday.
-     * @author Chrisitna Meisoll
      */
     static void set_weekday(){
         Calendar calendar = Calendar.getInstance();
@@ -133,7 +132,6 @@ public class Schema {
      * Sets the users study preferences for scheduling
      * @param freq How often the user entered they want to study
      * @param dur How long the user entered they want study each time
-     * @author Christina Meisoll
      */
     public static void set_studypref(int freq, int dur){
         study_frequency=freq;
@@ -144,7 +142,6 @@ public class Schema {
      * Sets the users training preferences for scheduling
      * @param freq How often the user entered they want to train
      * @param dur How long the user entered they want train each time
-     * @author Christina Meisoll
      */
     public static void set_trainingpref(int freq, int dur){
         training_frequency=freq;
@@ -155,7 +152,6 @@ public class Schema {
      * Converts minutes to an array of hours and minutes
      * @param duration, the total time in minutes
      * @return an int[] where [0] gives amount of hours and [1] gives the amount of minutes
-     * @author Christina Meisoll
      */
     private static int[] set_hours_and_minutes(int duration){
         int h=0;
@@ -176,10 +172,5 @@ public class Schema {
     public static int get_study_duration(){return study_duration;}
     public static int get_training_amount(){return training_frequency;}
     public static int get_training_duration(){return training_duration;}
-
-
-
-
-
 
 }

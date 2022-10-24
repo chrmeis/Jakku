@@ -19,6 +19,10 @@ import org.json.JSONException;
 
 import org.json.JSONException;
 
+/**
+ * @author Christina Meisoll
+ * StudyActivity takes in the users study preferences saves loads and uppdates them
+ */
 public class StudyActivity extends AppCompatActivity {
 
     private Button saveButton;
