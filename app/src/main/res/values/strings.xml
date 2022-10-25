@@ -43,4 +43,5 @@
     <string name="sat">Sat</string>
     <string name="mon">Mon</string>
     <string name="water_notification">Water Notification</string>
+    <string name="workout_notification">Workout notification</string>
 </resources>
