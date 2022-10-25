@@ -140,8 +140,6 @@ public class WaterIntake extends AppCompatActivity {
         editor.putInt(WATERGLASSES, sb_water.getProgress());
 
         editor.apply();
-
-        //Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
     public void loadPref() {

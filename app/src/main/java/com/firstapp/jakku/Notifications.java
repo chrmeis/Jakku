@@ -30,6 +30,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * This class represents the notifications sent to the user every
+ * 4 hours, reminding them to drink a glass of water
+ * @author Liam Mattsson
+ * @version 1.0
+ */
+
 public class Notifications extends AppCompatActivity {
 
     private Switch switch1;
@@ -37,19 +44,33 @@ public class Notifications extends AppCompatActivity {
     private final static int INTERVAL = 14400000; //4 hours in ms
     private Handler mHandler = new Handler();
 
+    /**
+     * Gets the current hour
+     * @return the current hour on the clock
+     */
     public int getHour(){
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY); //Current Hour
         return currentHour;
     }
 
+    /**
+     * This is a task that runs the notification code,
+     * and repeats it after a certain interval. The interval
+     * here is 4 hours.
+     */
     private Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
+
             createNotif();
             mHandler.postDelayed(mHandlerTask,INTERVAL);
         }
     };
 
+    /**
+     * Runs the code inside this method when creating the page
+     * @param savedInstanceState previous stored data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +83,27 @@ public class Notifications extends AppCompatActivity {
         });
     }
 
+    /**
+     * This function makes sure that the user won't receive
+     * notifications during 00.00 and 06.00
+     */
     public void startRepeatingTask(){
         if(!(getHour() > 0 && getHour() < 6)) {
             mHandlerTask.run();
         }
     }
 
+    /**
+     * This function can stop the notification task from running
+     */
     public void stopRepeatingTask(){
         mHandler.removeCallbacks(mHandlerTask);
     }
 
+    /**
+     * Private helper function which includes all the code
+     * for the notification
+     */
     private void createNotif(){
         String id = "my_channel_id_01";
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -106,71 +138,65 @@ public class Notifications extends AppCompatActivity {
         NotificationManagerCompat m = NotificationManagerCompat.from(getApplicationContext());
         m.notify(1, builder.build());
     }
-
     /**
-     * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
-     * @param menu
-     * @author Menu made by Liam Mattsson
+     * This function creates the side menu
+     * @param item a list of items in the menu
+     * @return true if the menu was created
      */
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settingsmenu,menu);
-        return true;
+    public boolean onCreateOptionsMenu(Menu item){
+        item.add("Home");
+        item.add("Study Preferences");
+        item.add("Training Preferences");
+        item.add("Exercises");
+        item.add("Set Location");
+        item.add("Workout Notifications");
+        item.add("Water Intake");
+        return super.onCreateOptionsMenu(item);
     }
 
     /**
-     * onOptionsItemSelected switches to other activities based on what user choose in menubar.
-     * @param item
+     * This function redirects you to the correct
+     * page after clicking on it in the menu
+     * @param item item in the menu
+     * @return true if you were redirected
      */
-
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        //this handles tab on activity, duplicate for every new item in the menu
-        if (id == R.id.trainingspref) {
-            Intent intent = new Intent(Notifications.this, TrainingActivity.class);
-            startActivity(intent);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if(item.getTitle().equals("Home")){
+            Intent i = new Intent(Notifications.this, MainActivity.class);
+            startActivity(i);
             finish();
             return true;
-        }
-
-        if (id == R.id.studypref) {
-            Intent intent = new Intent(Notifications.this, StudyActivity.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Study Preferences")){
+            Intent i = new Intent(Notifications.this, StudyActivity.class);
+            startActivity(i);
             finish();
             return true;
-        }
-
-        if (id == R.id.home) {
-            Intent intent = new Intent(Notifications.this, MainActivity.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Training Preferences")){
+            Intent i = new Intent(Notifications.this,TrainingActivity.class);
+            startActivity(i);
             finish();
             return true;
-        }
-        if (id == R.id.water_intake) {
-            Intent intent = new Intent(Notifications.this, WaterIntake.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Exercises")){
+            Intent i = new Intent(Notifications.this, Exercise.class);
+            startActivity(i);
             finish();
             return true;
-        }
-
-        if (id == R.id.exercise) {
-            Intent intent = new Intent(Notifications.this, Exercise.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Set Location")){
+            Intent i = new Intent(Notifications.this, LocationSetter.class);
+            startActivity(i);
             finish();
             return true;
-        }
-
-        if (id == R.id.location_setter) {
-            Intent intent = new Intent(Notifications.this, LocationSetter.class);
-            startActivity(intent);
+        } else if(item.getTitle().equals("Workout Notifications")){
+            Intent i = new Intent(Notifications.this, Exercise.class);
+            startActivity(i);
             finish();
             return true;
-        }
-        if(id ==R.id.water_notification){
+        } else if(item.getTitle().equals("Water Intake")){
+            Intent i = new Intent(Notifications.this, WaterIntake.class);
+            startActivity(i);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

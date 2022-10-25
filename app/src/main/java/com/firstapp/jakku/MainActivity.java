@@ -2,34 +2,60 @@ package com.firstapp.jakku;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.firstapp.jakku.databinding.ActivityMainBinding;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
+import java.util.Date;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.json.JSONException;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView travelTextView;
-    //TextView info;
-    TextView planner;
-    /* Varning från commit
-    Warning: Do not place Android context classes in static fields; this is a memory leak
-     */
+    private TextView travelTextView;
+    private TextView planner;
     static TextView Todo;
     private Button mon;
     private Button tue;
@@ -311,6 +337,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if(id == R.id.exercise){
             Intent intent = new Intent(MainActivity.this, Exercise.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id == R.id.notification_workout){
+            Intent intent = new Intent(MainActivity.this,NotificationWorkout.class);
             startActivity(intent);
             finish();
             return true;
