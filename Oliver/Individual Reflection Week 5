@@ -9,4 +9,5 @@ I help by participating in everything we plan and divide up the work among us.
 We write our user stories and reflections at the end of the week.
 
 What is my contribution towards the team’s deliveries?
-This week I added support for using notifications, however they haven't been implemented yet.
+Turns out the weather class didn't work correctly so I tried to fix it but there are still issues.
+This week I added support for using notifications in the weather class, however they haven't been implemented yet.
