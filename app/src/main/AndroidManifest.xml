@@ -59,13 +59,6 @@
             android:exported="false"
             />
         <activity
-            android:name=".Travel"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Notifications"
             android:exported="false" />
         <activity

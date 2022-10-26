@@ -13,11 +13,11 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**
+ * @author Oliver Brottare
+ * Weather gets a weather forecast from SMHI and uses it in several functions.
+ */
 public class Weather {
-    //private static JSONArray jsonArray = requestShortWeather();
-
-    //public JSONArray getJsonArray() {return jsonArray;}
 
     private static String longitude = "11.974560";
     private static String latitude = "57.708870";
@@ -162,68 +162,7 @@ public class Weather {
         return "Error getting temperature";
     }
 
-    /**
-     * Looks at the current precipitation according to the devices time.
-     * @return Int with the precipitation. 0 for no precipitation and above 0 for precipitation.
-     * @throws JSONException If an error has occurred with the SMHI request
-     */
-    /*public static int currentRain() throws JSONException {
-        JSONArray jsonArray = requestShortWeather();
 
-        //Looks at the current time according to the device it is running on.
-        DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH");
-        LocalDateTime now = LocalDateTime.now();
-
-        //Loops through the forecast to find one for the current time.
-        for (int i = 0; i < 34 ; i++) {
-            String validTime = ((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11, 13);
-            if (validTime.equals(hour.format(now))){
-                for (int j = 0; j < 5; j++) {
-                    try {
-                        if (((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")) {
-                            return (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-        //If the loop fails to find a matching time then it returns this instead.
-        return -1;
-    }
-*/
-    /**
-     * Looks to see if there's any precipitation within the next 24 hours at 07:00, 13:00 and 18:00 and returns a HashMap with the data.
-     * @return Returns a HashMap with the times and boolean for precipitation.
-     */
-    /*public static HashMap<Integer, Boolean> rainToday() throws JSONException {
-
-        HashMap<Integer, Boolean> hashMap = new HashMap<>();
-        JSONArray jsonArray = requestWeather();
-
-        //Loops over 24 hours
-        for (int i = 0; i < 24 ; i++){
-            String validTime =((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11,13);
-            if (validTime.equals("07") || validTime.equals("13") || validTime.equals("18")){    //Only looks at the weather forecast at 07:00, 13:00 and 18:00
-                for (int j = 0 ; j < 19 ; j++) {
-                    if(((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")){   //pcat is a category that has the number 0 if there is no precipitation and a number above 0 depending on the type of precipitation
-                        //If the value is above 0 then theres precipitation.
-                        if(0 < (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0)){ //If true, there is precipitation, otherwise there is no precipitation.
-                            hashMap.put(Integer.parseInt(validTime), true);
-                        }
-                        else{
-                            hashMap.put(Integer.parseInt(validTime), false);
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-        return hashMap;
-    }
-    */
     /**
      * Checks if there is going to be any rain at 18:00.
      * If the clock is before 19:00 it returns based on the weather today and after 19:00 it returns for tomorrow.
@@ -329,50 +268,5 @@ public class Weather {
         }
         return hashMap;
     }
-    /**
-     *
-     * @return String "Outdoor" or "Indoor" depending on the weather
-     */
-   /* public static String rain18() throws JSONException {
-        DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH");
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-        LocalDateTime now = LocalDateTime.now();
 
-        JSONArray jsonArray = requestWeather();
-
-        for (int i = 0; i < 34 ; i++){
-            String validTime =((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(11,13);
-            if (validTime.equals("18")){    //Only looks at the weather forecast at 18:00
-                if(18 < Integer.parseInt(hour.format(now))){
-                    if (!day.format(now).equals(((String) ((JSONObject) jsonArray.get(i)).get("validTime")).substring(8,10))){
-                        for (int j = 0 ; j < 19 ; j++) {
-                            if(((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")){   //pcat is a category that has the number 0 if there is no precipitation and a number above 0 depending on the type of precipitation
-                                if(0 < (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0)){ //If true, there is precipitation, otherwise there is no precipitation.
-                                    return "Indoor";
-                                }
-                                else{
-                                    return "Outdoor";
-                                }
-                            }
-                        }
-                    }
-                }
-                else{
-                    for (int j = 0 ; j < 19 ; j++) {
-                        if(((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("name").equals("pcat")){   //pcat is a category that has the number 0 if there is no precipitation and a number above 0 depending on the type of precipitation
-                            if(0 < (int) ((JSONArray)((JSONObject) ((JSONArray) ((JSONObject) jsonArray.get(i)).get("parameters")).get(j)).get("values")).get(0)){ //If true, there is precipitation, otherwise there is no precipitation.
-                                return "Indoor";
-                            }
-                            else{
-                                return "Outdoor";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return "Error";
-    }
-    */
 }

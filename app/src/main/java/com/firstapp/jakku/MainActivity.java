@@ -52,6 +52,14 @@ import org.json.JSONException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
+/**
+ * MainActivity shows the home-screen.
+ * It gets the weather from an API and displays the current weather,
+ * shows the schedule created by Schema that is closable for every day of the week by button and
+ * displays travel recommendations based on weather.
+ * @author liam Mattsson, Ludvig Andersson, Erik Gustavsson, Oliver Brottare, Chrisitna Meisoll
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView travelTextView;
