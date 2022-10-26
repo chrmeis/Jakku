@@ -1,0 +1,35 @@
+17/10   2,5h supporting a merg from main into another over discord
+18/10   2h redownloading android studio due to it not starting the program anymore
+19/10   3h solving merge conflicts preparing presentation, giving presentation
+24/10   2h commenting the code
+
+total: 8,5h
+
+
+... the current situation or "what is" (A),
+... what you want the situation to be or "what might or should be" (B), and
+... a plan for getting from where you are to where you want to be or "feedback designed to reduce the gap" (A -> B).
+
+
+What do I want to learn or understand better?
+I had some difficulties when merging, sometimes there disparaged parts of code that have been written before.
+I would like to understand how to prevent that for the future. I also want to find out why no other one was able
+to merge into main. For example rebase is something I have not used yet and I want
+to explore the advantages and disadvantages compared to merge.
+
+
+How can I help someone else, or the entire team, to learn something new?
+I helped Liam with merging from main into his branch. I am glad that I now feel confident in working with merges
+and want to explore more possibilities with VCS. Then I can help my team even more.
+
+
+What is my contribution towards the team’s use of Scrum?
+I was active in planning out what to do in this sprint and stayed focused on the aspects we decided to polish this sprint.
+I also kept an eye out for having meetings scheduled, even though others kan have taken the initiative to schedule one.
+I enjoyed being the scrum master to my team. And I wouldn't mind having that roll again, however I also want to give the
+others the chance to make that experience.
+
+
+What is my contribution towards the team’s deliveries?
+Since I was the only one who had the rights to merge into main, this was a big part of my part this sprint. But I also took
+steps in making the code more readable.
