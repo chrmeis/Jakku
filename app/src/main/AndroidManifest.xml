@@ -58,10 +58,6 @@
             android:name=".LocationSetter"
             android:exported="false"
             />
-		<activity
-		android:name=".NotificationWorkout"
-            android:exported="false"
-            />
         <activity
             android:name=".Travel"
             android:exported="false">
