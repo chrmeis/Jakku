@@ -114,8 +114,12 @@ public class LocationSetter extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
-
-
+        }
+        if(id ==R.id.water_notification){
+            Intent intent = new Intent(LocationSetter.this, Notifications.class);
+            startActivity(intent);
+            finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
