@@ -2,19 +2,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/home"
+        app:showAsAction= "never" />
+
+    <item android:id="@+id/water_intake"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/water_intake"
+        app:showAsAction= "never" />
+
+    <item android:id="@+id/exercise"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/exercises"
+        app:showAsAction="never" />
+
     <item android:id="@+id/trainingspref"
     android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Training"
+        android:title="@string/training_settings"
         app:showAsAction= "never" />
 
     <item android:id="@+id/studypref"
         android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Study"
+        android:title="@string/study_settings"
         app:showAsAction= "never" />
 
-    <item android:id="@+id/home"
+    <item android:id="@+id/location_setter"
         android:icon="@drawable/ic_baseline_directions_run_24"
-        android:title="Home"
-        app:showAsAction= "never" />
+        android:title="@string/set_location"
+        app:showAsAction="never" />
+
+    <item android:id= "@+id/water_notification"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/water_notification"
+        app:showAsAction="never" />
 
 </menu>

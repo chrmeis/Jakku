@@ -5,15 +5,20 @@
       <map>
         <entry key="..\:/Programmering/GitHub/Jakku/app/src/main/res/layout/activity_destination.xml" value="0.365625" />
         <entry key="..\:/Programmering/GitHub/Jakku/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programmering/GitHub/Jakku/app/src/main/res/layout/activity_notification_workout.xml" value="0.36666666666666664" />
         <entry key="..\:/Programmering/GitHub/Jakku/app/src/main/res/layout/activity_settings.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/drawable/ic_baseline_directions_run_24.xml" value="0.1965" />
         <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/layout/activity_settings.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/46730/Desktop/Jakku/app/src/main/res/menu/settingsmenu.xml" value="0.265625" />
+        <entry key="..\:/Users/ludan/Documents/GitHub/Jakku/app/src/main/res/layout/activity_main.xml" value="0.1408514492753623" />
+        <entry key="..\:/Users/ludan/Documents/GitHub/Jakku/app/src/main/res/menu/settingsmenu.xml" value="0.1796875" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/Javadoc" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

@@ -1,0 +1,21 @@
+//didn't write down individual reflection time spent week 35 or 36
+Week 35:
+08/31:  Meeting/group work 8:15-10:45 2.5hrs
+09/02:  Meeting 9:30-10:20 50min
+Total:  3.3 hrs
+
+Week 36:
+09/05:  Meeting 9:30-10:30, 1hr
+09/08:  Meeting 13-15, 2hrs
+Total:  3 hrs
+
+Week 37:
+09/12:  Meeting 10-12, 2hrs
+        Supervision/meeting 13:15-14:15, 1hr
+09/14:  Looking up examples for alarms: 12-12:30, 30min
+        Meeting/fixing android studio 13-15, 2hrs
+        Looking up more examples for alarms: 15-16, 1hr
+09/16:  Implementing daily notification: 10:15-11:45, 1.5hrs
+        Meeting: 13:00-15:00, 2hrs
+        Individual Reflection: 15:00 - 15:30, 30min
+Total:  10.5 hrs
