@@ -94,6 +94,7 @@ public class TrainingActivity extends AppCompatActivity {
 
 /**
      * Saves sharedPreferences for training in TrainingActivity, Schema and updates the MainActivity
+ @author Liam Mattsson, Christina Meisoll
      */
     public void savePrefTrain(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_TPREFS, MODE_PRIVATE);

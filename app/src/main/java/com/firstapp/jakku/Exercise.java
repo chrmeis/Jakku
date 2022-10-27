@@ -46,7 +46,7 @@ public class Exercise extends AppCompatActivity {
     /**
      * onCreateOptionsMenu sets the menu bar according to settingsmenu.xml file
      * @param menu
-     * @author Menu made by Liam Mattsson
+     * @author Liam Mattsson
      */
 
     @Override
@@ -61,6 +61,7 @@ public class Exercise extends AppCompatActivity {
     /**
      * onOptionsItemSelected switches to other activities based on what user choose in menubar.
      * @param item
+     * @author Liam Mattsson
      */
 
     @Override
