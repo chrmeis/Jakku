@@ -66,7 +66,8 @@ How to use the app:
 
 Gitinspector:
 As we mentioned in mail, we had troubles to run GitInspector. So we have a separate file for 
-the insights from GitHub as agreed by mail.
+the insights from GitHub as agreed by mail. You also find Github Insights here:
+https://github.com/chrmeis/Jakku/pulse
 
 
 Länkar:
