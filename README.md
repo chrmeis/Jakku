@@ -27,22 +27,22 @@ when the gradle Build has finished, build the app using the hammer-icon and run 
 
 
 Structure
-The app has different Java classes with the following names and purposes:
-AlarmReceiver: 	wakes up the phone and sends notifications based on the intent of the caller.
-Exercise: 	is a simple class working as a page for different workouts.
-LocationSetter: is used by the user to set up the location to be used by the rest of the appMainActivity
-MainActivity: shows the home-screen.
-* It gets the weather from an API and displays the current weather,
-* shows the schedule created by Schema that is closable for every day of the week by button and
-* displays travel recommendations based on weather.
-Notifications: 	represents the notifications sent to the user every 4 hours, reminding them to drink a glass of water
-NotificationSetup: is used to set up notifications based on data saved in shared preference called "sharedPref".
-Pass1: 		is a workout pass with different exercises and the ability to swap between them.
-Schema: 	is used to create the schema accommodating for both study time and training.
-StudyActivity: 	takes in the users study preferences, saves, loads and updates them.
-TrainingActivity: takes in the users training preferences, saves, loads and updates them.
-Waterintake: 	simple class to enable user to track how many glasses of water that has been consumed during the day.
-Weather: 	gets a weather forecast from SMHI and uses it in several functions.
+* The app has different Java classes with the following names and purposes:
+* AlarmReceiver: 	wakes up the phone and sends notifications based on the intent of the caller.
+* Exercise: 	is a simple class working as a page for different workouts.
+* LocationSetter: is used by the user to set up the location to be used by the rest of the appMainActivity
+* MainActivity: shows the home-screen.
+It gets the weather from an API and displays the current weather,
+shows the schedule created by Schema that is closable for every day of the week by button and
+displays travel recommendations based on weather.
+* Notifications: 	represents the notifications sent to the user every 4 hours, reminding them to drink a glass of water
+* NotificationSetup: is used to set up notifications based on data saved in shared preference called "sharedPref".
+* Pass1: 		is a workout pass with different exercises and the ability to swap between them.
+* Schema: 	is used to create the schema accommodating for both study time and training.
+* StudyActivity: 	takes in the users study preferences, saves, loads and updates them.
+* TrainingActivity: takes in the users training preferences, saves, loads and updates them.
+* Waterintake: 	simple class to enable user to track how many glasses of water that has been consumed during the day.
+* Weather: 	gets a weather forecast from SMHI and uses it in several functions.
 
 How to use the app:
 * When the app has started you see the home-screen, showing today's data.
@@ -65,11 +65,13 @@ How to use the app:
 
 
 Gitinspector:
-
+As we mentioned in mail, we had troubles to run GitInspector. So we have a separate file for 
+the insights from GitHub as agreed by mail.
 
 
 Länkar:
 Trello: https://trello.com/b/aR1u3W3Z/training-scrum-board
+Google drive: https://drive.google.com/drive/folders/1obfKtimswApkzlfuuk4IWFzDOqKE12-4?usp=sharing
 
 
 
