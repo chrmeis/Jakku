@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView travelTextView;
     private TextView planner;
-    static TextView Todo;
+    static TextView ScheduleToday;
     private Button mon;
     private Button tue;
     private Button wed;
@@ -118,20 +118,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Updates the schedule the todo with data according to today's date.
+     * Updates the schedule the todays with data according to today's date.
      */
     public static void updateShedule(){
        String str=Schema.schedulemaker(Schema.getToday());
-        Todo.setText(str);
+        ScheduleToday.setText(str);
     }
 
     /**
-     * Updates the schedule the todo with data according to the chosen date
+     * Updates the schedule the ScheduleToday with data according to the chosen date
      * @param today The chosen day.
      */
     public static void updateSchedule_by_button(String today){
         String str=Schema.schedulemaker(today);
-        Todo.setText(str);
+        ScheduleToday.setText(str);
     }
 
     /**
@@ -278,8 +278,8 @@ public class MainActivity extends AppCompatActivity {
         Schema.set_studypref(s_frequency,s_duration);
         Schema.set_trainingpref(t_frequency,t_duration);
 
-        Todo= findViewById(R.id.textView3);
-        Todo.setText(Schema.schedulemaker(Schema.getToday()));
+        ScheduleToday= findViewById(R.id.textView3);
+        ScheduleToday.setText(Schema.schedulemaker(Schema.getToday()));
     }
 
     /**
