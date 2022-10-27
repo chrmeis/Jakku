@@ -7,7 +7,7 @@ Who’s who
 Ludvig Andersson – ludvan
 Oliver Brottare – OliverSkola, Oliver, utan namn
 Erik Gustavsson – Erigust, Elldrik
-Liam Mattson – YamadaTTV
+Liam Mattsson – YamadaTTV
 Christina Meisoll – chrmeis
 
 About tRAINing:
