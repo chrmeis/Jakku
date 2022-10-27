@@ -181,6 +181,12 @@ public class LocationSetter extends AppCompatActivity {
 
  */
 
+    /**
+     *
+     * @param item the item in the menu
+     * @return true if the item was selected in the menu
+     * @author Liam Mattsson
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if(item.getTitle().equals("Home")){

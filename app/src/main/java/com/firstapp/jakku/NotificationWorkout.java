@@ -297,6 +297,12 @@ public class NotificationWorkout extends AppCompatActivity {
 
  */
 
+    /**
+     *
+     * @param item item in the menu
+     * @return true if an item was selected
+     * @author Liam Mattsson
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if(item.getTitle().equals("Home")){

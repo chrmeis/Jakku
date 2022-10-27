@@ -86,6 +86,12 @@ public class TrainingActivity extends AppCompatActivity {
         updateTrainViews();
     }
 
+    /**
+     *
+     * @param menu the menu
+     * @return true if the menu was created
+     * @author Liam Mattsson
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Home");
@@ -98,6 +104,12 @@ public class TrainingActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     *
+     * @param item an item in the menu
+     * @return true if that item was selected
+     * @author Liam Mattsson
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getTitle().equals("Home")){

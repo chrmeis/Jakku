@@ -52,6 +52,10 @@ import org.json.JSONException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Liam Mattsson
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView travelTextView;
